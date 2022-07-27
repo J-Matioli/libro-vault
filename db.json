@@ -1,0 +1,137 @@
+{
+  "livros": [
+    {
+      "id": 1,
+      "titulo": "A revolta de Atlas",
+      "editora": "Editora Arqueiro",
+      "idioma": "Português",
+      "paginas": 1216,
+      "autor": "Ayn Rand",
+      "generos": [
+        "Ficção filosófica",
+        "Ficção científica",
+        "Mistério",
+        "Romance",
+        "Utopia"
+      ],
+      "enredo": "A protagonista Dagny Taggart, vice-presidente operacional da Taggart Transcontinental, uma empresa ferroviária criada pelo avô, tenta manter a empresa viva. O irmão James Taggart, presidente da ferrovia, é vagamente consciente dos problemas da empresa e toma decisões errôneas, como a insistência em comprar aço de uma empresa que repetidamente posterga a entrega do metal encomendado...",
+      "dataLeitura": null,
+      "dataAquisicao": null,
+      "lido": false,
+      "preco": "59,60"
+    },
+    {
+      "titulo": "Admirável Mundo Novo",
+      "editora": "Biblioteca Azul",
+      "idioma": "Português",
+      "paginas": 312,
+      "autor": "Aldous Leonard Huxley",
+      "generos": [
+        "Distopia",
+        "Ficção científica"
+      ],
+      "enredo": "Um mundo de pessoas programadas em laboratório, e adestradas para cumprir seu papel numa sociedade de castas biologicamente definidas já no nascimento. Um mundo no qual a literatura, a música e o cinema só têm a função de solidificar o espírito de conformismo...",
+      "dataLeitura": null,
+      "dataCompra": "2020-11-27",
+      "lido": true,
+      "preco": "20,80",
+      "id": 2
+    }
+  ],
+  "mangas": [
+    {
+      "titulo": "Kimetsu no Yaiba",
+      "editora": "Panini",
+      "idioma": "Português",
+      "paginas": 192,
+      "mangaka": "Koyoharu Gotouge",
+      "generos": [
+        "Ação",
+        "Aventura",
+        "Fantasia sombria"
+      ],
+      "enredo": "Ambientada no Japão durante o Período Taishō (1912-1926), a história gira ao entorno de Tanjirō Kamado, um garoto bondoso e inteligente que vive junto com sua mãe e seus irmãos, ganhando dinheiro vendendo carvão, assim como seu falecido pai. Certo dia, ao voltar para casa após ter ido a uma cidade vender carvão, Tanjiro descobre que toda sua família foi atacada por onis...",
+      "dataLeitura": "2020-09-07",
+      "dataAquisicao": "2020-09-04",
+      "preco": "24,90",
+      "volume": 1,
+      "lido": true,
+      "totalVolumes": 23,
+      "id": 1
+    },
+    {
+      "titulo": "Tekkon Kinkreet",
+      "editora": "Devir Livraria",
+      "idioma": "Português",
+      "paginas": 620,
+      "mangaka": "Taiyo Matsumoto",
+      "generos": [
+        "Ação",
+        "Aventura",
+        "Drama"
+      ],
+      "enredo": "Numa cidade de “ferro e concreto” (significado em japonês de tekkon kinkreet”), vivem dois personagens indomáveis. Kuro (o preto) e Shiro (o branco) são órfãos. Para sobreviver, eles têm de roubar, lutar e se esconder em um mundo sombrio, solitário e corrupto, onde a própria cidade os afaga ou os despreza, como se fosse um ser vivo...",
+      "dataLeitura": null,
+      "dataAquisicao": "2021-10-07",
+      "preco": "78,91",
+      "volume": 1,
+      "lido": true,
+      "totalVolumes": 1,
+      "id": 2
+    }
+  ],
+  "hqs": [
+    {
+      "id": 1,
+      "titulo": "Black Hole",
+      "editora": "Darkside",
+      "idioma": "Português",
+      "paginas": 385,
+      "autor": "Charles Burns",
+      "generos": [
+        "Ficção",
+        "Terror"
+      ],
+      "enredo": "BLACK HOLE se passa nos arredores de Seattle, extremo noroeste dos Estados Unidos, em meados da década de 1970, quando uma praga inominável e traiçoeira se alastra entre os adolescentes locais...",
+      "dataLeitura": "20217-12-10",
+      "dataAquisicao": "2017-12-04",
+      "lido": true,
+      "preco": "59,99",
+      "volume": 1,
+      "totalVolumes": 1
+    },
+    {
+      "titulo": "Logicomix",
+      "editora": "WMF Martins Fontes",
+      "idioma": "Português",
+      "paginas": 366,
+      "autor": "Apostolos Doxiadis, Christos Papadimitriou",
+      "generos": [
+        "Romance",
+        "Biografia",
+        "Não-ficção"
+      ],
+      "enredo": "Esta inovadora história em quadrinhos conta a vida do filósofo Bertrand Russell e seu apaixonado objetivo de estabelecer os fundamentos lógicos de todos os princípios matemáticos. Nessa sua angustiante busca pela verdade absoluta, Russell cruzou com pensadores como Gottlob Frege, David Hilbert, Kurt Gödel e Ludwig Wittgenstein...",
+      "dataLeitura": null,
+      "dataAquisicao": "2021-09-21",
+      "lido": true,
+      "preco": "57,90",
+      "volume": 1,
+      "totalVolumes": 1,
+      "id": 2
+    }
+  ],
+  "generos": [
+    "Ficção",
+    "Terror",
+    "Ação",
+    "Aventura",
+    "Fantasia sombria",
+    "Distopia",
+    "Ficção científica",
+    "Ficção filosófica",
+    "Mistério",
+    "Romance",
+    "Utopia"
+  ]
+}
