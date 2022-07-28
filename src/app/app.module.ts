@@ -10,6 +10,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { LoginComponent } from './views/login/login.component';
+import { CoreModule } from './core/core/core.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { LoginComponent } from './views/login/login.component';
   ],
   imports: [
     BrowserModule,
+    CoreModule,
+    MatSidenavModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
       metaReducers
