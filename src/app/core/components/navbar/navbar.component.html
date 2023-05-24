@@ -1,0 +1,9 @@
+<mat-toolbar *ngIf="display" color="primary">
+    <button mat-icon-button (click)="menuChangeState()" class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button mat-icon-button class="example-icon" (click)="logout()" aria-label="Example icon-button with share icon">
+      <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>

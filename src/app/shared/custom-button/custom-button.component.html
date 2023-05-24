@@ -1,0 +1,12 @@
+<button 
+    [disabled]="disabled || isLoading" 
+    class="custom-button"
+    mat-raised-button 
+    [color]="color"
+    (click)="onClick()">
+        <mat-icon *ngIf="icon && !isLoading" [svgIcon]="icon" class="custom-button__icon"> </mat-icon>
+        <mat-icon *ngIf="isLoading" color="primary" class="custom-button__icon">
+            <mat-spinner diameter="20"></mat-spinner>
+        </mat-icon>
+        <ng-content></ng-content>
+</button> 

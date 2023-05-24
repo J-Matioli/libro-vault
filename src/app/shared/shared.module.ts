@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
-    ToolbarComponent
+    CustomButtonComponent
   ],
   imports: [
     CommonModule,
-    MatToolbarModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     MatIconModule
   ],
   exports: [
-    ToolbarComponent
+    CustomButtonComponent
   ]
 })
-export class CoreModule { }
+export class SharedModule { }

@@ -1,0 +1,14 @@
+.custom-button{
+    padding: 0 40px;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    
+    &__icon,&__loader {
+        margin-right: 10px;
+    }
+
+    @media (max-width: 320px) {
+        padding: 0 15px;
+    } 
+}
