@@ -1,7 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@use "app/scss/palette-helper";
 
 @import 'app/scss/main.scss';
 
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+.custom-app-background {
+  background-color: #eaeaea;
+}
+
+$primary-palette: mat.define-palette($blue-palette);
+$accent-palette: mat.define-palette($yellow-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette
+  )
+));
+
+$theme: palette-helper.modify-background($theme, #eaeaea);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($theme);
+
+body {
+  --primary-color: #{$primary-color};
+  --primary-darker-color: #{$primary-darker-color};
+  --accent-color: #{$accent-color};
+  --warn-color: #{$warn-color};
+  --primary-A200-color: #{$primary-A200-color};
+  --grey-light-1: #{$grey-light-1};
+}
+
+
+
+/* You can add global styles to this file, and also import other style files */
 *,
 *::after,
 *::before {
