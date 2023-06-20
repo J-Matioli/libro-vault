@@ -10,23 +10,30 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-.custom-app-background {
-  background-color: #eaeaea;
-}
 
-$primary-palette: mat.define-palette($blue-palette);
-$accent-palette: mat.define-palette($yellow-palette);
+$primary-palette: mat.define-palette($primary-color-palette);
+$accent-palette: mat.define-palette($accent-color-palette);
+$warn-palette: mat.define-palette($warn-color-palette);
+
+$bg-color: #f4f1de;
+
+$grey-light-1: #eaeaea;
+
+.custom-app-background {
+  background-color: $bg-color;
+}
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $theme: mat.define-light-theme((
   color: (
     primary: $primary-palette,
-    accent: $accent-palette
+    accent: $accent-palette,
+    warn: $warn-palette
   )
 ));
 
-$theme: palette-helper.modify-background($theme, #eaeaea);
+$theme: palette-helper.modify-background($theme, $bg-color);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -34,11 +41,11 @@ $theme: palette-helper.modify-background($theme, #eaeaea);
 @include mat.all-component-themes($theme);
 
 body {
-  --primary-color: #{$primary-color};
-  --primary-darker-color: #{$primary-darker-color};
-  --accent-color: #{$accent-color};
-  --warn-color: #{$warn-color};
-  --primary-A200-color: #{$primary-A200-color};
+  --primary-color: #{map-get($primary-color-palette, 500)};
+  --primary-darker-color: #{map-get($primary-color-palette, 900)};
+  --accent-color: #{map-get($accent-color-palette, 500)};
+  --warn-color: #{map-get($warn-color-palette, 500)};
+  --bg-color: #{$bg-color};
   --grey-light-1: #{$grey-light-1};
 }
 
