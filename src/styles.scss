@@ -15,10 +15,6 @@ $primary-palette: mat.define-palette($primary-color-palette);
 $accent-palette: mat.define-palette($accent-color-palette);
 $warn-palette: mat.define-palette($warn-color-palette);
 
-$bg-color: #f4f1de;
-
-$grey-light-1: #eaeaea;
-
 .custom-app-background {
   background-color: $bg-color;
 }
@@ -67,3 +63,23 @@ html {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: var(--accent-color) var(--bg-color);
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+  }
