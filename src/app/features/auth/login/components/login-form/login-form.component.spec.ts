@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginFormComponent } from './login-form.component';
-import { LoginModule } from '../../login.module';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from '../../../auth.module';
 
 describe(LoginFormComponent.name, () => {
   let component: LoginFormComponent;
@@ -11,7 +12,7 @@ describe(LoginFormComponent.name, () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ 
-        LoginModule,
+        AuthModule,
         BrowserAnimationsModule
        ]
     })
