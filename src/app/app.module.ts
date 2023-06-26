@@ -11,7 +11,8 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CoreModule } from './core/core.module';
-import { LoginModule } from './features/login/login.module';
+import { AuthModule } from './features/auth/auth.module';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { LoginModule } from './features/login/login.module';
   ],
   imports: [
     BrowserModule,
-    LoginModule,
+    AuthModule,
     CoreModule,
     MatSidenavModule,
     AppRoutingModule,
