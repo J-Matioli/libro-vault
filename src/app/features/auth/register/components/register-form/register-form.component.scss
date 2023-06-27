@@ -1,0 +1,35 @@
+@import "../../../../../scss/main.scss";
+
+.register-form {
+    max-width: 570px;    
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    row-gap: 12px;
+
+    ::ng-deep {
+        .mat-form-field-appearance-fill .mat-form-field-flex {
+            background-color: #fff !important;
+            border-radius: 0 !important;
+        }
+    }
+}
+
+.row-2-columns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    @include respond(small) {
+        flex-direction: column;
+        row-gap: 12px;
+    }
+    
+    .mat-form-field {
+        width: 48%;
+        
+        @include respond(small) {
+            width: 100%;
+        }
+    }
+}

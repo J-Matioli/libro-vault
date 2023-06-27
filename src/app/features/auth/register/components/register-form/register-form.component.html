@@ -1,0 +1,42 @@
+<form class="register-form" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="fill">
+        <mat-label>Nome</mat-label>
+        <input type="text" formControlName="nome" matInput>
+        <mat-error *ngIf="form.get('nome')!.errors?.['required']">Insira seu nome de usuário.</mat-error>
+    </mat-form-field>
+    <div class="row-2-columns">
+        <mat-form-field appearance="fill">
+            <mat-label>Gênero</mat-label>
+            <mat-select formControlName="genero">
+                <mat-option value="1">Feminino</mat-option>
+                <mat-option value="2">Masculino</mat-option>
+                <mat-option value="3">Outro</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('genero')!.errors?.['required']">Insira seu gênero.</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+                <mat-label>Data de nascimento</mat-label>
+                <input matInput formControlName="dataDeNascimento" [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('dataDeNascimento')!.errors?.['required']">Insira sua data de nascimento.</mat-error>
+          </mat-form-field>
+    </div>
+    <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" formControlName="email" matInput>
+        <mat-error *ngIf="form.get('email')!.errors?.['required']">Insira seu email.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Senha</mat-label>
+        <input type="password" formControlName="senha" matInput>
+        <mat-error *ngIf="form.get('senha')!.errors?.['required']">Insira sua senha.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Confirmar senha</mat-label>
+        <input type="password" formControlName="confirmarSenha" matInput>
+        <mat-error *ngIf="form.get('confirmarSenha')!.errors?.['required']">Confirme sua senha.</mat-error>
+    </mat-form-field>
+    <app-custom-button type="submit" class="register-form__submit" mat-raised-button color="accent">Registrar</app-custom-button>
+</form>
