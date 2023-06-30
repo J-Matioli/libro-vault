@@ -13,6 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { ChangePasswordEmailComponent } from './change-password-email/change-password-email.component';
+import { ChangePasswordEmailFormComponent } from './change-password-email/components/change-password-email-form/change-password-email-form.component';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -31,7 +33,9 @@ const MY_DATE_FORMAT = {
     LoginComponent,
     LoginFormComponent,
     RegisterComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ChangePasswordEmailComponent,
+    ChangePasswordEmailFormComponent
   ],
   imports: [
     CommonModule,
