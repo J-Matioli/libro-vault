@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
+import { AuthModule } from '../auth.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(RegisterComponent.name, () => {
   let component: RegisterComponent;
@@ -8,7 +11,10 @@ describe(RegisterComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ]
+      imports: [ 
+        AuthModule,
+        AppRoutingModule,
+        BrowserAnimationsModule ]
     })
     .compileComponents();
 

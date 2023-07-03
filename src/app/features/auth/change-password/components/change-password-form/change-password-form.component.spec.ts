@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChangePasswordFormComponent } from './change-password-form.component';
+import { AuthModule } from '../../../auth.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(ChangePasswordFormComponent.name, () => {
   let component: ChangePasswordFormComponent;
@@ -8,7 +10,10 @@ describe(ChangePasswordFormComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChangePasswordFormComponent ]
+      imports: [ 
+        AuthModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 
