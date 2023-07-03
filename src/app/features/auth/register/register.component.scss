@@ -39,4 +39,17 @@
             align-self: self-start;
         }
     }
+
+    &__options {
+        max-width: 570px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        margin-top: 19px;
+    }
+
+    &__options-text {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 }
