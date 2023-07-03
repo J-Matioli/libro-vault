@@ -53,9 +53,6 @@ const MY_DATE_FORMAT = {
     FormsModule,
     SharedModule
   ],
-  exports: [
-    LoginComponent
-  ],
   providers: [   
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT }
