@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterFormComponent } from './register-form.component';
+import { AuthModule } from '../../../auth.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(RegisterFormComponent.name, () => {
   let component: RegisterFormComponent;
@@ -8,7 +10,10 @@ describe(RegisterFormComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterFormComponent ]
+      imports: [ 
+        AuthModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 

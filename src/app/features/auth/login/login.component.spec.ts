@@ -2,8 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginModule } from './login.module';
+import { AuthModule } from '../auth.module';
 import { Router, RouterModule } from '@angular/router';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 describe(LoginComponent.name, () => {
   let component: LoginComponent;
@@ -13,8 +14,9 @@ describe(LoginComponent.name, () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ 
-        LoginModule,
+        AuthModule,
         BrowserAnimationsModule,
+        AppRoutingModule,
         RouterModule
       ]
     })

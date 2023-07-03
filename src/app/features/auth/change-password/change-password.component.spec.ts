@@ -1,14 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChangePasswordComponent } from './change-password.component';
+import { AuthModule } from '../auth.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('ChangePasswordComponent', () => {
+describe(ChangePasswordComponent.name, () => {
   let component: ChangePasswordComponent;
   let fixture: ComponentFixture<ChangePasswordComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChangePasswordComponent ]
+      imports: [ 
+        AuthModule,
+        AppRoutingModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 
