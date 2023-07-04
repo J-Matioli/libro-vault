@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=false --browsers ChromeHeadless,FirefoxHeadless",
     "test-watch": "ng test --browsers Chrome,Firefox",
-    "test-coverage": "ng test --watch=false --source-map=true --code-coverage=true --reporters junit --browsers ChromeHeadless,FirefoxHeadless"
+    "test-coverage": "ng test --watch=false --source-map=true --code-coverage=true --reporters junit --browsers ChromeHeadless,FirefoxHeadless && start coverage/the-dukes-archives/index.html"
   },
   "private": true,
   "dependencies": {
