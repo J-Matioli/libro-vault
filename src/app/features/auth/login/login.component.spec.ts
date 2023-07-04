@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from '../auth.module';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 describe(LoginComponent.name, () => {
@@ -16,8 +16,7 @@ describe(LoginComponent.name, () => {
       imports: [ 
         AuthModule,
         BrowserAnimationsModule,
-        AppRoutingModule,
-        RouterModule
+        AppRoutingModule
       ]
     })
     .compileComponents();

@@ -11,12 +11,11 @@ export class LoginFormComponent implements OnInit {
   public form!: FormGroup<LoginForm>;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
 
-  constructor(
-    private fb: FormBuilder) { 
-      this.createForm();
-    }
+  constructor( private fb: FormBuilder) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.createForm();
+  }
 
   createForm(): void {
     this.form = this.fb.group<LoginForm>({
