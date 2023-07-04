@@ -1,8 +1,10 @@
-<app-navbar></app-navbar>
-<mat-drawer-container class="container" autosize>
-    <mat-drawer [appSidenav]="drawer"  #drawer class="sidenav" [mode]="(sidenavType | async)!">
+<div class="root">
+  <app-navbar></app-navbar>
+  <mat-drawer-container class="container" autosize>
+    <mat-drawer [appSidenav]="drawer" #drawer class="sidenav" [mode]="(sidenavType | async)!">
       <p>Sidenav</p>
     </mat-drawer>
-  
+
     <router-outlet></router-outlet>
-</mat-drawer-container>
+  </mat-drawer-container>
+</div>
