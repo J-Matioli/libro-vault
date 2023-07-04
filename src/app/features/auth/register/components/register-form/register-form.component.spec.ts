@@ -24,5 +24,28 @@ describe(RegisterFormComponent.name, () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  }); 
+
+  it('should NOT emit form value if form is valid', () => {
+    const fomrEmitterSpy = spyOn(component.formSubmit, 'emit');
+
+    component.submit();
+    expect(fomrEmitterSpy).not.toHaveBeenCalled();
   });
+
+  it('should emit form value if form is valid', () => {
+    const fomrEmitterSpy = spyOn(component.formSubmit, 'emit');
+
+    component.form.setValue({
+      nome: "Nome Sobrenome",
+      email: "teste@email.com",
+      dataDeNascimento: "2012-01-26T13:51:50.417-07:00",
+      genero: "2",
+      senha: 'sdalk2312',
+      confirmarSenha:"teste@email.com"
+    })
+        
+    component.submit();
+    expect(fomrEmitterSpy).toHaveBeenCalled();
+  });  
 });
