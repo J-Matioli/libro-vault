@@ -25,4 +25,23 @@ describe(ChangePasswordFormComponent.name, () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should NOT emit form value if form is valid', () => {
+    const fomrEmitterSpy = spyOn(component.formSubmit, 'emit');
+
+    component.submit();
+    expect(fomrEmitterSpy).not.toHaveBeenCalled();
+  });
+
+  it('should emit form value if form is valid', () => {
+    const fomrEmitterSpy = spyOn(component.formSubmit, 'emit');
+
+    component.form.setValue({
+      senha: 'asdaçlksjda',
+      confirmarSenha: 'asdaçlksjda'
+    })
+
+    component.submit();
+    expect(fomrEmitterSpy).toHaveBeenCalled();
+  });
 });
