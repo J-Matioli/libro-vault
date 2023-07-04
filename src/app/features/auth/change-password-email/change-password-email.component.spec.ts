@@ -4,7 +4,6 @@ import { ChangePasswordEmailComponent } from './change-password-email.component'
 import { AuthModule } from '../auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe(ChangePasswordEmailComponent.name, () => {
   let component: ChangePasswordEmailComponent;
