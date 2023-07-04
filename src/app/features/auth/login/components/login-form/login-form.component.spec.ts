@@ -45,5 +45,4 @@ describe(LoginFormComponent.name, () => {
     component.submit();
     expect(fomrEmitterSpy).toHaveBeenCalled();
   });
-
 });
