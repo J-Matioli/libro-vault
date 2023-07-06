@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "the-dukes-archives": {
+    "libro-vault": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/the-dukes-archives",
+            "outputPath": "dist/libro-vault",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "the-dukes-archives:build:production"
+              "browserTarget": "libro-vault:build:production"
             },
             "development": {
-              "browserTarget": "the-dukes-archives:build:development"
+              "browserTarget": "libro-vault:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "the-dukes-archives:build"
+            "browserTarget": "libro-vault:build"
           }
         },
         "test": {
