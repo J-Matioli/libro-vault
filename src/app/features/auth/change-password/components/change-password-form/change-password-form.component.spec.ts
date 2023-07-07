@@ -37,8 +37,8 @@ describe(ChangePasswordFormComponent.name, () => {
     const fomrEmitterSpy = spyOn(component.formSubmit, 'emit');
 
     component.form.setValue({
-      senha: 'asdaçlksjda',
-      confirmarSenha: 'asdaçlksjda'
+      senha: 'Teste@123',
+      confirmarSenha: 'Teste@123'
     })
 
     component.submit();
