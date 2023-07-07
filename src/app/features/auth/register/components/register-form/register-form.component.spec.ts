@@ -41,8 +41,8 @@ describe(RegisterFormComponent.name, () => {
       email: "teste@email.com",
       dataDeNascimento: "2012-01-26T13:51:50.417-07:00",
       genero: "2",
-      senha: 'sdalk2312',
-      confirmarSenha:"teste@email.com"
+      senha: 'Teste@123',
+      confirmarSenha:"Teste@123"
     })
         
     component.submit();
