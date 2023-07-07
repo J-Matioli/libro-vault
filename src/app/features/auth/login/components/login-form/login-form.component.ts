@@ -19,12 +19,12 @@ export class LoginFormComponent implements OnInit {
 
   createForm(): void {
     this.form = this.fb.group<LoginForm>({
-      usuario: new FormControl(null, {validators: [Validators.required]}),
+      email: new FormControl(null, {validators: [Validators.required, Validators.email]}),
       senha: new FormControl(null, {validators: [Validators.required]}),
     })
   }
 
-  get usuario() { return this.form.get('usuario'); }
+  get email() { return this.form.get('email'); }
   get senha() { return this.form.get('senha'); }
 
   submit() {
@@ -36,6 +36,6 @@ export class LoginFormComponent implements OnInit {
 }
 
 export interface LoginForm {
-  usuario: FormControl<string | null>
+  email: FormControl<string | null>
   senha: FormControl<string | null>
 }
