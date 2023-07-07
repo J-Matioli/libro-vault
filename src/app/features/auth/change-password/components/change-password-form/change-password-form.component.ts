@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from 'src/app/core/validators/custom-validators.component';
 
 @Component({
   selector: 'app-change-password-form',
@@ -20,8 +21,19 @@ export class ChangePasswordFormComponent implements OnInit {
 
   createForm(): void {
     this.form = this.fb.group<ChangePasswordForm>({
-      senha: new FormControl(null, {validators: [Validators.required]}),
+      senha: new FormControl(null, {validators: [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(30),
+        CustomValidators.hasLowerChar(),
+        CustomValidators.hasUpperChar(),
+        CustomValidators.hasNumber(),
+        CustomValidators.hasSymbol(/^(?=.*[!@#$%*^&+=?{}/,.()~<>'`´;:])/g)
+      ]}),
       confirmarSenha: new FormControl(null, {validators: [Validators.required]}),
+    },
+    {
+      validators: [CustomValidators.passwordMatch('senha', 'confirmarSenha')]
     })
   }
 
