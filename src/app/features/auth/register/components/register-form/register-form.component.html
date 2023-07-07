@@ -2,8 +2,10 @@
     <span>Insira seus dados para se registrar na plataforma.</span>
     <mat-form-field appearance="fill">
         <mat-label>Nome</mat-label>
-        <input type="text" formControlName="nome" matInput>
+        <input (keydown)="preventChar($event, patterns.onlyLetters)" type="text" formControlName="nome" matInput>
         <mat-error *ngIf="form.get('nome')!.errors?.['required']">Insira seu nome de usuário.</mat-error>
+        <mat-error *ngIf="form.get('nome')!.errors?.['maxLength']">Tamanho máximo excedido.</mat-error>
+        <mat-error *ngIf="form.get('nome')!.errors?.['pattern']">Nome inválido.</mat-error>
     </mat-form-field>
     <div class="row-2-columns">
         <mat-form-field appearance="fill">
@@ -17,27 +19,37 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
                 <mat-label>Data de nascimento</mat-label>
-                <input matInput formControlName="dataDeNascimento" [matDatepicker]="picker">
-                <mat-hint>MM/DD/YYYY</mat-hint>
+                <input matInput formControlName="dataDeNascimento" [matDatepicker]="picker" [min]="'1900-01-01'" [max]="maxBorn()"appMaskDate>
+                <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker #picker disabled="false"></mat-datepicker>
                 <mat-error *ngIf="form.get('dataDeNascimento')!.errors?.['required']">Insira sua data de nascimento.</mat-error>
+                <mat-error *ngIf="form.get('dataDeNascimento')!.errors?.['matDatepickerMax']">A idade mínima é 1 ano.</mat-error>
           </mat-form-field>
     </div>
     <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
         <input type="email" formControlName="email" matInput>
         <mat-error *ngIf="form.get('email')!.errors?.['required']">Insira seu email.</mat-error>
+        <mat-error *ngIf="form.get('email')!.errors?.['email']">Email inválido.</mat-error>
+        <mat-error *ngIf="form.get('email')!.errors?.['maxLength']">Tamanho máximo excedido.</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Senha</mat-label>
         <input type="password" formControlName="senha" matInput>
         <mat-error *ngIf="form.get('senha')!.errors?.['required']">Insira sua senha.</mat-error>
+        <mat-error *ngIf="form.get('senha')!.errors?.['minLength']">A senha deve conter, no mínimo, 8 caracteres.</mat-error>
+        <mat-error *ngIf="form.get('senha')!.errors?.['maxlength']">A senha deve conter, no máximo, 30 caracteres.</mat-error>
+        <mat-error *ngIf="form.get('senha')!.errors?.['hasLowerChar']">A senha deve conter, no mínimo, uma letra minúscula.</mat-error>
+        <mat-error *ngIf="form.get('senha')!.errors?.['hasUpperChar']">A senha deve conter, no mínimo, uma letra maiúscula.</mat-error>
+        <mat-error *ngIf="form.get('senha')!.errors?.['hasNumber']">A senha deve conter, no mínimo, um número.</mat-error>
+        <mat-error *ngIf="form.get('senha')!.errors?.['hasSymbol']">Insira, no mínimo, um caractere especial.</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Confirmar senha</mat-label>
         <input type="password" formControlName="confirmarSenha" matInput>
-        <mat-error *ngIf="form.get('confirmarSenha')!.errors?.['required']">Confirme sua senha.</mat-error>
+        <mat-error *ngIf="form.get('confirmarSenha')!.errors?.['required']">Por favor, confirme sua senha.</mat-error>
+        <mat-error *ngIf="form.get('confirmarSenha')!.errors?.['passwordMismatch']">As senhas são diferentes.</mat-error>
     </mat-form-field>
     <app-custom-button type="submit" class="register-form__submit" mat-raised-button color="accent">Registrar</app-custom-button>
 </form>
