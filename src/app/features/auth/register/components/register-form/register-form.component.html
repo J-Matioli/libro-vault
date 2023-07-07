@@ -38,7 +38,7 @@
         <mat-label>Senha</mat-label>
         <input type="password" formControlName="senha" matInput>
         <mat-error *ngIf="form.get('senha')!.errors?.['required']">Insira sua senha.</mat-error>
-        <mat-error *ngIf="form.get('senha')!.errors?.['minLength']">A senha deve conter, no mínimo, 8 caracteres.</mat-error>
+        <mat-error *ngIf="form.get('senha')!.errors?.['minlength']">A senha deve conter, no mínimo, 8 caracteres.</mat-error>
         <mat-error *ngIf="form.get('senha')!.errors?.['maxlength']">A senha deve conter, no máximo, 30 caracteres.</mat-error>
         <mat-error *ngIf="form.get('senha')!.errors?.['hasLowerChar']">A senha deve conter, no mínimo, uma letra minúscula.</mat-error>
         <mat-error *ngIf="form.get('senha')!.errors?.['hasUpperChar']">A senha deve conter, no mínimo, uma letra maiúscula.</mat-error>
