@@ -19,7 +19,7 @@ export class ChangePasswordEmailFormComponent implements OnInit {
 
   createForm(): void {
     this.form = this.fb.group<EmailForm>({
-      email: new FormControl(null, {validators: [Validators.required]}),
+      email: new FormControl(null, {validators: [Validators.required, Validators.email]}),
     })
   }
 
