@@ -39,7 +39,7 @@ describe(LoginFormComponent.name, () => {
 
     component.form.setValue({
       senha: 'asdaçlksjda',
-      usuario: 'teste'
+      email: 'teste@teste'
     })
 
     component.submit();
