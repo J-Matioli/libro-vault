@@ -1,7 +1,8 @@
 //MEDIA QUERY MANAGER
 
 /*
-0 - 575px: xsmall
+0   - 400px: xxsmall
+401 - 575px: xsmall
 576 - 767px: small
 768 - 991px: medium
 992 - 1999px: large
@@ -10,6 +11,7 @@
 
 $breakpoint argument choices:
 
+- xxsmall
 - xsmall
 - small
 - medium
@@ -17,8 +19,11 @@ $breakpoint argument choices:
 - xxlarge
 */
 
-
 @mixin respond($breakpoint) {
+    @if $breakpoint == xxsmall {
+        @media only screen and (max-width: 25em) { @content };   //400px;
+    };
+
     @if $breakpoint == xsmall {
         @media only screen and (max-width: 35.9em) { @content };   //575px;
     };
