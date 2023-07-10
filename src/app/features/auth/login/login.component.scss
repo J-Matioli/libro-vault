@@ -14,24 +14,27 @@
 
     &__banner {
         background-color: var(--bg-color);
-        display: grid;
-        align-items: center;
-        justify-items: center;
+        position: relative;
+        overflow: hidden;
 
         @include respond(small) {
             display: none;
         }
-        
     }
 
-    &__logo {
-        max-width: 400px;
-        width: 70%;
+    &__img {
+        height: 100%;
+        width: auto;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-49%);
     }
 
     &__form-box {
         padding: 2rem;
         align-self: center;
+        position: relative;
     }
 
     &__options {

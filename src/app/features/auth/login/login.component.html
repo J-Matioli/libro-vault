@@ -1,8 +1,9 @@
 <div class="login">
-    <section class="login__banner"></section>
+    <section class="login__banner">
+        <img class="login__img" src="../../../../assets/img/login_bg.svg" alt="Imagem de fundo da tela de Login">
+    </section>
     <section class="login__form-box">
         <app-login-form (formSubmit)="submit($event)"></app-login-form>
-        
         <div class="login__options">
             <span class="login__options-text" routerLink="/change-password-email" >Esqueceu a senha?</span>
             <span class="login__options-text" routerLink="/register" >Criar uma nova conta.</span>
