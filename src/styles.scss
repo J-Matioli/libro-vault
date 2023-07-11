@@ -83,3 +83,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   *::-webkit-scrollbar-thumb {
     background-color: var(--accent-color);
   }
+
+a:link,a:visited {
+    text-decoration: inherit;
+    color: inherit
+}

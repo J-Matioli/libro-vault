@@ -6,11 +6,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SidenavDirective } from './directives/sidenav.directive';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    SidenavDirective
+    SidenavDirective,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { SidenavDirective } from './directives/sidenav.directive';
   ],
   exports: [
     NavbarComponent,
-    SidenavDirective
+    SidenavDirective,
+    FooterComponent
   ]
 })
 export class CoreModule { }
