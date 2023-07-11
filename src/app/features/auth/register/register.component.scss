@@ -33,6 +33,13 @@
         transform: translateX(-50%);
     }
 
+    &__logo {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 60px;
+        max-width: 400px;
+    }
+    
     &__form-box {
         padding: 2rem;
         align-self: center;
