@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RoutesRecognized } from '@angular/router';
+import { Router } from '@angular/router';
 import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
@@ -9,25 +9,12 @@ import { SidenavService } from '../../services/sidenav.service';
 })
 export class NavbarComponent implements OnInit {
 
-  display!: boolean;
-
   constructor(
     private router: Router,
     private sidenav: SidenavService
   ) { }
 
-  ngOnInit(): void {
-    this.verifyRoute();
-  }
-
-  verifyRoute() {
-    this.router.events.subscribe(event => {
-      if(event instanceof RoutesRecognized) {
-        let route = event.state.root.firstChild;        
-        this.display = route?.data['toolbar'] ?? true;
-      }
-    })
-  }
+  ngOnInit(): void {}
 
   menuChangeState() {
     this.sidenav.sidebarChange('toggle');
