@@ -1,6 +1,6 @@
 <div class="root">
-  <app-navbar></app-navbar>
-  <mat-drawer-container class="container" autosize>
+  <app-navbar *ngIf="displayNavbar"></app-navbar>
+  <mat-drawer-container class="container" autosize [ngClass]="{'resize-nav': displayNavbar}">
     <mat-drawer [appSidenav]="drawer" #drawer class="sidenav" [mode]="(sidenavType | async)!">
       <p>Sidenav</p>
     </mat-drawer>

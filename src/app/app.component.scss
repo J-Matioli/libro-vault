@@ -1,7 +1,6 @@
 .root {
     display: flex;
     flex-direction: column;
-    // min-height: 85vh;
 }
 
 .container {
@@ -16,4 +15,20 @@
 .sidenav {
     background-color: var(--accent-color);
     padding: 20px;
+    position: fixed;
+    z-index: 5;
+    top: 64px;
+    left: 0;
+
+    @media screen and (max-width: 599px) {
+        top: 54px;
+    }
+}
+
+.resize-nav { // Navbar is fixed, then need add padding for it.
+    margin-top: 64px;
+
+    @media screen and (max-width: 599px) {
+        margin-top: 54px;
+    }
 }
