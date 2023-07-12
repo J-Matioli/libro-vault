@@ -5,10 +5,10 @@
 
 .container {
     width: 100%;
-    min-height: calc(85vh - 64px);
+    min-height: calc(100vh - 64px - 150px);
 
     @media screen and (max-width: 599px) {
-        min-height: calc(85vh - 54px);
+        min-height: calc(100vh - 54px - 150px);
     }
 }
 
