@@ -7,12 +7,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SidenavDirective } from './directives/sidenav.directive';
 import { FooterComponent } from './components/footer/footer.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     SidenavDirective,
-    FooterComponent
+    FooterComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { FooterComponent } from './components/footer/footer.component';
   exports: [
     NavbarComponent,
     SidenavDirective,
-    FooterComponent
+    FooterComponent,
+    SidebarComponent
   ]
 })
 export class CoreModule { }

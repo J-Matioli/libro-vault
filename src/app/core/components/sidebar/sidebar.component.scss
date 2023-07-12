@@ -1,0 +1,16 @@
+.sidebar {
+    
+    color: #fff;
+    height: calc(100vh - 150px);
+    overflow: auto;
+    cursor: pointer;
+    
+    &__item {
+        padding: 20px 50px 20px 30px;
+        background-color: var(--accent-color);
+        
+        &:hover {
+            background-color: var(--accent-darker-color);
+        }
+    }
+}

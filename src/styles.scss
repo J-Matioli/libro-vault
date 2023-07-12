@@ -40,6 +40,7 @@ body {
   --primary-color: #{map-get($primary-color-palette, 500)};
   --primary-darker-color: #{map-get($primary-color-palette, 900)};
   --accent-color: #{map-get($accent-color-palette, 500)};
+  --accent-darker-color: #{map-get($accent-color-palette, 900)};
   --warn-color: #{map-get($warn-color-palette, 500)};
   --bg-color: #{$bg-color};
   --grey-light-1: #{$grey-light-1};
