@@ -1,34 +1,11 @@
-<ul class="sidebar">
-    <li class="sidebar__item"> 
-        <mat-icon>home</mat-icon> 
-        <span>Home</span>
-    </li>
-    <li class="sidebar__item"> 
-        <mat-icon></mat-icon> 
-        <span>Livros</span>
-    </li>
-    <li class="sidebar__item"> 
-        <mat-icon></mat-icon> 
-        <span>Mangás</span>
-    </li>
-    <li class="sidebar__item"> 
-        <mat-icon></mat-icon> 
-        <span>HQs</span>
-    </li>
-    <li class="sidebar__item"> 
-        <mat-icon></mat-icon> 
-        <span>Listas</span>
-    </li>
-    <li class="sidebar__item"> 
-        <mat-icon></mat-icon> 
-        <span>Editoras</span>
-    </li>
-    <li class="sidebar__item"> 
-        <mat-icon></mat-icon> 
-        <span>Autores</span>
-    </li>
-    <li class="sidebar__item"> 
-        <mat-icon></mat-icon> 
-        <span>Gêneros</span>
-    </li>
-</ul>
+<mat-list class="sidebar" role="list">
+    <mat-list-item *ngFor="let section of menuContent" role="listitem" class="sidebar__item" [routerLink]="section.route" routerLinkActive="router-link-active" >
+        <mat-icon mat-list-icon class="sidebar__item-icon" [svgIcon]="section.icon"></mat-icon> 
+        <div mat-line>{{ section.name }}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item *ngFor="let section of menuAssets" role="listitem" class="sidebar__item">
+        <mat-icon mat-list-icon class="sidebar__item-icon" [svgIcon]="section.icon"></mat-icon> 
+        <div mat-line>{{ section.name }}</div>
+    </mat-list-item>
+</mat-list>

@@ -8,6 +8,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SidenavDirective } from './directives/sidenav.directive';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatListModule } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,11 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CommonModule,
     MatButtonModule,
     MatToolbarModule,
+    RouterModule,
     MatIconModule,
-    SharedModule
+    HttpClientModule,
+    SharedModule,
+    MatListModule
   ],
   exports: [
     NavbarComponent,

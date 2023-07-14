@@ -1,13 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { SvgIcons } from '../../utils/SidebarIcons';
+
+export interface Section {
+  name: string;
+  icon: string;
+  route: string;
+}
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
+  providers: [SvgIcons]
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  public menuContent: Section[] = [
+    {name: 'Home', icon: 'home', route: '/home' },
+    {name: 'Livros', icon: 'menu_book' , route: '#'},
+    {name: 'Mangás', icon: 'manga' , route: '#'},
+    {name: 'HQs', icon: 'comic_bubble' , route: '#'},
+    {name: 'Listas', icon: 'list', route: '#' }
+  ]
+
+  public menuAssets: Section[] = [
+    {name: 'Editoras', icon: 'store' , route: '#'},
+    {name: 'Autores', icon: 'person' , route: '#'},
+    {name: 'Gêneros', icon: 'collections_bookmark' , route: '#'}
+  ]
+
+  constructor(SvgIcons: SvgIcons) {
+    SvgIcons.registryIcons();
+  }
 
   ngOnInit(): void {
   }
