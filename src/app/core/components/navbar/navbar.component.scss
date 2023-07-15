@@ -3,6 +3,14 @@
   z-index: 10;
   top: 0;
   left: 0;
+
+  &__logo {
+    max-height: 45%;
+
+    @media screen and (max-width: 599px) {
+      max-height: 50%;
+    }
+  }
 }
 
 .spacer {
