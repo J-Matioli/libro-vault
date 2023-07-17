@@ -1,0 +1,60 @@
+@import "../../scss/main.scss";
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+
+    ::ng-deep {
+        .mat-form-field-appearance-fill .mat-form-field-flex {
+            border-radius: 0 !important;
+        }
+
+        .mat-form-field .mat-select.mat-select-disabled .mat-select-arrow {
+            opacity: 0;
+        }
+    }
+    
+    &__actions {
+        @include respond(xxsmall) {
+            flex-direction: column;
+            row-gap: 10px;
+        }
+    }
+
+    &__submit-btn {
+        margin-left: 10px;
+
+        @include respond(xxsmall) {
+            margin-left: 0;
+        }
+    }
+
+    &__close-btn {
+        margin-right: 10px;
+        
+        @include respond(xxsmall) {
+            margin-right: 0;
+        }
+    }
+    
+}
+
+.row-2-columns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    @include respond(small) {
+        flex-direction: column;
+        row-gap: 12px;
+    }
+    
+    .mat-form-field {
+        width: 48%;
+        
+        @include respond(small) {
+            width: 100%;
+        }
+    }
+}

@@ -17,7 +17,6 @@ import { ChangePasswordEmailComponent } from './change-password-email/change-pas
 import { ChangePasswordEmailFormComponent } from './change-password-email/components/change-password-email-form/change-password-email-form.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ChangePasswordFormComponent } from './change-password/components/change-password-form/change-password-form.component';
-import { MaskDateDirective } from 'src/app/core/utils/mask-date';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -40,8 +39,7 @@ const MY_DATE_FORMAT = {
     ChangePasswordEmailComponent,
     ChangePasswordEmailFormComponent,
     ChangePasswordComponent,
-    ChangePasswordFormComponent,
-    MaskDateDirective
+    ChangePasswordFormComponent
   ],
   imports: [
     CommonModule,
