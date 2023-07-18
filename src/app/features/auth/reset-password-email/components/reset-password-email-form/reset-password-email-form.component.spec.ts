@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangePasswordEmailFormComponent } from './change-password-email-form.component';
+import { ResetPasswordEmailFormComponent } from './reset-password-email-form.component';
 import { AuthModule } from '../../../auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe(ChangePasswordEmailFormComponent.name, () => {
-  let component: ChangePasswordEmailFormComponent;
-  let fixture: ComponentFixture<ChangePasswordEmailFormComponent>;
+describe(ResetPasswordEmailFormComponent.name, () => {
+  let component: ResetPasswordEmailFormComponent;
+  let fixture: ComponentFixture<ResetPasswordEmailFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,7 +17,7 @@ describe(ChangePasswordEmailFormComponent.name, () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChangePasswordEmailFormComponent);
+    fixture = TestBed.createComponent(ResetPasswordEmailFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

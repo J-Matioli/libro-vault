@@ -13,10 +13,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
-import { ChangePasswordEmailComponent } from './change-password-email/change-password-email.component';
-import { ChangePasswordEmailFormComponent } from './change-password-email/components/change-password-email-form/change-password-email-form.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
-import { ChangePasswordFormComponent } from './change-password/components/change-password-form/change-password-form.component';
+import { ResetPasswordEmailComponent } from './reset-password-email/reset-password-email.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordFormComponent } from './reset-password/components/reset-password-form/reset-password-form.component';
+import { ResetPasswordEmailFormComponent } from './reset-password-email/components/reset-password-email-form/reset-password-email-form.component';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -36,10 +36,10 @@ const MY_DATE_FORMAT = {
     LoginFormComponent,
     RegisterComponent,
     RegisterFormComponent,
-    ChangePasswordEmailComponent,
-    ChangePasswordEmailFormComponent,
-    ChangePasswordComponent,
-    ChangePasswordFormComponent
+    ResetPasswordEmailComponent,
+    ResetPasswordFormComponent,
+    ResetPasswordComponent,
+    ResetPasswordEmailFormComponent
   ],
   imports: [
     CommonModule,

@@ -3,13 +3,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CustomValidators } from 'src/app/core/validators/custom-validators.component';
 
 @Component({
-  selector: 'app-change-password-form',
-  templateUrl: './change-password-form.component.html',
-  styleUrls: ['./change-password-form.component.scss']
+  selector: 'app-reset-password-form',
+  templateUrl: './reset-password-form.component.html',
+  styleUrls: ['./reset-password-form.component.scss']
 })
-export class ChangePasswordFormComponent implements OnInit {
+export class ResetPasswordFormComponent implements OnInit {
 
-  public form!: FormGroup<ChangePasswordForm>;
+  public form!: FormGroup<ResetPasswordForm>;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -20,7 +20,7 @@ export class ChangePasswordFormComponent implements OnInit {
   ngOnInit(): void { }
 
   createForm(): void {
-    this.form = this.fb.group<ChangePasswordForm>({
+    this.form = this.fb.group<ResetPasswordForm>({
       senha: new FormControl(null, {validators: [
         Validators.required,
         Validators.minLength(8),
@@ -48,7 +48,7 @@ export class ChangePasswordFormComponent implements OnInit {
 
 }
 
-export interface ChangePasswordForm {
+export interface ResetPasswordForm {
   senha: FormControl<string | null>
   confirmarSenha: FormControl<string | null>
 }

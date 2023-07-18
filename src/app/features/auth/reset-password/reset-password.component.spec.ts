@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangePasswordComponent } from './change-password.component';
+import { ResetPasswordComponent } from './reset-password.component';
 import { AuthModule } from '../auth.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 
-describe(ChangePasswordComponent.name, () => {
-  let component: ChangePasswordComponent;
-  let fixture: ComponentFixture<ChangePasswordComponent>;
+describe(ResetPasswordComponent.name, () => {
+  let component: ResetPasswordComponent;
+  let fixture: ComponentFixture<ResetPasswordComponent>;
   let router: Router;
   
   beforeEach(async () => {
@@ -21,7 +21,7 @@ describe(ChangePasswordComponent.name, () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChangePasswordComponent);
+    fixture = TestBed.createComponent(ResetPasswordComponent);
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
     fixture.detectChanges();
