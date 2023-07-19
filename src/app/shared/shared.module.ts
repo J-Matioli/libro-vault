@@ -37,7 +37,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
   ],
   exports: [
     CustomButtonComponent,
-    MyAccountComponent,
     MaskDateDirective
   ]
 })
