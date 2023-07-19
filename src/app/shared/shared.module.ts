@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MaskDateDirective } from '../core/utils/mask-date';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MaskDateDirective } from '../core/utils/mask-date';
     CustomButtonComponent,
     MyAccountComponent,
     MaskDateDirective,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
