@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     private breakpointObserver: BreakpointObserver
     ) {
       this.isMobile = breakpointObserver
-        .observe('(min-width: 600px)')
+        .observe('(min-width: 991px)')
         .pipe(
           first(),
           tap(({matches}) => {

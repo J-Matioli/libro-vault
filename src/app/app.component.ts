@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     breakpointObserver: BreakpointObserver,
     private router: Router) { 
       this.sidenavType = breakpointObserver
-      .observe('(min-width: 600px)')
+      .observe('(min-width: 991px)')
       .pipe(map(({matches}) => matches ? 'side' : 'over'));
   }
   
