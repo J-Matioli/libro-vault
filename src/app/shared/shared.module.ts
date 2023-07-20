@@ -15,7 +15,9 @@ import { MaskDateDirective } from '../core/utils/mask-date';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CustomTitleComponent } from './custom-title/custom-title.component';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { CustomTableComponent } from './custom-table/custom-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -23,6 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MaskDateDirective,
     ChangePasswordComponent,
     CustomTitleComponent,
+    CustomTableComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
     MatInputModule,
     ReactiveFormsModule,    
     FormsModule,
@@ -41,7 +46,8 @@ import { MatDividerModule } from '@angular/material/divider';
   exports: [
     CustomButtonComponent,
     MaskDateDirective,
-    CustomTitleComponent
+    CustomTitleComponent,
+    CustomTableComponent
   ]
 })
 export class SharedModule { }
