@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'reset-password-email', component: ResetPasswordEmailComponent, data: { toolbar: false, footer: false  } },
   { path: 'reset-password', component: ResetPasswordComponent, data: { toolbar: false, footer: false  } },
   { path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) },
+  { path: 'editoras', loadChildren: () => import('./features/publishers/publishers.module').then(m => m.PublishersModule) },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
