@@ -13,7 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MaskDateDirective } from '../core/utils/mask-date';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-
+import { CustomTitleComponent } from './custom-title/custom-title.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     MyAccountComponent,
     MaskDateDirective,
     ChangePasswordComponent,
+    CustomTitleComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     MatProgressSpinnerModule,
     MatIconModule,
     MatDialogModule,
+    MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,    
@@ -37,7 +40,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
   ],
   exports: [
     CustomButtonComponent,
-    MaskDateDirective
+    MaskDateDirective,
+    CustomTitleComponent
   ]
 })
 export class SharedModule { }
