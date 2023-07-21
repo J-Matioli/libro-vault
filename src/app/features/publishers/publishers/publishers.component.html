@@ -3,5 +3,18 @@
         <app-custom-button color="accent" >Adicionar</app-custom-button>
     </app-custom-title>
 
-    <app-custom-table></app-custom-table>
+    <app-custom-table 
+        [columnDefinition]="tableHeaders"
+        [tableData]="publishers"
+        [displayDeleteAction]="true"
+        [displayEditAction]="true"
+        [enableBackendPagination]="true"
+        [enableBackendSearch]="true"
+        (actionCalled)="userAction($event)"
+        editRowText="Editar editora"
+        deleteRowText="Remover editora"
+        [pageProperties]="pageSettings"
+        (searchCalled)="searchAction($event)"
+        (pageEventCalled)="pageAction($event)"
+    ></app-custom-table>
 </div>
