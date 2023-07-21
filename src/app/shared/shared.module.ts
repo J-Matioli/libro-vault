@@ -17,7 +17,9 @@ import { CustomTitleComponent } from './custom-title/custom-title.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { CustomTableComponent } from './custom-table/custom-table.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { getPtPaginatorIntl } from '../core/utils/Contants';
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -39,6 +41,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatPaginatorModule,
     MatInputModule,
     ReactiveFormsModule,    
+    MatTooltipModule,
     FormsModule,
     MatSelectModule,
     MatDatepickerModule,
@@ -48,6 +51,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MaskDateDirective,
     CustomTitleComponent,
     CustomTableComponent
+  ],
+  providers: [
+    {provide: MatPaginatorIntl, useValue: getPtPaginatorIntl() }
   ]
 })
 export class SharedModule { }

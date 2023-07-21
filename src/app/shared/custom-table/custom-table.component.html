@@ -1,43 +1,50 @@
-<mat-form-field appearance="standard">
-    <mat-label>Filtro</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Panini" #input>
+<p>
+  <mat-form-field color="accent">
+      <input matInput (keyup)="applySearchFilter($event)" placeholder="Pesquisar">
   </mat-form-field>
-  
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
-  
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+
+  <button *ngIf="displayCreateAction" mat-fab (click)="performAction(userActions.Add, {})" 
+    matTooltipClass="tooltip" matTooltipPosition="left" [matTooltip]="addRowText"
+    mat-flat-button color="accent" style="float:right">
+        <mat-icon>add</mat-icon>
+  </button>
+</p>
+
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <caption></caption>
+    <ng-container *ngFor="let columnId of objectKeys(columnDefinition)" [matColumnDef]="columnId">
+
+      <ng-container *ngIf="columnId==='CRUD_OPERATION'">
+          <th mat-header-cell *matHeaderCellDef style="text-align:center"  class="table-header" id="CRUD_OPERATION">{{ actionColumnName }}</th>
+
+          <td mat-cell *matCellDef="let element">
+              <div class="actions-buttons">
+                  <button *ngIf="displayDetailAction" mat-icon-button color="accent" matTooltipClass="tooltip"  [matTooltip]="viewDetailRowText"
+                      (click)="performAction(userActions.Details, element)">
+                      <mat-icon class="mat-18">reorder</mat-icon>
+                  </button>
+                  <button *ngIf="displayEditAction" mat-icon-button color="accent" matTooltipClass="tooltip" [matTooltip]="editRowText"
+                      (click)="performAction(userActions.Update, element)">
+                      <mat-icon class="mat-18">edit</mat-icon>
+                  </button>
+                  <button *ngIf="displayDeleteAction" mat-icon-button color="accent" matTooltipClass="tooltip" [matTooltip]="deleteRowText"
+                      (click)="performAction(userActions.Delete, element)">
+                      <mat-icon class="mat-18">delete</mat-icon>
+                  </button>
+              </div>
+          </td>
       </ng-container>
-  
-      <!-- Progress Column -->
-      <ng-container matColumnDef="progress">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-        <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
-      </ng-container>
-  
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-      </ng-container>
-  
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="fruit">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
-        <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
-    </table>
-  
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-  </div>
+
+      <th id="{{columnId}}" mat-header-cell *matHeaderCellDef mat-sort-header  class="table-header"> {{columnDefinition[columnId]}}    </th>
+      <td mat-cell *matCellDef="let element"> {{element[columnId] }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="objectKeys(columnDefinition); sticky: true" class="table-header"></tr>
+    <tr class="row-custom-class" mat-row *matRowDef="let row; columns: objectKeys(columnDefinition); let i=index" [attr.id]="i"></tr>
+
+  </table>
+  <mat-paginator (page)="pageChanged($event)" [pageSize]="pageProperties.pageSize" 
+      [length]="pageProperties.length"
+      [pageSizeOptions]="pageSizeOptions" class="mat-paginator-sticky" showFirstLastButtons="true"></mat-paginator>
+</div>

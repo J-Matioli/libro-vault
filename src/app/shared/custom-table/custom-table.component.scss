@@ -1,8 +1,21 @@
-table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
+.table-container {
+  overflow: auto;
+}
+
+table, .mat-paginator-sticky {
+  width: 100%;
+  min-width: 500px;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell  {
+  padding: 3px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.actions-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
