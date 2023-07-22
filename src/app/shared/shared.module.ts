@@ -20,6 +20,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { getPtPaginatorIntl } from '../core/utils/Contants';
+import { PublisherFormDialogComponent } from './publisher-form-dialog/publisher-form-dialog.component';
+
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -28,6 +30,7 @@ import { getPtPaginatorIntl } from '../core/utils/Contants';
     ChangePasswordComponent,
     CustomTitleComponent,
     CustomTableComponent,
+    PublisherFormDialogComponent,
   ],
   imports: [
     CommonModule,

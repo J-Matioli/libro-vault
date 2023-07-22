@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PublishersComponent } from './publishers/publishers.component';
 import { PublishersRoutingModule } from './publishers-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -13,6 +14,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    MatDialogModule,
     PublishersRoutingModule
   ]
 })
