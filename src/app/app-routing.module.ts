@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) },
   { path: 'editoras', loadChildren: () => import('./features/publishers/publishers.module').then(m => m.PublishersModule) },
   { path: 'autores', loadChildren: () => import('./features/authors/authors.module').then(m => m.AuthorsModule) },
+  { path: 'generos', loadChildren: () => import('./features/genres/genres.module').then(m => m.GenresModule) },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 

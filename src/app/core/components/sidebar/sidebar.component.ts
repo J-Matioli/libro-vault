@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit {
   public menuAssets: Section[] = [
     {name: 'Editoras', icon: 'store' , route: '/editoras'},
     {name: 'Autores', icon: 'person' , route: '/autores'},
-    {name: 'Gêneros', icon: 'collections_bookmark' , route: '#'}
+    {name: 'Gêneros', icon: 'collections_bookmark' , route: '/generos'}
   ]
 
   constructor(SvgIcons: SvgIcons) {

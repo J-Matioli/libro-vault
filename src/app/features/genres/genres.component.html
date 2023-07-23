@@ -1,0 +1,20 @@
+<div class="genres c-container">
+    <app-custom-title title="Gêneros">
+        <app-custom-button color="accent" (clickButton)="userAction()">Adicionar</app-custom-button>
+    </app-custom-title>
+
+    <app-custom-table 
+        [columnDefinition]="tableHeaders"
+        [tableData]="genres"
+        [displayDeleteAction]="true"
+        [displayEditAction]="true"
+        [enableBackendPagination]="true"
+        [enableBackendSearch]="true"
+        (actionCalled)="userAction($event)"
+        editRowText="Editar gênero"
+        deleteRowText="Remover gênero"
+        [pageProperties]="pageSettings"
+        (searchCalled)="searchAction($event)"
+        (pageEventCalled)="pageAction($event)"
+    ></app-custom-table>
+</div>
