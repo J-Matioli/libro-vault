@@ -1,5 +1,5 @@
 <ng-template #formPublisher>
-    <h2 mat-dialog-title>Adicionar editora</h2>
+    <h2 mat-dialog-title>{{ actions[data.action] }} editora</h2>
     <mat-dialog-content class="mat-typography">
         <form class="publisher-form" [formGroup]="form" (ngSubmit)="submit()">
             <mat-form-field appearance="fill">
@@ -17,9 +17,9 @@
 </ng-template>
 
 <ng-template #publisherDelete>
-    <h2 mat-dialog-title>Remover editora</h2>
+    <h2 mat-dialog-title>{{ actions[data.action] }} editora</h2>
     <mat-dialog-content class="mat-typography">
-        <p>Tem certeza que deseja remover a editora: {{ data.name }}</p>
+        <p>Tem certeza que deseja remover a editora: {{ data.publisher.name }}</p>
     </mat-dialog-content>
     <mat-dialog-actions align="end" class="publisher-form__actions">
         <app-custom-button class="publisher-form__close-btn" mat-dialog-close>Voltar</app-custom-button>
