@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PublishersComponent } from './publishers/publishers.component';
+import { PublishersComponent } from './publishers.component';
 import { PublishersRoutingModule } from './publishers-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';

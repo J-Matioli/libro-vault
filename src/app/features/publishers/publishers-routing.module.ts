@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PublishersComponent } from './publishers/publishers.component';
+import { PublishersComponent } from './publishers.component';
 
 const routes: Routes = [
   { path: '', component: PublishersComponent }
