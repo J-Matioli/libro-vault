@@ -22,6 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { getPtPaginatorIntl } from '../core/utils/Contants';
 import { PublisherFormDialogComponent } from './publisher-form-dialog/publisher-form-dialog.component';
 import { AuthorFormDialogComponent } from './author-form-dialog/author-form-dialog.component';
+import { GenreFormDialogComponent } from './genre-form-dialog/genre-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthorFormDialogComponent } from './author-form-dialog/author-form-dial
     CustomTitleComponent,
     CustomTableComponent,
     PublisherFormDialogComponent,
-    AuthorFormDialogComponent
+    AuthorFormDialogComponent,
+    GenreFormDialogComponent
   ],
   imports: [
     CommonModule,

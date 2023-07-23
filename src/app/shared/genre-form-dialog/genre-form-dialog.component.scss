@@ -1,0 +1,33 @@
+@import "../../scss/main.scss";
+
+.genre-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    row-gap: 12px;
+
+    ::ng-deep {
+        .mat-form-field-appearance-fill .mat-form-field-flex {
+            border-radius: 0 !important;
+        }
+
+        .mat-form-field-appearance-fill .mat-form-field-subscript-wrapper {
+            max-height: 23px;
+        }
+    }
+
+    &__actions {
+        @include respond(xxsmall) {
+            flex-direction: column;
+            row-gap: 10px;
+        }
+    }
+
+    &__submit-btn {
+        margin-left: 10px;
+
+        @include respond(xxsmall) {
+            margin-left: 0;
+        }
+    }
+}

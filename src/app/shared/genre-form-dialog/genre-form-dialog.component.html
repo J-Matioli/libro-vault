@@ -1,0 +1,31 @@
+<ng-template #formGenre>
+    <h2 mat-dialog-title>{{ actions[data.action] }} gênero</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="genre-form" [formGroup]="form" (ngSubmit)="submit()">
+            <mat-form-field appearance="fill">
+                <mat-label>Gênero</mat-label>
+                <input type="text" formControlName="genero" matInput>
+                <mat-error *ngIf="genero!.errors?.['required']">Insira o nome do gênero.</mat-error>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="genre-form__actions">
+        <app-custom-button class="genre-form__close-btn" mat-dialog-close>Voltar</app-custom-button>
+        <app-custom-button class="genre-form__submit-btn" color="primary"
+            (click)="submit()">Salvar</app-custom-button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-template #genreDelete>
+    <h2 mat-dialog-title>{{ actions[data.action] }} gênero</h2>
+    <mat-dialog-content class="mat-typography">
+        <p>Tem certeza que deseja remover o gênero: {{ data.genre.name }}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="genre-form__actions">
+        <app-custom-button class="genre-form__close-btn" mat-dialog-close>Voltar</app-custom-button>
+        <app-custom-button class="genre-form__submit-btn" color="primary"
+            (click)="deleteGenre()">Remover</app-custom-button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-container [ngTemplateOutlet]="data.action != 'DELETE' ? formGenre : genreDelete"></ng-container>
