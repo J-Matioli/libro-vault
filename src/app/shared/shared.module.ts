@@ -21,6 +21,7 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { getPtPaginatorIntl } from '../core/utils/Contants';
 import { PublisherFormDialogComponent } from './publisher-form-dialog/publisher-form-dialog.component';
+import { AuthorFormDialogComponent } from './author-form-dialog/author-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { PublisherFormDialogComponent } from './publisher-form-dialog/publisher-
     CustomTitleComponent,
     CustomTableComponent,
     PublisherFormDialogComponent,
+    AuthorFormDialogComponent
   ],
   imports: [
     CommonModule,

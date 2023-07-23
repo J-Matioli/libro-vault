@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { AuthorFormDialogComponent } from 'src/app/shared/author-form-dialog/author-form-dialog.component';
 
 @Component({
   selector: 'app-authors',
@@ -43,8 +44,14 @@ export class AuthorsComponent implements OnInit {
     console.log(ev)
   }
 
-  userAction(ev?: any) {
-
+  userAction(ev?: any) {    
+    const dialogRef = this.dialog.open(AuthorFormDialogComponent, {
+      restoreFocus: false,
+      data: {
+        action: ev ? ev.action : 'ADD',
+        author: ev?.obj
+      },
+    });
   }
 
 }

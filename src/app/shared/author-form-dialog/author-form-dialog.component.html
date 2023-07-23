@@ -1,0 +1,31 @@
+<ng-template #formAuthor>
+    <h2 mat-dialog-title>{{ actions[data.action] }} autor</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="author-form" [formGroup]="form" (ngSubmit)="submit()">
+            <mat-form-field appearance="fill">
+                <mat-label>Autor</mat-label>
+                <input type="text" formControlName="autor" matInput>
+                <mat-error *ngIf="autor!.errors?.['required']">Insira o nome do autor.</mat-error>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="author-form__actions">
+        <app-custom-button class="author-form__close-btn" mat-dialog-close>Voltar</app-custom-button>
+        <app-custom-button class="author-form__submit-btn" color="primary"
+            (click)="submit()">Salvar</app-custom-button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-template #authorDelete>
+    <h2 mat-dialog-title>{{ actions[data.action] }} autor</h2>
+    <mat-dialog-content class="mat-typography">
+        <p>Tem certeza que deseja remover a autor: {{ data.author.name }}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="author-form__actions">
+        <app-custom-button class="author-form__close-btn" mat-dialog-close>Voltar</app-custom-button>
+        <app-custom-button class="author-form__submit-btn" color="primary"
+            (click)="deleteauthor()">Remover</app-custom-button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-container [ngTemplateOutlet]="data.action != 'DELETE' ? formAuthor : authorDelete"></ng-container>
