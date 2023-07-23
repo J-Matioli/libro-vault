@@ -1,0 +1,20 @@
+<div class="authors c-container">
+    <app-custom-title title="Autores">
+        <app-custom-button color="accent" (clickButton)="userAction()">Adicionar</app-custom-button>
+    </app-custom-title>
+
+    <app-custom-table 
+        [columnDefinition]="tableHeaders"
+        [tableData]="authors"
+        [displayDeleteAction]="true"
+        [displayEditAction]="true"
+        [enableBackendPagination]="true"
+        [enableBackendSearch]="true"
+        (actionCalled)="userAction($event)"
+        editRowText="Editar autor"
+        deleteRowText="Remover autor"
+        [pageProperties]="pageSettings"
+        (searchCalled)="searchAction($event)"
+        (pageEventCalled)="pageAction($event)"
+    ></app-custom-table>
+</div>

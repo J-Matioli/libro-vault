@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent, data: { toolbar: false, footer: false  } },
   { path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) },
   { path: 'editoras', loadChildren: () => import('./features/publishers/publishers.module').then(m => m.PublishersModule) },
+  { path: 'autores', loadChildren: () => import('./features/authors/authors.module').then(m => m.AuthorsModule) },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
