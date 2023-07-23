@@ -35,9 +35,6 @@ export class PublishersComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  userAction(ev: any) {
-    console.log(ev)
-  }
 
   searchAction(ev: any) {
     console.log(ev)
@@ -47,11 +44,12 @@ export class PublishersComponent implements OnInit {
     console.log(ev)
   }
 
-  addPublisher() {
-    const dialogRef = this.dialog.open(PublisherFormDialogComponent, { 
+  userAction(ev?: any) {
+    const dialogRef = this.dialog.open(PublisherFormDialogComponent, {
       restoreFocus: false,
       data: {
-        action: 'ADD'
+        action: ev ? ev.action : 'ADD',
+        publisher: ev?.obj
       },
     });
   }
