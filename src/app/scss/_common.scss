@@ -44,3 +44,12 @@ $breakpoint argument choices:
         @media only screen and (min-width: 112.5em) { @content };   //1800px
     };
 }
+
+@mixin max-lines($lines) {    
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    line-clamp: $lines;
+    text-overflow: ellipsis;
+}
