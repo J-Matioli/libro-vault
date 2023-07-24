@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-custom-list',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomListComponent implements OnInit {
 
-  public cards: any[] = Array(15).fill(15, 0, 15)
+  @Input() data: any[];
 
   constructor() { }
 

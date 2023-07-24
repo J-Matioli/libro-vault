@@ -28,6 +28,7 @@ import { CustomCardComponent } from './custom-card/custom-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { CardSaveComponent } from './custom-card/components/card-save/card-save.component';
 import { CardRemoveComponent } from './custom-card/components/card-remove/card-remove.component';
+import { ArrToStringPipe } from '../core/pipes/arr-to-string.pipe';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CardRemoveComponent } from './custom-card/components/card-remove/card-r
     CustomListComponent,
     CustomCardComponent,
     CardSaveComponent,
-    CardRemoveComponent
+    CardRemoveComponent,
+    ArrToStringPipe
   ],
   imports: [
     CommonModule,

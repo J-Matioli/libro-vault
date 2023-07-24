@@ -1,17 +1,17 @@
 <mat-card class="card">
     <div class="card__img-container">
         <app-card-remove></app-card-remove>
-        <img class="card__img" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Imagem do livro">
+        <img class="card__img" mat-card-image src="{{ img }}" alt="Imagem do livro">
         <app-card-save></app-card-save>
     </div>
     <mat-card-content class="card__content">
         <div class="card__content-header">
-            <h2 class="card__title">Título Título Título TítuloTítulo TítuloTítulo Título TítuloTítulo Título Título Título Título TítuloTítulo TítuloTítulo Título TítuloTítulo Título</h2>
-            <h3 class="card__author">Título Título Título TítuloTítulo TítuloTítuloTítulo Título Título Título Título Título</h3>
+            <h2 class="card__title">{{ title }}</h2>
+            <h3 class="card__author">{{ author | arrToString: ',' }}</h3>
         </div>
-        <p><span class="card__label">Páginas:</span> 400</p>
-        <p><span class="card__label">Lido:</span> Sim</p>
-        <p><span class="card__label">Data de compra:</span> 22/02/2023</p>
-        <p class="card__genres"><span class="card__label">Gêneros:</span> Ficção Científica, Ficção distópica, Ficção Científica, Ficção distópica, Ficção Científica, Ficção distópica</p>
+        <p><span class="card__label">Páginas:</span> {{ pages }}</p>
+        <p><span class="card__label">Lido:</span> {{ read ? 'Sim' : 'Não' }}</p>
+        <p><span class="card__label">Data de compra:</span> {{ buyDate | date: 'dd/MM/yyyy' }} </p>
+        <p class="card__genres"><span class="card__label">Gêneros:</span> {{ genres | arrToString: ' /' }}</p>
     </mat-card-content>
 </mat-card>

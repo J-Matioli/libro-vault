@@ -1,3 +1,12 @@
 <div class="list">
-    <app-custom-card *ngFor="let card of cards"></app-custom-card>
+    <app-custom-card *ngFor="let card of data"
+        [id]="card.id"
+        [img]="card.img"
+        [title]="card.title"
+        [author]="card.author"
+        [pages]="card.pages"
+        [read]="card.read"
+        [buyDate]="card.buyDate"
+        [genres]="card.genres"
+    ></app-custom-card>
 </div>
