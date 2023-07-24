@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BooksListComponent } from './books-list/books-list.component';
 import { BooksComponent } from './books.component';
 import { BooksRoutingModule } from './books-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -13,6 +14,7 @@ import { BooksRoutingModule } from './books-routing.module';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     BooksRoutingModule
   ]
 })

@@ -23,6 +23,11 @@ import { getPtPaginatorIntl } from '../core/utils/Contants';
 import { PublisherFormDialogComponent } from './publisher-form-dialog/publisher-form-dialog.component';
 import { AuthorFormDialogComponent } from './author-form-dialog/author-form-dialog.component';
 import { GenreFormDialogComponent } from './genre-form-dialog/genre-form-dialog.component';
+import { CustomListComponent } from './custom-list/custom-list.component';
+import { CustomCardComponent } from './custom-card/custom-card.component';
+import { MatCardModule } from '@angular/material/card';
+import { CardSaveComponent } from './custom-card/components/card-save/card-save.component';
+import { CardRemoveComponent } from './custom-card/components/card-remove/card-remove.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,11 @@ import { GenreFormDialogComponent } from './genre-form-dialog/genre-form-dialog.
     CustomTableComponent,
     PublisherFormDialogComponent,
     AuthorFormDialogComponent,
-    GenreFormDialogComponent
+    GenreFormDialogComponent,
+    CustomListComponent,
+    CustomCardComponent,
+    CardSaveComponent,
+    CardRemoveComponent
   ],
   imports: [
     CommonModule,
@@ -52,12 +61,14 @@ import { GenreFormDialogComponent } from './genre-form-dialog/genre-form-dialog.
     FormsModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatCardModule
   ],
   exports: [
     CustomButtonComponent,
     MaskDateDirective,
     CustomTitleComponent,
-    CustomTableComponent
+    CustomTableComponent,
+    CustomListComponent
   ],
   providers: [
     {provide: MatPaginatorIntl, useValue: getPtPaginatorIntl() }
