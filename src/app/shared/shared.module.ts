@@ -29,6 +29,12 @@ import { MatCardModule } from '@angular/material/card';
 import { CardSaveComponent } from './custom-card/components/card-save/card-save.component';
 import { CardRemoveComponent } from './custom-card/components/card-remove/card-remove.component';
 import { ArrToStringPipe } from '../core/pipes/arr-to-string.pipe';
+import { CustomFilterComponent } from './custom-filter/custom-filter.component';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CustomChipComponent } from './custom-chip/custom-chip.component';
+import { CustomSelectComponent } from './custom-select/custom-select.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +51,10 @@ import { ArrToStringPipe } from '../core/pipes/arr-to-string.pipe';
     CustomCardComponent,
     CardSaveComponent,
     CardRemoveComponent,
-    ArrToStringPipe
+    ArrToStringPipe,
+    CustomFilterComponent,
+    CustomChipComponent,
+    CustomSelectComponent
   ],
   imports: [
     CommonModule,
@@ -56,6 +65,9 @@ import { ArrToStringPipe } from '../core/pipes/arr-to-string.pipe';
     MatDividerModule,
     MatFormFieldModule,
     MatTableModule,
+    CdkAccordionModule,
+    MatChipsModule,
+    MatAutocompleteModule,
     MatPaginatorModule,
     MatInputModule,
     ReactiveFormsModule,    
@@ -70,7 +82,8 @@ import { ArrToStringPipe } from '../core/pipes/arr-to-string.pipe';
     MaskDateDirective,
     CustomTitleComponent,
     CustomTableComponent,
-    CustomListComponent
+    CustomListComponent,
+    CustomFilterComponent
   ],
   providers: [
     {provide: MatPaginatorIntl, useValue: getPtPaginatorIntl() }

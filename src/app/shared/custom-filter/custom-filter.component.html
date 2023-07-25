@@ -1,0 +1,33 @@
+<form class="filter">
+
+    <mat-form-field class="filter__search" appearance="fill">
+        <mat-label>Pesquisar</mat-label>
+        <input matInput type="text">
+        <button mat-icon-button matSuffix (click)="clearInput('pesquisa')" [attr.aria-label]="'Hide password'">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <app-custom-chip class="filter__author-chip"></app-custom-chip>
+
+    <app-custom-select class="filter__order-select"></app-custom-select>
+    
+    <cdk-accordion class="filter__accordion">
+        <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
+            [attr.id]="'accordion-header-'" [attr.aria-expanded]="accordionItem.expanded"
+            [attr.aria-controls]="'accordion-body-'">
+            <div class="filter" (click)="accordionItem.toggle()">
+                <span class="example-accordion-item-description">
+                    Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                </span>
+            </div>
+            <div class="example-accordion-item-body" role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-'"
+                [attr.aria-labelledby]="'accordion-header-'">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
+                excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis
+                veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?
+            </div>
+        </cdk-accordion-item>
+    </cdk-accordion>
+</form>
