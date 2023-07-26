@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { authorOptions, genresOptions, languageOptions, orderOptions, publisherOptions, yesOrNoOptions } from './filter-helper';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-custom-filter',
@@ -25,7 +26,15 @@ export class CustomFilterComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
 
-    this.form.valueChanges.subscribe(data => console.log('Filter Component: ', data))
+    this.form.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe(data => {     
+      console.log('Filter Component: ', data)
+    })
+
+    this.lido.valueChanges.subscribe(data => {
+      this.controlReadInput(data === 'n'?  false : true)
+    })
   }
 
   createForm() {
@@ -58,7 +67,7 @@ export class CustomFilterComponent implements OnInit {
   }
 
   get lido(): FormControl {
-    return this.form.get('ordem') as FormControl
+    return this.form.get('lido') as FormControl
   }
 
   get autor(): FormControl {
@@ -69,16 +78,40 @@ export class CustomFilterComponent implements OnInit {
     return this.form.get('editora') as FormControl
   }
 
+  get dataLeituraInicio(): FormControl {
+    return this.form.get('dataLeituraInicio') as FormControl
+  }
+
+  get dataLeituraFinal(): FormControl {
+    return this.form.get('dataLeituraFinal') as FormControl
+  }
+
+  get dataCompraInicio(): FormControl {
+    return this.form.get('dataCompraInicio') as FormControl
+  }
+
+  get dataCompraFinal(): FormControl {
+    return this.form.get('dataCompraFinal') as FormControl
+  }
+
   get volumeUnico(): FormControl {
-    return this.form.get('ordem') as FormControl
+    return this.form.get('volumeUnico') as FormControl
   }
 
   clearInput(ev: string) {
     this.form.get('obra')?.reset();
   }
 
-  teste(ev: any) {
-    console.log(ev);
+  controlReadInput(enable: boolean) {
+    if(enable) {
+      this.dataLeituraInicio.enable()
+      this.dataLeituraFinal.enable()
+    }else {
+      this.dataLeituraInicio.reset()
+      this.dataLeituraFinal.reset()
+      this.dataLeituraInicio.disable()
+      this.dataLeituraFinal.disable()
+    }
   }
 }
 

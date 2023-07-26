@@ -36,6 +36,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CustomChipComponent } from './custom-chip/custom-chip.component';
 import { CustomSelectComponent } from './custom-select/custom-select.component';
 import { MatRippleModule } from '@angular/material/core';
+import { CustomRangeDatePickerComponent } from './custom-range-date-picker/custom-range-date-picker.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { MatRippleModule } from '@angular/material/core';
     ArrToStringPipe,
     CustomFilterComponent,
     CustomChipComponent,
-    CustomSelectComponent
+    CustomSelectComponent,
+    CustomRangeDatePickerComponent
   ],
   imports: [
     CommonModule,

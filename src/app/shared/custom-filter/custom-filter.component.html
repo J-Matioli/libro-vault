@@ -79,16 +79,12 @@
                     class="filter__language-select">
                 </app-custom-select>
 
-                <mat-form-field class="filter__buy-date" appearance="fill">
-                    <mat-label>Obras compradas</mat-label>
-                    <mat-date-range-input [rangePicker]="buypicker">
-                        <input formControlName="dataCompraInicio" matStartDate placeholder="Data de início" appMaskDate>
-                        <input formControlName="dataCompraFinal" matEndDate placeholder="Data final" appMaskDate>
-                    </mat-date-range-input>
-                    <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
-                    <mat-datepicker-toggle matSuffix [for]="buypicker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #buypicker></mat-date-range-picker>
-                </mat-form-field>
+                <app-custom-range-date-picker
+                    class="filter__buy-date"
+                    [controlInitial]="dataCompraInicio"
+                    [controlfinal]="dataCompraFinal"
+                    [label]="'Obras compradas'">
+                </app-custom-range-date-picker>
 
                 <app-custom-select 
                     [label]="'Lido'"
@@ -97,16 +93,12 @@
                     class="filter__read-select">
                 </app-custom-select>
 
-                <mat-form-field class="filter__read-date" appearance="fill">
-                    <mat-label>Obras lidas</mat-label>
-                    <mat-date-range-input [rangePicker]="readpicker">
-                        <input formControlName="dataLeituraInicio" matStartDate placeholder="Data de início" appMaskDate>
-                        <input formControlName="dataLeituraFinal" matEndDate placeholder="Data final" appMaskDate>
-                    </mat-date-range-input>
-                    <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
-                    <mat-datepicker-toggle matSuffix [for]="readpicker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #readpicker></mat-date-range-picker>
-                </mat-form-field>
+                <app-custom-range-date-picker
+                    class="filter__read-date"
+                    [controlInitial]="dataLeituraInicio"
+                    [controlfinal]="dataLeituraFinal"
+                    [label]="'Obras lidas'">
+                </app-custom-range-date-picker>
             </div>
         </cdk-accordion-item>
     </cdk-accordion>

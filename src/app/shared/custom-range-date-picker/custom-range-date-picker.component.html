@@ -1,0 +1,12 @@
+<div class="range-date-picker">
+    <mat-form-field appearance="fill">
+        <mat-label>{{ label }}</mat-label>
+        <mat-date-range-input [rangePicker]="buypicker">
+            <input [formControl]="controlInitial" matStartDate placeholder="Data de início" appMaskDate>
+            <input [formControl]="controlfinal" matEndDate placeholder="Data final" appMaskDate>
+        </mat-date-range-input>
+        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="buypicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #buypicker></mat-date-range-picker>
+    </mat-form-field>
+</div>
