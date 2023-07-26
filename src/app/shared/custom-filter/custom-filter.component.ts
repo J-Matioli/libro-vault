@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { authorOptions, genresOptions, languageOptions, orderOptions, publisherOptions, yesOrNoOptions } from './filter-helper';
 import { debounceTime } from 'rxjs';
@@ -19,6 +19,8 @@ export class CustomFilterComponent implements OnInit {
   public authorOptions = authorOptions;
   public publisherOptions = publisherOptions;
 
+  @Output() filterValue: EventEmitter<any> = new EventEmitter<any>()
+
   expandedIndex = 0;
 
   constructor(private fb: FormBuilder) { }
@@ -29,7 +31,7 @@ export class CustomFilterComponent implements OnInit {
     this.form.valueChanges
       .pipe(debounceTime(500))
       .subscribe(data => {     
-      console.log('Filter Component: ', data)
+      this.filterValue.emit(data)
     })
 
     this.lido.valueChanges.subscribe(data => {

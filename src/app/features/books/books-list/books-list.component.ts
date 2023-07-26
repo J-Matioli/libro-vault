@@ -85,4 +85,8 @@ export class BooksListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  filter(ev: any) {
+    console.dir(ev);
+  }
+
 }
