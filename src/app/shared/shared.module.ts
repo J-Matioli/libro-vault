@@ -35,6 +35,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CustomChipComponent } from './custom-chip/custom-chip.component';
 import { CustomSelectComponent } from './custom-select/custom-select.component';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { CustomSelectComponent } from './custom-select/custom-select.component';
     FormsModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatCardModule
+    MatCardModule,
+    MatRippleModule
   ],
   exports: [
     CustomButtonComponent,

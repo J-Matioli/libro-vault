@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
-interface Food {
+export interface Option {
   value: string;
   viewValue: string;
 }
@@ -12,15 +13,14 @@ interface Food {
 })
 export class CustomSelectComponent implements OnInit {
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
-
+  @Input() control: FormControl = new FormControl()
+  @Input() label: string = 'Select';
+  @Input() reset: boolean = true;
+  @Input() multiple: boolean = false;
+  @Input() options: Option[] = [];
+  
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
