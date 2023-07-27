@@ -6,4 +6,13 @@
     <app-custom-filter (filterValue)="filter($event)"></app-custom-filter>
 
     <app-custom-list [data]="books"></app-custom-list>
+
+    <mat-paginator 
+        (page)="pageChanged($event)"
+        [pageSize]="pageSettings.pageSize" 
+        [length]="books.length"
+        [pageSizeOptions]="pageSizeOptions"
+        class="books-list__paginator"
+        showFirstLastButtons="true">
+    </mat-paginator>
 </div>

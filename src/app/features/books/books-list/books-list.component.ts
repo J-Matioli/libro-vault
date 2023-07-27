@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { Constants } from 'src/app/core/utils/Contants';
 
 @Component({
   selector: 'app-books-list',
@@ -80,6 +82,9 @@ export class BooksListComponent implements OnInit {
     }
   ]
 
+  public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
+  pageSizeOptions: number[] = Constants.pageSizeOptions;
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -88,5 +93,13 @@ export class BooksListComponent implements OnInit {
   filter(ev: any) {
     console.dir(ev);
   }
+
+  pageChanged(pageEvent: PageEvent) {
+    if (!pageEvent) {
+        return;
+    }
+
+    console.log(pageEvent)
+}
 
 }

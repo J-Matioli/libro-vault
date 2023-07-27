@@ -4,6 +4,7 @@ import { BooksListComponent } from './books-list/books-list.component';
 import { BooksComponent } from './books.component';
 import { BooksRoutingModule } from './books-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -15,6 +16,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    MatPaginatorModule,
     BooksRoutingModule
   ]
 })
