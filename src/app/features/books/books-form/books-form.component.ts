@@ -10,7 +10,7 @@ export class BooksFormComponent implements OnInit {
 
   public actions: typeof Actions = Actions;
   public formType: 'ADD' | 'PUT';
-  private workType: 'livro';
+  public  workType: 'livro' = 'livro';
 
   constructor(private route: ActivatedRoute) {
     this.formType = this.route.snapshot.data['type']

@@ -1,0 +1,46 @@
+.form {
+
+    display: grid;
+
+    grid-column-gap: 30px;
+    grid-template-columns: repeat(9, 1fr);
+
+    align-items: center;
+
+
+    &__work {
+        grid-column: 1 / -1;
+    }
+
+    &__author {
+        grid-column: 1 / 6;
+    }
+
+    &__author-button {
+        grid-column: 6 / -1;
+        padding-bottom: 18px;
+    }
+
+    &__publisher {
+        grid-column: 1 / 7;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 5%;
+    }
+
+    &__language {
+        grid-column: 7 / 10;
+    }
+
+    .mat-form-field {
+        width: 100%;
+    }
+
+    ::ng-deep {
+        .mat-form-field-appearance-fill .mat-form-field-flex {
+            background-color: #fff !important;
+            border-radius: 0 !important;
+        }
+    }
+}

@@ -1,0 +1,85 @@
+<form class="form">
+    <mat-form-field class="form__work" appearance="fill">
+        <mat-label>Obra</mat-label>
+        <input matInput type="text">
+    </mat-form-field>
+
+    <app-custom-chip 
+            [options]="[]"
+            [placeholder]="'Procurar autor'"
+            [label]="'Autor'"
+            class="form__author">
+    </app-custom-chip>
+
+    <app-custom-button class="form__author-button" color="accent">Cadastrar autor</app-custom-button>
+
+    <div class="form__publisher">
+        <app-custom-chip></app-custom-chip>
+        <app-custom-button color="accent">Cadastrar editora</app-custom-button>
+    </div>
+
+    <app-custom-select
+        [reset]="false"
+        [multiple]="true"
+        [label]="'Idioma'"
+        [options]="[]"
+        class="form__language">
+    </app-custom-select>
+
+    <!-- IMG UPLOAD COMPONENT -->
+
+    <mat-form-field appearance="fill" class="form__notations">
+        <mat-label>Anotações</mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field>
+
+    <app-custom-chip 
+        [options]="[]"
+        [placeholder]="'Procurar gêneros'"
+        [label]="'Gêneros'">
+    </app-custom-chip>
+
+    <mat-checkbox *ngIf="workType != 'livro'" class="form__unique">Volume único?</mat-checkbox>
+    
+    <ng-container [ngTemplateOutlet]="workType != 'livro' ? workVolums : workMoreInfo"></ng-container>
+    
+    <ng-template #workMoreInfo>
+        <mat-form-field class="form__work" appearance="fill">
+            <mat-label>Preço</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+
+        <mat-form-field class="form__work" appearance="fill">
+            <mat-label>Página</mat-label>
+            <input matInput type="number">
+        </mat-form-field>
+
+        <mat-form-field class="form__work" appearance="fill">
+            <mat-label>Preço</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form__buy-date">
+            <mat-label>Data de compra</mat-label>
+            <input matInput [matDatepicker]="buyDatePicker">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="buyDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #buyDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-checkbox class="form__read">Lido</mat-checkbox>
+
+        <mat-form-field appearance="fill" class="form__read-date">
+            <mat-label>Data de leitura</mat-label>
+            <input matInput [matDatepicker]="readDatePicker">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="readDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #readDatePicker></mat-datepicker>
+        </mat-form-field>
+    </ng-template>
+
+    <ng-template #workVolums>
+        workVolums
+    </ng-template>
+
+</form>

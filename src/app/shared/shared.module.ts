@@ -37,6 +37,8 @@ import { CustomChipComponent } from './custom-chip/custom-chip.component';
 import { CustomSelectComponent } from './custom-select/custom-select.component';
 import { MatRippleModule } from '@angular/material/core';
 import { CustomRangeDatePickerComponent } from './custom-range-date-picker/custom-range-date-picker.component';
+import { CustomFormComponent } from './custom-form/custom-form.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { CustomRangeDatePickerComponent } from './custom-range-date-picker/custo
     CustomFilterComponent,
     CustomChipComponent,
     CustomSelectComponent,
-    CustomRangeDatePickerComponent
+    CustomRangeDatePickerComponent,
+    CustomFormComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +82,8 @@ import { CustomRangeDatePickerComponent } from './custom-range-date-picker/custo
     MatSelectModule,
     MatDatepickerModule,
     MatCardModule,
-    MatRippleModule
+    MatRippleModule,
+    MatCheckboxModule
   ],
   exports: [
     CustomButtonComponent,
@@ -87,7 +91,8 @@ import { CustomRangeDatePickerComponent } from './custom-range-date-picker/custo
     CustomTitleComponent,
     CustomTableComponent,
     CustomListComponent,
-    CustomFilterComponent
+    CustomFilterComponent,
+    CustomFormComponent
   ],
   providers: [
     {provide: MatPaginatorIntl, useValue: getPtPaginatorIntl() }
