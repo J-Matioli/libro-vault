@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BooksListComponent } from './books-list/books-list.component';
 import { BooksComponent } from './books.component';
+import { BooksFormComponent } from './books-form/books-form.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,8 @@ const routes: Routes = [
     component: BooksComponent,
     children: [
       { path: '', component: BooksListComponent},
+      { path: 'adicionar', component: BooksFormComponent, data: {type: 'ADD'}},
+      { path: 'editar/:id', component: BooksFormComponent, data: {type: 'PUT'}}
     ]
   }
 ];

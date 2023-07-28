@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'src/app/core/utils/Contants';
 
 @Component({
@@ -85,7 +86,7 @@ export class BooksListComponent implements OnInit {
   public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
   pageSizeOptions: number[] = Constants.pageSizeOptions;
   
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -98,8 +99,11 @@ export class BooksListComponent implements OnInit {
     if (!pageEvent) {
         return;
     }
-
     console.log(pageEvent)
-}
+  }
+
+  addBookRoute() {
+    this.router.navigate(['./adicionar'], {relativeTo: this.route})
+  }
 
 }

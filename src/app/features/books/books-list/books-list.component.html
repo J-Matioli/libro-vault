@@ -1,6 +1,6 @@
 <div class="books-list c-container">
     <app-custom-title title="Livros">
-        <app-custom-button color="accent">Adicionar</app-custom-button>
+        <app-custom-button (clickButton)="addBookRoute()" color="accent">Adicionar</app-custom-button>
     </app-custom-title>
 
     <app-custom-filter (filterValue)="filter($event)"></app-custom-filter>
