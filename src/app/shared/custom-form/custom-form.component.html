@@ -13,11 +13,22 @@
 
     <app-custom-button class="form__author-button" color="accent">Cadastrar autor</app-custom-button>
 
-    <div class="form__publisher">
-        <app-custom-chip></app-custom-chip>
-        <app-custom-button color="accent">Cadastrar editora</app-custom-button>
-    </div>
+    <mat-form-field class="form__publisher" appearance="fill">
+        <mat-label>Editora</mat-label>
+        <input type="text"
+               placeholder="Selecione uma editora"
+               aria-label="Number"
+               matInput
+               [matAutocomplete]="publisherAuto">
+        <mat-autocomplete autoActiveFirstOption #publisherAuto="matAutocomplete">
+          <mat-option *ngFor="let option of []" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
 
+    <app-custom-button class="form__publisher-button" color="accent">Cadastrar editora</app-custom-button>
+    
     <app-custom-select
         [reset]="false"
         [multiple]="true"
@@ -36,46 +47,18 @@
     <app-custom-chip 
         [options]="[]"
         [placeholder]="'Procurar gêneros'"
-        [label]="'Gêneros'">
+        [label]="'Gêneros'"
+        class="form__genre">
     </app-custom-chip>
 
-    <mat-checkbox *ngIf="workType != 'livro'" class="form__unique">Volume único?</mat-checkbox>
+    <app-custom-button class="form__genre-button" color="accent">Cadastrar gênero</app-custom-button>
+
+    <mat-checkbox class="form__unique">Volume único?</mat-checkbox>
     
     <ng-container [ngTemplateOutlet]="workType != 'livro' ? workVolums : workMoreInfo"></ng-container>
     
     <ng-template #workMoreInfo>
-        <mat-form-field class="form__work" appearance="fill">
-            <mat-label>Preço</mat-label>
-            <input matInput type="text">
-        </mat-form-field>
-
-        <mat-form-field class="form__work" appearance="fill">
-            <mat-label>Página</mat-label>
-            <input matInput type="number">
-        </mat-form-field>
-
-        <mat-form-field class="form__work" appearance="fill">
-            <mat-label>Preço</mat-label>
-            <input matInput type="text">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="form__buy-date">
-            <mat-label>Data de compra</mat-label>
-            <input matInput [matDatepicker]="buyDatePicker">
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="buyDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #buyDatePicker></mat-datepicker>
-        </mat-form-field>
-
-        <mat-checkbox class="form__read">Lido</mat-checkbox>
-
-        <mat-form-field appearance="fill" class="form__read-date">
-            <mat-label>Data de leitura</mat-label>
-            <input matInput [matDatepicker]="readDatePicker">
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="readDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #readDatePicker></mat-datepicker>
-        </mat-form-field>
+        <app-more-info-form class="form__more-info"></app-more-info-form>
     </ng-template>
 
     <ng-template #workVolums>

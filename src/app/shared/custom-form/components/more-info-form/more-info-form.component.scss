@@ -1,0 +1,31 @@
+.more-info-form {
+    
+    width: 100%;
+    display: grid;
+
+    grid-column-gap: 30px;
+    grid-template-columns: repeat(2, minmax(100px, min-content)) minmax(170px, 1fr) min-content minmax(170px, 1fr);
+
+    &__price {
+        grid-column: 1 / 2;
+    }
+
+    &__pages {
+        grid-column: 2 / 3;
+    }
+
+    &__buy-date {
+        grid-column: 3 / 4;
+    }
+
+    &__read {
+        grid-column: 4 / 5;
+        padding-bottom: 18px;
+        align-self: center;
+        justify-self: end;
+    }
+
+    &__read-date {
+        grid-column: 5 / 6;
+    }
+}

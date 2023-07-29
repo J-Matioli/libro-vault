@@ -39,6 +39,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { CustomRangeDatePickerComponent } from './custom-range-date-picker/custom-range-date-picker.component';
 import { CustomFormComponent } from './custom-form/custom-form.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MoreInfoFormComponent } from './custom-form/components/more-info-form/more-info-form.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     CustomChipComponent,
     CustomSelectComponent,
     CustomRangeDatePickerComponent,
-    CustomFormComponent
+    CustomFormComponent,
+    MoreInfoFormComponent
   ],
   imports: [
     CommonModule,

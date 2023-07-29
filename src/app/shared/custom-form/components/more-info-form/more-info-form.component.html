@@ -1,0 +1,29 @@
+<div class="more-info-form">
+    <mat-form-field class="more-info-form__price" appearance="fill">
+        <mat-label>Preço</mat-label>
+        <input matInput type="text">
+    </mat-form-field>
+    
+    <mat-form-field class="more-info-form__pages" appearance="fill">
+        <mat-label>Página</mat-label>
+        <input matInput type="number">
+    </mat-form-field>
+           
+    <mat-form-field appearance="fill" class="more-info-form__buy-date">
+        <mat-label>Data de compra</mat-label>
+        <input matInput [matDatepicker]="buyDatePicker">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="buyDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #buyDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-checkbox class="more-info-form__read">Lido</mat-checkbox>
+    
+    <mat-form-field appearance="fill" class="more-info-form__read-date">
+        <mat-label>Data de leitura</mat-label>
+        <input matInput [matDatepicker]="readDatePicker">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="readDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #readDatePicker></mat-datepicker>
+    </mat-form-field>
+</div>

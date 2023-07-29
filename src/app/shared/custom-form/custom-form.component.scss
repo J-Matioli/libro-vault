@@ -3,7 +3,7 @@
     display: grid;
 
     grid-column-gap: 30px;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(10, 1fr);
 
     align-items: center;
 
@@ -13,24 +13,47 @@
     }
 
     &__author {
-        grid-column: 1 / 6;
+        grid-column: 1 / 8;
     }
 
     &__author-button {
-        grid-column: 6 / -1;
+        grid-column: 8 / -1;
         padding-bottom: 18px;
     }
 
     &__publisher {
-        grid-column: 1 / 7;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        column-gap: 5%;
+        grid-column: 1 / 5;
+    }
+
+    &__publisher-button {
+        grid-column: 5 / 8;
+        padding-bottom: 18px;
     }
 
     &__language {
-        grid-column: 7 / 10;
+        grid-column: 8 / -1;
+    }
+
+    &__notations {
+        grid-column: 3 / -1;
+    }
+
+    &__genre {
+        grid-column: 1 / 8;
+    }
+
+    &__genre-button {
+        grid-column: 8 / -1;
+        padding-bottom: 18px;
+    }
+
+    &__unique {
+        grid-column: 1 / 2;
+        margin-bottom: 18px;
+    }
+
+    &__more-info {
+        grid-column: 1 / -1;
     }
 
     .mat-form-field {
