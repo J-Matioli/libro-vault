@@ -34,8 +34,12 @@
         grid-column: 8 / -1;
     }
 
+    &__img-cropper {
+        grid-column: 1 / 4;
+    }
+
     &__notations {
-        grid-column: 3 / -1;
+        grid-column: 4 / -1;
     }
 
     &__genre {

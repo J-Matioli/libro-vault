@@ -14,4 +14,8 @@ export class CustomFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  croppedImage(ev: any) {
+    console.log('Image base64', ev);
+  }
+
 }

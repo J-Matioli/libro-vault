@@ -40,6 +40,8 @@ import { CustomRangeDatePickerComponent } from './custom-range-date-picker/custo
 import { CustomFormComponent } from './custom-form/custom-form.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MoreInfoFormComponent } from './custom-form/components/more-info-form/more-info-form.component';
+import { ImgCropperComponent } from './img-cropper/img-cropper.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { MoreInfoFormComponent } from './custom-form/components/more-info-form/m
     CustomSelectComponent,
     CustomRangeDatePickerComponent,
     CustomFormComponent,
-    MoreInfoFormComponent
+    MoreInfoFormComponent,
+    ImgCropperComponent
   ],
   imports: [
     CommonModule,
@@ -85,6 +88,7 @@ import { MoreInfoFormComponent } from './custom-form/components/more-info-form/m
     MatDatepickerModule,
     MatCardModule,
     MatRippleModule,
+    ImageCropperModule,
     MatCheckboxModule
   ],
   exports: [

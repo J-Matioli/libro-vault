@@ -37,11 +37,11 @@
         class="form__language">
     </app-custom-select>
 
-    <!-- IMG UPLOAD COMPONENT -->
+    <app-img-cropper (newImage)="croppedImage($event)" class="form__img-cropper" ></app-img-cropper>
 
     <mat-form-field appearance="fill" class="form__notations">
         <mat-label>Anotações</mat-label>
-        <textarea matInput></textarea>
+        <textarea matInput style="height: 133px;"></textarea>
     </mat-form-field>
 
     <app-custom-chip 

@@ -1,0 +1,15 @@
+<input class="img-input" type="file" (change)="fileChangeEvent($event)" />
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [imageBase64]="image"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 3"    
+    format="png"
+    [resizeToWidth]="500"
+    output="base64"
+    [resizeToHeight]="385"    
+    (imageCropped)="imageCropped($event)"
+    (loadImageFailed)="loadImageFailed()"
+    class="img-cropper"
+></image-cropper>

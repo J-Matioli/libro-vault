@@ -1,0 +1,26 @@
+.img-cropper {
+    width: 100%;
+    min-height: 117px;
+    margin-bottom: 18px;
+}
+
+.img-input {
+    margin-bottom: 10px;
+    width: 100%;
+    cursor: pointer;
+
+    &::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background: var(--accent-color);
+        padding: 10px 20px;
+        color: #fff;
+        transition: background .2s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            background: var(--primary-color);
+            color: #000;
+          }
+      }
+}
