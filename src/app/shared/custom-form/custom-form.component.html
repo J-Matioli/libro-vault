@@ -11,7 +11,7 @@
             class="form__author">
     </app-custom-chip>
 
-    <app-custom-button class="form__author-button" color="accent">Cadastrar autor</app-custom-button>
+    <app-custom-button (clickButton)="addAuthor()" class="form__author-button" color="accent">Cadastrar autor</app-custom-button>
 
     <mat-form-field class="form__publisher" appearance="fill">
         <mat-label>Editora</mat-label>
@@ -27,7 +27,7 @@
         </mat-autocomplete>
     </mat-form-field>
 
-    <app-custom-button class="form__publisher-button" color="accent">Cadastrar editora</app-custom-button>
+    <app-custom-button (clickButton)="addPublisher()" class="form__publisher-button" color="accent">Cadastrar editora</app-custom-button>
     
     <app-custom-select
         [reset]="false"
@@ -51,7 +51,7 @@
         class="form__genre">
     </app-custom-chip>
 
-    <app-custom-button class="form__genre-button" color="accent">Cadastrar gênero</app-custom-button>
+    <app-custom-button (clickButton)="addGenre()" class="form__genre-button" color="accent">Cadastrar gênero</app-custom-button>
 
     <mat-checkbox class="form__unique">Volume único?</mat-checkbox>
     
