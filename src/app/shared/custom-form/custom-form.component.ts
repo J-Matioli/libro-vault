@@ -18,4 +18,6 @@ export class CustomFormComponent implements OnInit {
     console.log('Image base64', ev);
   }
 
+  addVol() {}
+  removeVol(i: number) {}
 }

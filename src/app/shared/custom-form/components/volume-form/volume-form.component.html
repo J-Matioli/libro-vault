@@ -1,0 +1,20 @@
+<div class="volume-form">
+    <mat-form-field class="volume-form__volume" appearance="fill">
+        <mat-label>Volume</mat-label>
+        <input matInput type="text">
+    </mat-form-field>
+    
+    <button class="volume-form__remove" color="" mat-mini-fab aria-label="Excluir obra">
+        <mat-icon>close</mat-icon>
+    </button>
+    
+    <app-img-cropper (newImage)="croppedImage($event)" class="volume-form__img-cropper" ></app-img-cropper>
+
+    <mat-form-field appearance="fill" class="volume-form__notations">
+        <mat-label>Anotações</mat-label>
+        <textarea matInput style="height: 133px;"></textarea>
+    </mat-form-field>
+
+
+    <app-more-info-form class="volume-form__more-info"></app-more-info-form>
+</div>

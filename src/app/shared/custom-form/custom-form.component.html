@@ -62,7 +62,17 @@
     </ng-template>
 
     <ng-template #workVolums>
-        workVolums
+        <div class="form__volume">
+            <app-custom-title title="Volumes" class="form__volume-title">
+                <app-custom-button (clickButton)="addVol()" color="accent">Adicionar</app-custom-button>
+            </app-custom-title>
+    
+            <ng-container>
+                <ng-container>
+                    <app-volume-form class="form__volume-form"></app-volume-form>
+                </ng-container>
+            </ng-container>    
+        </div>
     </ng-template>
 
 </form>

@@ -1,0 +1,27 @@
+.volume-form {
+    display: grid;
+    grid-column-gap: 30px;
+    grid-template-columns: repeat(10, 1fr);
+
+    &__volume {
+        grid-column: 1 / 2;
+        width: 114px;
+    }
+
+    &__remove {
+        justify-self: end;
+        grid-column: 5 / -1;
+    }
+
+    &__img-cropper {
+        grid-column: 1 / 4;
+    }
+
+    &__notations {
+        grid-column: 4 / -1;
+    }
+
+    &__more-info {
+        grid-column: 1 / -1;
+    }
+}
