@@ -1,12 +1,12 @@
-<div class="more-info-form">
+<div class="more-info-form" [formGroup]="moreInfoForm">
     <mat-form-field class="more-info-form__price" appearance="fill">
         <mat-label>Preço</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" formControlName="preco">
     </mat-form-field>
     
     <mat-form-field class="more-info-form__pages" appearance="fill">
         <mat-label>Página</mat-label>
-        <input matInput type="number">
+        <input matInput type="number" formControlName="pagina">
     </mat-form-field>
            
     <mat-form-field appearance="fill" class="more-info-form__buy-date">

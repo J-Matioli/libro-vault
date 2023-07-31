@@ -1,11 +1,12 @@
-<form class="form">
+<form class="form" [formGroup]="form">
     <mat-form-field class="form__work" appearance="fill">
         <mat-label>Obra</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" formControlName="obra">
     </mat-form-field>
 
     <app-custom-chip 
-            [options]="[]"
+            [options]="authorOptions"
+            [control]="autor"
             [placeholder]="'Procurar autor'"
             [label]="'Autor'"
             class="form__author">
@@ -17,12 +18,13 @@
         <mat-label>Editora</mat-label>
         <input type="text"
                placeholder="Selecione uma editora"
+               formControlName="editora"
                aria-label="Number"
                matInput
                [matAutocomplete]="publisherAuto">
-        <mat-autocomplete autoActiveFirstOption #publisherAuto="matAutocomplete">
-          <mat-option *ngFor="let option of []" [value]="option">
-            {{ option }}
+        <mat-autocomplete autoActiveFirstOption #publisherAuto="matAutocomplete" [displayWith]="displayAutoComplete">
+          <mat-option *ngFor="let option of publisherOptions" [value]="option">
+            {{ option.viewValue }}
           </mat-option>
         </mat-autocomplete>
     </mat-form-field>
@@ -33,7 +35,8 @@
         [reset]="false"
         [multiple]="true"
         [label]="'Idioma'"
-        [options]="[]"
+        [control]="idioma"
+        [options]="languageOptions"
         class="form__language">
     </app-custom-select>
 
@@ -41,24 +44,25 @@
 
     <mat-form-field appearance="fill" class="form__notations">
         <mat-label>Anotações</mat-label>
-        <textarea matInput style="height: 133px;"></textarea>
+        <textarea matInput style="height: 133px;" formControlName="anotacoes"></textarea>
     </mat-form-field>
 
     <app-custom-chip 
-        [options]="[]"
+        [options]="genresOptions"
         [placeholder]="'Procurar gêneros'"
         [label]="'Gêneros'"
+        [control]="generos"
         class="form__genre">
     </app-custom-chip>
 
     <app-custom-button (clickButton)="addGenre()" class="form__genre-button" color="accent">Cadastrar gênero</app-custom-button>
 
-    <mat-checkbox class="form__unique">Volume único?</mat-checkbox>
+    <mat-checkbox class="form__unique" formControlName="volumeUnico">Volume único?</mat-checkbox>
     
-    <ng-container [ngTemplateOutlet]="workType != 'livro' ? workVolums : workMoreInfo"></ng-container>
+    <ng-container [ngTemplateOutlet]="workType != 'livro' && !volumeUnico.value ? workVolums : workMoreInfo"></ng-container>
     
     <ng-template #workMoreInfo>
-        <app-more-info-form class="form__more-info"></app-more-info-form>
+        <app-more-info-form formGroupName="maisInfo" class="form__more-info"></app-more-info-form>
     </ng-template>
 
     <ng-template #workVolums>
@@ -74,5 +78,4 @@
             </ng-container>    
         </div>
     </ng-template>
-
 </form>
