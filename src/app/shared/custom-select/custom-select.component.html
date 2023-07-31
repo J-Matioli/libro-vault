@@ -7,5 +7,6 @@
                 {{ option.viewValue }}
             </mat-option>
         </mat-select>
+        <mat-error *ngIf="control!.errors?.['required']">{{ requiredMessage }}</mat-error>
     </mat-form-field>
 </div>

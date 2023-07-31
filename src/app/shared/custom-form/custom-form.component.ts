@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthorFormDialogComponent } from '../author-form-dialog/author-form-dialog.component';
 import { PublisherFormDialogComponent } from '../publisher-form-dialog/publisher-form-dialog.component';
 import { GenreFormDialogComponent } from '../genre-form-dialog/genre-form-dialog.component';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { genresOptions, languageOptions, authorOptions, publisherOptions } from '../custom-filter/filter-helper';
 
 @Component({
@@ -31,32 +31,48 @@ export class CustomFormComponent implements OnInit {
     this.createForm();
 
     this.form.valueChanges.subscribe(console.log)
+
+    this.maisInfo.get('lido')?.valueChanges.subscribe(data => {      
+      this.controlReadInput(data)
+    })
   }
 
   createForm() {
     this.form = this.fb.group<CustomForm>({
-      obra: new FormControl(),
-      autor: new FormControl(),
-      editora: new FormControl(),
-      idioma: new FormControl(),
+      obra: new FormControl(null, { validators: [Validators.required]}),
+      autor: new FormControl(null, { validators: [Validators.required]}),
+      editora: new FormControl(null, { validators: [Validators.required]}),
+      idioma: new FormControl(null, { validators: [Validators.required]}),
+      imagem: new FormControl(),
       anotacoes: new FormControl(),
       generos: new FormControl(),
       volumeUnico: new FormControl(),
       maisInfo: new FormGroup({
         preco: new FormControl(),
         pagina: new FormControl(),
+        dataCompra: new FormControl(),
         lido: new FormControl(),
+        dataLeitura: new FormControl(),
       })
     })
   }
 
   croppedImage(ev: any) {
-    console.log('Image base64', ev);
+    this.imagem.setValue(ev)
   }
 
   addVol() {}
   removeVol(i: number) {}
 
+  controlReadInput(enable: boolean) {
+    if(enable) {
+      this.maisInfo.get('dataLeitura')?.enable()
+    }else {
+      this.maisInfo.get('dataLeitura')?.reset()
+      this.maisInfo.get('dataLeitura')?.disable()
+    }
+  }
+  
   addAuthor() {
       const dialogRef = this.dialog.open(AuthorFormDialogComponent, {
         restoreFocus: false,
@@ -102,6 +118,10 @@ export class CustomFormComponent implements OnInit {
     return this.form.get('idioma') as FormControl
   }
 
+  get imagem(): FormControl {
+    return this.form.get('imagem') as FormControl
+  }
+
   get anotacoes(): FormControl {
     return this.form.get('anotacoes') as FormControl
   }
@@ -120,12 +140,20 @@ export class CustomFormComponent implements OnInit {
 }
 
 export interface CustomForm {
-  obra: FormControl<string>
-  autor: FormControl<string[]>
-  editora: FormControl<string>  
-  idioma: FormControl<string[]>
-  anotacoes: FormControl<string>
-  generos: FormControl<string[]>
-  volumeUnico: FormControl<string>
-  maisInfo: FormGroup
+  obra: FormControl<string | null>
+  autor: FormControl<string[] | null>
+  editora: FormControl<string | null>  
+  idioma: FormControl<string[] | null>
+  imagem: FormControl<string | null>
+  anotacoes: FormControl<string | null>
+  generos: FormControl<string[] | null>
+  volumeUnico: FormControl<string | null>
+  maisInfo: FormGroup<{
+    preco: FormControl<string | null>
+    pagina: FormControl<string | null>
+    dataCompra: FormControl<string | null>
+    lido: FormControl<string | null>
+    dataLeitura: FormControl<string | null>
+  }>
+  volumes?: FormArray<FormGroup>
 }

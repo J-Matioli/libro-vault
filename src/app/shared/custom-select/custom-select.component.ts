@@ -15,6 +15,7 @@ export class CustomSelectComponent implements OnInit {
 
   @Input() control: FormControl = new FormControl()
   @Input() label: string = 'Select';
+  @Input() requiredMessage: string = 'Este campo é obrigatório';
   @Input() reset: boolean = true;
   @Input() multiple: boolean = false;
   @Input() options: Option[] = [];
