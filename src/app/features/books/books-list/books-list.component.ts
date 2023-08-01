@@ -102,6 +102,25 @@ export class BooksListComponent implements OnInit {
     console.log(pageEvent)
   }
 
+  cardAction(ev: any) {
+    console.log(ev)
+
+    switch (ev.action) {
+      case 'EDIT':
+        this.router.navigate(['./editar', ev.id], {relativeTo: this.route});
+        break;
+      case 'DELETE':
+        this.removeCard(ev.id, ev.name, 'livro');
+        break;
+      default:
+        break;
+    }
+  }
+
+  removeCard(id: string, name: string, type: string) {
+    console.log(id, name, type);
+  }
+
   addBookRoute() {
     this.router.navigate(['./adicionar'], {relativeTo: this.route})
   }

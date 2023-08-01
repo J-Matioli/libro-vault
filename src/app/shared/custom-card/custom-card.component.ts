@@ -27,6 +27,7 @@ export class CustomCardComponent implements OnInit {
   userActionMenu(ev: string) {
     this.userAction.emit({
       id: this.id,
+      name: this.title,
       action: ev
     });
   }

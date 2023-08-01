@@ -5,7 +5,7 @@
 
     <app-custom-filter (filterValue)="filter($event)"></app-custom-filter>
 
-    <app-custom-list [data]="books"></app-custom-list>
+    <app-custom-list [data]="books" (cardActionMenu)="cardAction($event)"></app-custom-list>
 
     <mat-paginator 
         (page)="pageChanged($event)"

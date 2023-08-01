@@ -8,5 +8,6 @@
         [read]="card.read"
         [buyDate]="card.buyDate"
         [genres]="card.genres"
+        (userAction)="cardAction($event)"
     ></app-custom-card>
 </div>
