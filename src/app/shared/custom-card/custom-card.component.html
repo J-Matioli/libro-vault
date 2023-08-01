@@ -1,6 +1,6 @@
 <mat-card class="card">
     <div class="card__img-container">
-        <app-card-remove></app-card-remove>
+        <app-card-menu (menuAction)="userActionMenu($event)"></app-card-menu>
         <img class="card__img" mat-card-image src="{{ img }}" alt="Imagem do livro">
         <app-card-save></app-card-save>
     </div>

@@ -1,0 +1,14 @@
+<button class="remove" color="" mat-mini-fab aria-label="Excluir obra" [matMenuTriggerFor]="cardMenu">
+    <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #cardMenu="matMenu">
+    <button mat-menu-item (click)="menuItemClick('EDIT')">
+        <mat-icon class="material-icons-outlined">edit</mat-icon>
+        <span>Editar</span>
+      </button>
+    <button mat-menu-item (click)="menuItemClick('DELETE')">
+        <mat-icon class="material-icons-outlined">close</mat-icon>
+        <span>Excluir</span>
+    </button>   
+</mat-menu>

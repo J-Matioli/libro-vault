@@ -27,7 +27,7 @@ import { CustomListComponent } from './custom-list/custom-list.component';
 import { CustomCardComponent } from './custom-card/custom-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { CardSaveComponent } from './custom-card/components/card-save/card-save.component';
-import { CardRemoveComponent } from './custom-card/components/card-remove/card-remove.component';
+import { CardMenuComponent } from './custom-card/components/card-menu/card-menu.component';
 import { ArrToStringPipe } from '../core/pipes/arr-to-string.pipe';
 import { CustomFilterComponent } from './custom-filter/custom-filter.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
@@ -43,7 +43,7 @@ import { MoreInfoFormComponent } from './custom-form/components/more-info-form/m
 import { ImgCropperComponent } from './img-cropper/img-cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { VolumeFormComponent } from './custom-form/components/volume-form/volume-form.component';
-
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -58,7 +58,7 @@ import { VolumeFormComponent } from './custom-form/components/volume-form/volume
     CustomListComponent,
     CustomCardComponent,
     CardSaveComponent,
-    CardRemoveComponent,
+    CardMenuComponent,
     ArrToStringPipe,
     CustomFilterComponent,
     CustomChipComponent,
@@ -77,6 +77,7 @@ import { VolumeFormComponent } from './custom-form/components/volume-form/volume
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
+    MatMenuModule,
     MatTableModule,
     CdkAccordionModule,
     MatChipsModule,

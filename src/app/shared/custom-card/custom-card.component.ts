@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-custom-card',
@@ -16,9 +16,19 @@ export class CustomCardComponent implements OnInit {
   @Input() read: boolean = false;
   @Input() img: string = '';
 
+  @Output() userAction: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  
+  userActionMenu(ev: string) {
+    this.userAction.emit({
+      id: this.id,
+      action: ev
+    });
   }
 
 }
