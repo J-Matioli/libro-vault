@@ -2,6 +2,7 @@
     [disabled]="disabled || isLoading" 
     class="custom-button"
     mat-raised-button 
+    [type]="type"
     [color]="color"
     (click)="onClick()">
         <mat-icon *ngIf="icon && !isLoading" [svgIcon]="icon" class="custom-button__icon"> </mat-icon>

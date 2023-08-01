@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="form">
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field class="form__work" appearance="fill">
         <mat-label>Obra</mat-label>
         <input matInput type="text" formControlName="obra">
@@ -6,6 +6,7 @@
     </mat-form-field>
 
     <app-custom-chip 
+            #chipAuthor
             [options]="authorOptions"
             [control]="autor"
             [required]="true"
@@ -83,4 +84,7 @@
             </ng-container>    
         </div>
     </ng-template>
+
+    <app-custom-button class="form__back-btn" (clickButton)="onBackBtn()" color="">voltar</app-custom-button>
+    <app-custom-button class="form__add-btn" type="submit" color="primary">Adicionar</app-custom-button>
 </form>

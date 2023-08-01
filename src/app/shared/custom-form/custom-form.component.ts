@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthorFormDialogComponent } from '../author-form-dialog/author-form-dialog.component';
 import { PublisherFormDialogComponent } from '../publisher-form-dialog/publisher-form-dialog.component';
 import { GenreFormDialogComponent } from '../genre-form-dialog/genre-form-dialog.component';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { genresOptions, languageOptions, authorOptions, publisherOptions } from '../custom-filter/filter-helper';
+import { CustomChipComponent } from '../custom-chip/custom-chip.component';
 
 @Component({
   selector: 'app-custom-form',
@@ -21,6 +22,11 @@ export class CustomFormComponent implements OnInit {
   public publisherOptions = publisherOptions;
 
   @Input() workType: 'livro' | 'manga' | 'hq';
+  @Output() formValue: EventEmitter<any> = new EventEmitter<any>();
+  @Output() backEvent: EventEmitter<void> = new EventEmitter<void>();
+
+  @ViewChild("chipAuthor") chipAuthor: CustomChipComponent;
+
 
   constructor(
     private dialog: MatDialog,
@@ -29,8 +35,6 @@ export class CustomFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-
-    this.form.valueChanges.subscribe(console.log)
 
     this.maisInfo.get('lido')?.valueChanges.subscribe(data => {      
       this.controlReadInput(data)
@@ -55,6 +59,18 @@ export class CustomFormComponent implements OnInit {
         dataLeitura: new FormControl(),
       })
     })
+  }
+
+  onSubmit() {
+    this.chipAuthor.requireValidator();
+    
+    if(this.form.valid) {
+      this.formValue.emit(this.form.value);
+    }
+  }
+
+  onBackBtn() {
+    this.backEvent.emit();
   }
 
   croppedImage(ev: any) {

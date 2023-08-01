@@ -72,6 +72,16 @@
         grid-template-columns: 1fr;
     }
 
+    &__back-btn {
+        margin-top: 15px;
+        grid-column: 1 / 2;
+    }
+
+    &__add-btn {
+        margin-top: 15px;
+        grid-column: 10 / -1;
+    }
+
     ::ng-deep {
         .mat-form-field-appearance-fill .mat-form-field-flex {
             background-color: #fff !important;

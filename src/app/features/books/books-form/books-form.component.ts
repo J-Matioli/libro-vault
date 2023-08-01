@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-books-form',
@@ -12,11 +12,22 @@ export class BooksFormComponent implements OnInit {
   public formType: 'ADD' | 'PUT';
   public  workType: 'livro' = 'livro';
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+    ) {
     this.formType = this.route.snapshot.data['type']
    }
 
   ngOnInit(): void { }
+
+  onSubmit(ev: any) {
+    console.log('Form value: ', ev)
+  }
+
+  backEvent() {
+    this.router.navigate(['livros']);
+  }
 }
 
 enum Actions {
