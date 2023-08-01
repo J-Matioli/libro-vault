@@ -10,6 +10,7 @@
             </mat-chip>
             <input 
                 #chipInput
+                (blur)="onBlur()"
                 placeholder="{{ placeholder }}"
                 [formControl]="chipControl"
                 [matAutocomplete]="auto"
@@ -21,6 +22,6 @@
                 {{ option.viewValue }}
             </mat-option>
         </mat-autocomplete>
-        <!-- <mat-error *ngIf="chipList.errorState">Too many chips</mat-error> -->
+        <mat-error *ngIf="chipList.errorState">{{ requiredMessage }}</mat-error>
     </mat-form-field>
 </div>
