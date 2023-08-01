@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'src/app/core/utils/Contants';
+import { WorkDeleteDialogComponent } from 'src/app/shared/work-delete-dialog/work-delete-dialog.component';
 
 @Component({
   selector: 'app-books-list',
@@ -86,7 +88,10 @@ export class BooksListComponent implements OnInit {
   public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
   pageSizeOptions: number[] = Constants.pageSizeOptions;
   
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -103,22 +108,31 @@ export class BooksListComponent implements OnInit {
   }
 
   cardAction(ev: any) {
-    console.log(ev)
-
     switch (ev.action) {
       case 'EDIT':
         this.router.navigate(['./editar', ev.id], {relativeTo: this.route});
         break;
       case 'DELETE':
-        this.removeCard(ev.id, ev.name, 'livro');
+        this.removeCard(ev.id, ev.name);
         break;
       default:
         break;
     }
   }
 
-  removeCard(id: string, name: string, type: string) {
-    console.log(id, name, type);
+  removeCard(id: string, name: string) {
+    const dialogRef = this.dialog.open(WorkDeleteDialogComponent, {
+      restoreFocus: false,
+      data: {
+        message: `Tem certeza que deseja excluir o livro: <b>${name}</b>?`,
+        type: "livro"
+      },
+    });    
+
+    dialogRef.beforeClosed().subscribe(data => {
+      const confirmDelet = data
+      console.log('Remove', confirmDelet)
+    })
   }
 
   addBookRoute() {

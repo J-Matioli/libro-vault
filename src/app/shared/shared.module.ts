@@ -44,6 +44,7 @@ import { ImgCropperComponent } from './img-cropper/img-cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { VolumeFormComponent } from './custom-form/components/volume-form/volume-form.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { WorkDeleteDialogComponent } from './work-delete-dialog/work-delete-dialog.component';
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -67,7 +68,8 @@ import { MatMenuModule } from '@angular/material/menu';
     CustomFormComponent,
     MoreInfoFormComponent,
     ImgCropperComponent,
-    VolumeFormComponent
+    VolumeFormComponent,
+    WorkDeleteDialogComponent
   ],
   imports: [
     CommonModule,

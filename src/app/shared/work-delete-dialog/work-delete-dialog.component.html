@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Remover {{ data.type }}</h2>
+<mat-dialog-content class="mat-typography">
+    <p [innerHTML]="data.message"></p>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="action">
+    <app-custom-button class="close-btn" [mat-dialog-close]="false">Voltar</app-custom-button>
+    <app-custom-button class="submit-btn" color="primary" [mat-dialog-close]="true">Remover</app-custom-button>
+</mat-dialog-actions>
