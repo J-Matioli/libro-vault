@@ -7,6 +7,9 @@
 
     align-items: center;
 
+    @media screen and (max-width: 900px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 
     &__work {
         grid-column: 1 / -1;
@@ -14,46 +17,87 @@
 
     &__author {
         grid-column: 1 / 8;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
+        
     }
 
     &__author-button {
         grid-column: 8 / -1;
         padding-bottom: 18px;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__publisher {
         grid-column: 1 / 5;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__publisher-button {
         grid-column: 5 / 8;
         padding-bottom: 18px;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__language {
         grid-column: 8 / -1;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__img-cropper {
         grid-column: 1 / 4;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__notations {
         grid-column: 4 / -1;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__genre {
         grid-column: 1 / 8;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__genre-button {
         grid-column: 8 / -1;
         padding-bottom: 18px;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__unique {
         grid-column: 1 / 2;
         margin-bottom: 18px;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__more-info {
@@ -75,11 +119,23 @@
     &__back-btn {
         margin-top: 15px;
         grid-column: 1 / 2;
+
+        @media screen and (max-width: 400px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__add-btn {
         margin-top: 15px;
         grid-column: 10 / -1;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 4 / -1;            
+        }
+
+        @media screen and (max-width: 400px) {
+            grid-column: 1 / -1;            
+        }
     }
 
     ::ng-deep {

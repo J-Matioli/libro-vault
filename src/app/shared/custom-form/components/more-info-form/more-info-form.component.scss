@@ -6,16 +6,32 @@
     grid-column-gap: 30px;
     grid-template-columns: repeat(2, minmax(100px, min-content)) minmax(170px, 1fr) min-content minmax(170px, 1fr);
 
+    @media screen and (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+
     &__price {
         grid-column: 1 / 2;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__pages {
         grid-column: 2 / 3;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__buy-date {
         grid-column: 3 / 4;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 
     &__read {
@@ -23,9 +39,19 @@
         padding-bottom: 18px;
         align-self: center;
         justify-self: end;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+            padding-top: 18px;
+            justify-self: start;
+        }
     }
 
     &__read-date {
         grid-column: 5 / 6;
+
+        @media screen and (max-width: 900px) {
+            grid-column: 1 / -1;
+        }
     }
 }
