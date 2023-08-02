@@ -34,7 +34,7 @@
         <mat-error *ngIf="editora!.errors?.['required']">Insira uma editora.</mat-error>
     </mat-form-field>
 
-    <app-custom-button (clickButton)="addPublisher()" class="form__publisher-button" color="accent">Cadastrar editora</app-custom-button>
+    <app-custom-button [padding]="false" (clickButton)="addPublisher()" class="form__publisher-button" color="accent">Cadastrar editora</app-custom-button>
     
     <app-custom-select
         [reset]="false"

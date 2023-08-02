@@ -1,6 +1,7 @@
 <button 
     [disabled]="disabled || isLoading" 
     class="custom-button"
+    [ngClass]="{'pd-min': !padding}"
     mat-raised-button 
     [type]="type"
     [color]="color"

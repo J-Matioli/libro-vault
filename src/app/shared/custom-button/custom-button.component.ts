@@ -10,6 +10,7 @@ export class CustomButtonComponent implements OnInit {
   @Input() color: 'primary' | 'accent' | 'warn' | '' = '';
   @Input() disabled: boolean = false;
   @Input() type: string = 'button';
+  @Input() padding: boolean = true;
   @Input() icon: string = '';
   @Input() isLoading: boolean = false;
   @Output() clickButton: EventEmitter<void> = new EventEmitter<void>();
