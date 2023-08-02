@@ -35,10 +35,6 @@ export class CustomFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-
-    this.maisInfo.get('lido')?.valueChanges.subscribe(data => {      
-      this.controlReadInput(data)
-    })
   }
 
   createForm() {
@@ -79,15 +75,6 @@ export class CustomFormComponent implements OnInit {
 
   addVol() {}
   removeVol(i: number) {}
-
-  controlReadInput(enable: boolean) {
-    if(enable) {
-      this.maisInfo.get('dataLeitura')?.enable()
-    }else {
-      this.maisInfo.get('dataLeitura')?.reset()
-      this.maisInfo.get('dataLeitura')?.disable()
-    }
-  }
   
   addAuthor() {
       const dialogRef = this.dialog.open(AuthorFormDialogComponent, {

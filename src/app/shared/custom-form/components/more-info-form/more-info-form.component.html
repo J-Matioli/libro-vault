@@ -11,19 +11,21 @@
            
     <mat-form-field appearance="fill" class="more-info-form__buy-date">
         <mat-label>Data de compra</mat-label>
-        <input matInput [matDatepicker]="buyDatePicker">
+        <input matInput [matDatepicker]="buyDatePicker" appMaskDate  formControlName="dataCompra">
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="buyDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #buyDatePicker></mat-datepicker>
+        <mat-error *ngIf="dataCompra.errors?.['matDatepickerParse']">Insira uma data válida.</mat-error>
     </mat-form-field>
 
-    <mat-checkbox class="more-info-form__read">Lido</mat-checkbox>
+    <mat-checkbox class="more-info-form__read" formControlName="lido">Lido</mat-checkbox>
     
     <mat-form-field appearance="fill" class="more-info-form__read-date">
         <mat-label>Data de leitura</mat-label>
-        <input matInput [matDatepicker]="readDatePicker">
+        <input matInput [matDatepicker]="readDatePicker" formControlName="dataLeitura" appMaskDate>
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="readDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #readDatePicker></mat-datepicker>
+        <mat-error *ngIf="dataLeitura.errors?.['matDatepickerParse']">Insira uma data válida.</mat-error>
     </mat-form-field>
 </div>

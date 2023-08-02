@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -106,7 +106,8 @@ import { WorkDeleteDialogComponent } from './work-delete-dialog/work-delete-dial
     CustomFormComponent
   ],
   providers: [
-    {provide: MatPaginatorIntl, useValue: getPtPaginatorIntl() }
+    {provide: MatPaginatorIntl, useValue: getPtPaginatorIntl()},
+    CurrencyPipe
   ]
 })
 export class SharedModule { }
