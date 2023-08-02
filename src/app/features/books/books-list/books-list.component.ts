@@ -109,6 +109,9 @@ export class BooksListComponent implements OnInit {
 
   cardAction(ev: any) {
     switch (ev.action) {
+      case 'GET':
+        this.router.navigate(['./detalhes', ev.id], {relativeTo: this.route});
+        break;
       case 'EDIT':
         this.router.navigate(['./editar', ev.id], {relativeTo: this.route});
         break;

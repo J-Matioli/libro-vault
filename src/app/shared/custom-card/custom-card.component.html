@@ -4,7 +4,7 @@
         <img class="card__img" mat-card-image src="{{ img }}" alt="Imagem do livro">
         <app-card-save></app-card-save>
     </div>
-    <mat-card-content class="card__content">
+    <mat-card-content class="card__content" (click)="userActionMenu('GET')">
         <div class="card__content-header">
             <h2 class="card__title">{{ title }}</h2>
             <h3 class="card__author">{{ author | arrToString: ',' }}</h3>
