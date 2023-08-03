@@ -1,11 +1,7 @@
 .sidebar {  
     padding-top: 0;
-    height: calc(100vh - 214px);
     overflow: auto;    
-
-    @media screen and (max-width: 599px) {
-        height: calc(100vh - 204px);    
-    }
+    margin-bottom: 150px;
     
     &__item {       
         min-width: 164px;
