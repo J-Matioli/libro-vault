@@ -1,3 +1,5 @@
+@import "../../scss/main.scss";
+
 .details {
     width: 100%;
     display: grid;
@@ -5,14 +7,27 @@
     grid-template-columns: 400px repeat(2, 1fr);
     grid-template-rows: repeat(5, min-content);
     margin-bottom: 20px;
+
+    @include respond(medium) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 300px;
+    }
     
     &__img-container { 
         grid-column: 1 / 2;
         grid-row: 1 / 4;
         
         position: relative;
-        max-height: 100%;        
+        max-height: 100%;
         overflow: hidden;
+
+        @include respond(medium) {
+
+            grid-row: 1 / 2;
+
+            max-width: 400px;
+            justify-self: center;
+        }
     }
 
     &__img {
@@ -22,57 +37,95 @@
         object-fit: cover;
         object-position: center;
         aspect-ratio: 4 / 3;
+
+        @include respond(medium) {
+            position: unset;
+        }
     }
 
     &__work { 
         grid-column: 2 / -1;
         
+        @include respond(medium) {
+            grid-column: 1 / -1;
+        }
     }
     &__author { 
         grid-column: 2 / -1;
         align-self: center;
+
+        @include respond(medium) {
+            grid-column: 1 / -1;
+        }
     }
     &__publisher { 
         grid-column: 2 / 3;
         align-self: self-end;
+
+        @include respond(medium) {
+            grid-column: 1 / -1;
+        }
     }
     &__idioma { 
         grid-column: 3 / -1;
         align-self: self-end;
+
+        @include respond(medium) {
+            grid-column: 1 / -1;
+        }
     }
     
     &__more-info {
         grid-column: 1 / -1;
         display: grid;
 
-        grid-column-gap: 30px;
+        grid-gap: 30px;
         grid-template-columns: repeat(2, min-content) 1fr min-content 1fr;
+
+        @include respond(medium) {
+            grid-template-columns: 1fr;
+        }
     }
 
     &__price { 
         grid-column: 1 / 2;
-        grid-row: 4 / 5;
         min-width: 90px;
+
+        @include respond(medium) {
+            grid-column: 1 / -1;
+        }
     }
     &__page  { 
         grid-column: 2 / 3;
-        grid-row: 4 / 5;
         min-width: 90px;
+
+        @include respond(medium) {
+            grid-column: 1 / -1;
+        }
     }
     &__buy-date { 
         grid-column: 3 / 4;
-        grid-row: 4 / 5;
+
+        @include respond(medium) {
+            grid-column: 1 / -1;
+        }
     }    
     
     &__read { 
         grid-column: 4 / 5;
-        grid-row: 4 / 5;
         min-width: 90px;
+
+        @include respond(medium) {
+            grid-column: 1 / -1;
+        }
     }    
 
     &__read-date { 
         grid-column: 5 / -1;
-        grid-row: 4 / 5;
+        
+        @include respond(medium) {
+            grid-column: 1 / -1;
+        }
     }
     &__notations { grid-column: 1 / -1; }
 
