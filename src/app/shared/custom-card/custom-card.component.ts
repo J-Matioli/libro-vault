@@ -11,6 +11,7 @@ export class CustomCardComponent implements OnInit {
   @Input() author: string[] = [];
   @Input() id: string = '';
   @Input() buyDate: Date = new Date();
+  @Input() volumes: number = 0;
   @Input() pages: number = 0;
   @Input() genres: string[] = [];
   @Input() read: boolean = false;

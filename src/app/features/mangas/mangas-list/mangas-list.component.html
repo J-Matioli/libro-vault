@@ -1,0 +1,18 @@
+<div class="mangas-list c-container">
+    <app-custom-title title="Livros">
+        <app-custom-button (clickButton)="addMangaRoute()" color="accent">Adicionar</app-custom-button>
+    </app-custom-title>
+
+    <app-custom-filter (filterValue)="filter($event)"></app-custom-filter>
+
+    <app-custom-list [data]="mangas" (cardActionMenu)="cardAction($event)"></app-custom-list>
+
+    <mat-paginator 
+        (page)="pageChanged($event)"
+        [pageSize]="pageSettings.pageSize" 
+        [length]="mangas.length"
+        [pageSizeOptions]="pageSizeOptions"
+        class="mangas-list__paginator"
+        showFirstLastButtons="true">
+    </mat-paginator>
+</div>
