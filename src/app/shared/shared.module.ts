@@ -45,6 +45,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { VolumeFormComponent } from './custom-form/components/volume-form/volume-form.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { WorkDeleteDialogComponent } from './work-delete-dialog/work-delete-dialog.component';
+import { CustomDetailsComponent } from './custom-details/custom-details.component';
+import { DetailsInfoFieldComponent } from './custom-details/components/details-info-field/details-info-field.component';
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -69,7 +71,9 @@ import { WorkDeleteDialogComponent } from './work-delete-dialog/work-delete-dial
     MoreInfoFormComponent,
     ImgCropperComponent,
     VolumeFormComponent,
-    WorkDeleteDialogComponent
+    WorkDeleteDialogComponent,
+    CustomDetailsComponent,
+    DetailsInfoFieldComponent
   ],
   imports: [
     CommonModule,
@@ -103,7 +107,8 @@ import { WorkDeleteDialogComponent } from './work-delete-dialog/work-delete-dial
     CustomTableComponent,
     CustomListComponent,
     CustomFilterComponent,
-    CustomFormComponent
+    CustomFormComponent,
+    CustomDetailsComponent
   ],
   providers: [
     {provide: MatPaginatorIntl, useValue: getPtPaginatorIntl()},

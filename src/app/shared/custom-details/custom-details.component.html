@@ -1,0 +1,22 @@
+<div class="details">
+    <div class="details__img-container">
+        <img class="details__img" [src]="work.img" alt="Imagem da obra">
+    </div>
+    <app-details-info-field class="details__work" title="Obra" [value]="work.title"></app-details-info-field>
+    <app-details-info-field class="details__author" title="Autor" [value]="work.author | arrToString: ','"></app-details-info-field>
+    <app-details-info-field class="details__publisher" title="Editora" [value]="work.publisher"></app-details-info-field>
+    <app-details-info-field class="details__idioma" title="Idioma" [value]="work.language | arrToString: ','"></app-details-info-field>
+    
+    <div class="details__more-info">
+        <app-details-info-field class="details__price" title="Preço" [value]="work.price | currency: 'BRL'"></app-details-info-field>
+        <app-details-info-field class="details__page" title="Página" [value]="work.pages"></app-details-info-field>
+        <app-details-info-field class="details__buy-date" title="Data de Compra" [value]="work.buyDate | date"></app-details-info-field>
+        <app-details-info-field class="details__read" title="Lido" [value]="work.read ? 'Sim' : 'Não'"></app-details-info-field>
+        <app-details-info-field class="details__read-date" title="Data de Leitura" [value]="work.readDate | date"></app-details-info-field>
+    </div>
+    <app-details-info-field class="details__notations" title="Anotações" [value]="work.anotacoes"></app-details-info-field>   
+
+    <mat-chip-list class="details__genres" aria-label="Gêneros">
+        <mat-chip  *ngFor="let genre of work.genres" color="accent" selected>{{ genre }}</mat-chip>
+    </mat-chip-list>
+</div>

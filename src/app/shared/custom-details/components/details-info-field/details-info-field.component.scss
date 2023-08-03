@@ -1,0 +1,18 @@
+.info-field {
+    background-color: #fff;
+    padding: 5px 10px;
+    
+    &__title {
+        font-weight: 500;
+    }
+
+    &__value-container {
+        display: block;
+        max-height: 80px;
+        overflow: auto;
+
+        p {
+            margin: 2px;
+        }
+    }
+}
