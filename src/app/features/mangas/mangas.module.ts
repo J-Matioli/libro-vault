@@ -5,13 +5,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MangasRoutingModule } from './mangas-routing.module';
 import { MangasListComponent } from './mangas-list/mangas-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MangasDetailsComponent } from './mangas-details/mangas-details.component';
 
 
 
 @NgModule({
   declarations: [
     MangasComponent,
-    MangasListComponent
+    MangasListComponent,
+    MangasDetailsComponent
   ],
   imports: [
     CommonModule,

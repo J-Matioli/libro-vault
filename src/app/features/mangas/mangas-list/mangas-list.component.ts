@@ -29,7 +29,7 @@ export class MangasListComponent implements OnInit {
       author: ['Katsuhiro Otomo'],
       pages: '1349',
       read: true, 
-      volumes: 6,
+      qtdVolumes: 6,
       genres: ['Cyberpunk', 'Thriller político', 'Ficção científica'],
       img: 'https://upload.wikimedia.org/wikipedia/it/2/29/Akira_film.jpg'
     },
@@ -39,7 +39,7 @@ export class MangasListComponent implements OnInit {
       author: ['Kentaro Miura'],
       pages: '5143',
       read: true, 
-      volumes: 41,
+      qtdVolumes: 41,
       genres: ['Fantasia sombria', 'Alta fantasia'],
       img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAGm4BiQc5-ONWBL4-jgASr5eoflQcjZ6OqQ&usqp=CAU'
     },

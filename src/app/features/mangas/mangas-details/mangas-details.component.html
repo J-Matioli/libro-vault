@@ -1,0 +1,9 @@
+<div class="mangas-details c-container">
+    <app-custom-title [title]="'Detalhes'">
+        <app-custom-button color="accent" (clickButton)="edit()">Editar</app-custom-button>
+    </app-custom-title>
+
+    <app-custom-details [work]="manga"></app-custom-details>
+
+    <app-custom-button class="mangas-details__back-btn" (clickButton)="onBackBtn()" color="">voltar</app-custom-button>
+</div>

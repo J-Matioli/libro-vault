@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MangasComponent } from './mangas.component';
 import { MangasListComponent } from './mangas-list/mangas-list.component';
+import { MangasDetailsComponent } from './mangas-details/mangas-details.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', component: MangasListComponent},
       // { path: 'adicionar', component: MangasFormComponent, data: {type: 'ADD'} },
-      // { path: 'detalhes/:id', component: MangasDetailsComponent },
+      { path: 'detalhes/:id', component: MangasDetailsComponent },
       // { path: 'editar/:id', component: MangasFormComponent, data: {type: 'PUT'} }
     ]
   }
