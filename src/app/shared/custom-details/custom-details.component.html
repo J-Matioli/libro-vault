@@ -15,7 +15,7 @@
         <app-details-info-field class="details__read-date" title="Data de Leitura" [value]="work.readDate ? (work.readDate | date) : '- -'"></app-details-info-field>
     </div>
     <app-details-info-field class="details__notations" title="Anotações" [value]="work.anotacoes"></app-details-info-field>   
-    <app-details-info-field class="details__volume-amount" title="Volumes" [value]="work.qtdVolumes"></app-details-info-field>   
+    <app-details-info-field class="details__volume-amount" *ngIf="work.qtdVolumes" title="Volumes" [value]="work.qtdVolumes"></app-details-info-field>   
 
     <mat-chip-list class="details__genres" aria-label="Gêneros">
         <mat-chip  *ngFor="let genre of work.genres" color="accent" selected>{{ genre }}</mat-chip>
