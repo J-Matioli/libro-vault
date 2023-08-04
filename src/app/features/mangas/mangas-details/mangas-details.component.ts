@@ -111,7 +111,8 @@ export class MangasDetailsComponent implements OnInit {
 
   cardAction(ev: any) {
     switch (ev.action) {
-      case 'GET':        
+      case 'GET':
+        this.router.navigate(['../../detalhes', this.manga.id, 'volume', ev.id], {relativeTo: this.route});
         break;
       case 'EDIT':
         this.edit();

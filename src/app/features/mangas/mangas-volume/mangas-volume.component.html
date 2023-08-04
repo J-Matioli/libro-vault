@@ -1,0 +1,9 @@
+<div class="volume c-container">
+    <app-custom-title [title]="'Volume'">
+        <app-custom-button color="accent" (clickButton)="edit()">Editar</app-custom-button>
+    </app-custom-title>
+
+    <app-custom-details [work]="volume"></app-custom-details>
+
+    <app-custom-button class="volume__back-btn" (clickButton)="onBackBtn()" color="">voltar</app-custom-button>
+</div>
