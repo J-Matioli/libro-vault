@@ -5,5 +5,21 @@
 
     <app-custom-details [work]="manga"></app-custom-details>
 
+    <section class="details__volumes" *ngIf="manga.qtdVolumes">
+        <app-custom-title [title]="'Volumes'" ></app-custom-title>
+
+        <app-custom-list [data]="manga.volumes" (cardActionMenu)="cardAction($event)"></app-custom-list>
+
+        <mat-paginator 
+            *ngIf="manga.qtdVolumes"
+            (page)="pageChanged($event)"
+            [pageSize]="pageSettings.pageSize" 
+            [length]="manga.volumes.length"
+            [pageSizeOptions]="pageSizeOptions"
+            class="mangas-details__paginator"
+            showFirstLastButtons="true">
+        </mat-paginator>
+    </section>
+
     <app-custom-button class="mangas-details__back-btn" (clickButton)="onBackBtn()" color="">voltar</app-custom-button>
 </div>
