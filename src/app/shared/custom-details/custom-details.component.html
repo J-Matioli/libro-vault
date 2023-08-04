@@ -10,11 +10,12 @@
     <div class="details__more-info">
         <app-details-info-field class="details__price" title="Preço" [value]="work.price | currency: 'BRL'"></app-details-info-field>
         <app-details-info-field class="details__page" title="Página" [value]="work.pages"></app-details-info-field>
-        <app-details-info-field class="details__buy-date" title="Data de Compra" [value]="work.buyDate | date"></app-details-info-field>
+        <app-details-info-field class="details__buy-date" title="Data de Compra" [value]="work.buyDate ? (work.buyDate | date) : '- -'"></app-details-info-field>
         <app-details-info-field class="details__read" title="Lido" [value]="work.read ? 'Sim' : 'Não'"></app-details-info-field>
-        <app-details-info-field class="details__read-date" title="Data de Leitura" [value]="work.readDate | date"></app-details-info-field>
+        <app-details-info-field class="details__read-date" title="Data de Leitura" [value]="work.readDate ? (work.readDate | date) : '- -'"></app-details-info-field>
     </div>
     <app-details-info-field class="details__notations" title="Anotações" [value]="work.anotacoes"></app-details-info-field>   
+    <app-details-info-field class="details__volume-amount" title="Volumes" [value]="work.qtdVolumes"></app-details-info-field>   
 
     <mat-chip-list class="details__genres" aria-label="Gêneros">
         <mat-chip  *ngFor="let genre of work.genres" color="accent" selected>{{ genre }}</mat-chip>
