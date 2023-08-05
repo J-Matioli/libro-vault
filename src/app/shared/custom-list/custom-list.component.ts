@@ -7,16 +7,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CustomListComponent implements OnInit {
 
-  @Input() data: any[];
-  @Output() cardActionMenu: EventEmitter<any> = new EventEmitter<any>();
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  cardAction(ev: string) {
-    this.cardActionMenu.emit(ev);
-  }
-
 }

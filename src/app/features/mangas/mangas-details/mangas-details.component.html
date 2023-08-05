@@ -8,7 +8,19 @@
     <section class="details__volumes" *ngIf="manga.qtdVolumes">
         <app-custom-title [title]="'Volumes'" ></app-custom-title>
 
-        <app-custom-list [data]="manga.volumes" (cardActionMenu)="cardAction($event)"></app-custom-list>
+        <app-custom-list>
+            <app-custom-card *ngFor="let volume of manga.volumes"
+                [id]="volume.id"
+                [img]="volume.img"
+                [title]="volume.title"
+                [author]="volume.author"
+                [pages]="volume.pages"
+                [read]="volume.read"
+                [buyDate]="volume.buyDate"
+                [genres]="volume.genres"
+                (userAction)="cardAction($event)"
+            ></app-custom-card>
+        </app-custom-list>
 
         <mat-paginator 
             *ngIf="manga.qtdVolumes"

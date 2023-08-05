@@ -108,7 +108,8 @@ import { DetailsInfoFieldComponent } from './custom-details/components/details-i
     CustomListComponent,
     CustomFilterComponent,
     CustomFormComponent,
-    CustomDetailsComponent
+    CustomDetailsComponent,
+    CustomCardComponent
   ],
   providers: [
     {provide: MatPaginatorIntl, useValue: getPtPaginatorIntl()},

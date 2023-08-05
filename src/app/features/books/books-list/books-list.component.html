@@ -5,7 +5,19 @@
 
     <app-custom-filter (filterValue)="filter($event)"></app-custom-filter>
 
-    <app-custom-list [data]="books" (cardActionMenu)="cardAction($event)"></app-custom-list>
+    <app-custom-list>
+        <app-custom-card *ngFor="let book of books"
+            [id]="book.id"
+            [img]="book.img"
+            [title]="book.title"            
+            [author]="book.author"
+            [pages]="book.pages"
+            [read]="book.read"
+            [buyDate]="book.buyDate"
+            [genres]="book.genres"
+            (userAction)="cardAction($event)"
+        ></app-custom-card>
+    </app-custom-list>
 
     <mat-paginator 
         (page)="pageChanged($event)"

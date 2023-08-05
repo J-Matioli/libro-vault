@@ -5,7 +5,20 @@
 
     <app-custom-filter (filterValue)="filter($event)"></app-custom-filter>
 
-    <app-custom-list [data]="mangas" (cardActionMenu)="cardAction($event)"></app-custom-list>
+    <app-custom-list>
+        <app-custom-card *ngFor="let manga of mangas"
+            [id]="manga.id"
+            [img]="manga.img"
+            [title]="manga.title"
+            [volumes]="manga.qtdVolumes"
+            [author]="manga.author"
+            [pages]="manga.pages"
+            [read]="manga.read"
+            [buyDate]="manga.buyDate"
+            [genres]="manga.genres"
+            (userAction)="cardAction($event)"
+        ></app-custom-card>
+    </app-custom-list>
 
     <mat-paginator 
         (page)="pageChanged($event)"
