@@ -72,7 +72,7 @@ export class CustomFormComponent implements OnInit {
 
   createVolumeForm(volume: string | null = null): FormGroup<CustomVolumeForm> {
     return this.fb.group<CustomVolumeForm>({
-      volume: new FormControl(null, [Validators.required]),
+      volume: new FormControl(volume, [Validators.required]),
       imagem: new FormControl(),
       anotacoes: new FormControl(),
       maisInfo: new FormGroup({
