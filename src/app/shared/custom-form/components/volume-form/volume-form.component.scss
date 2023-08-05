@@ -5,7 +5,7 @@
 
     &__volume {
         grid-column: 1 / 2;
-        width: 114px;
+        max-width: 200px;
     }
 
     &__remove {

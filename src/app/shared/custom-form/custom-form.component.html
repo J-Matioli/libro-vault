@@ -77,9 +77,10 @@
                 <app-custom-button (clickButton)="addVol()" color="accent">Adicionar</app-custom-button>
             </app-custom-title>
     
-            <ng-container>
-                <ng-container>
-                    <app-volume-form class="form__volume-form"></app-volume-form>
+            <ng-container formArrayName="volumes">
+                <ng-container *ngFor="let volume of volumes.controls; let i = index">  
+                    <div class="form__divider" *ngIf="i > 0"></div>
+                    <app-volume-form (remove)="removeVol(i)"  [formGroupName]="i" class="form__volume-form"></app-volume-form>
                 </ng-container>
             </ng-container>    
         </div>

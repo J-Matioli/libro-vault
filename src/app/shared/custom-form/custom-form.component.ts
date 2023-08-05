@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthorFormDialogComponent } from '../author-form-dialog/author-form-dialog.component';
 import { PublisherFormDialogComponent } from '../publisher-form-dialog/publisher-form-dialog.component';
@@ -6,6 +6,8 @@ import { GenreFormDialogComponent } from '../genre-form-dialog/genre-form-dialog
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { genresOptions, languageOptions, authorOptions, publisherOptions } from '../custom-filter/filter-helper';
 import { CustomChipComponent } from '../custom-chip/custom-chip.component';
+import { CustomForm, CustomVolumeForm } from 'src/app/core/utils/form-utils';
+import { VolumeFormComponent } from './components/volume-form/volume-form.component';
 
 @Component({
   selector: 'app-custom-form',
@@ -26,7 +28,7 @@ export class CustomFormComponent implements OnInit {
   @Output() backEvent: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild("chipAuthor") chipAuthor: CustomChipComponent;
-
+  @ViewChildren(VolumeFormComponent) volumeFormComponents: QueryList<VolumeFormComponent>;
 
   constructor(
     private dialog: MatDialog,
@@ -35,6 +37,14 @@ export class CustomFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+
+    this.volumeUnico.valueChanges.subscribe(data => {
+      if(data) {
+        this.volumes.clear();
+      }else {
+        this.addVol();
+      }
+    })
   }
 
   createForm() {
@@ -53,12 +63,34 @@ export class CustomFormComponent implements OnInit {
         dataCompra: new FormControl(),
         lido: new FormControl(),
         dataLeitura: new FormControl(),
-      })
+      }),
+      volumes:  this.fb.array([
+        this.createVolumeForm('1')
+      ])
+    })
+  }
+
+  createVolumeForm(volume: string | null = null): FormGroup<CustomVolumeForm> {
+    return this.fb.group<CustomVolumeForm>({
+      volume: new FormControl(null, [Validators.required]),
+      imagem: new FormControl(),
+      anotacoes: new FormControl(),
+      maisInfo: new FormGroup({
+        preco: new FormControl(),
+        pagina: new FormControl(),
+        dataCompra: new FormControl(),
+        lido: new FormControl(),
+        dataLeitura: new FormControl(),
+      }),
     })
   }
 
   onSubmit() {
     this.chipAuthor.requireValidator();
+
+    this.volumeFormComponents.forEach(component => {
+      component.requireValidator()
+    })
     
     if(this.form.valid) {
       this.formValue.emit(this.form.value);
@@ -73,8 +105,15 @@ export class CustomFormComponent implements OnInit {
     this.imagem.setValue(ev)
   }
 
-  addVol() {}
-  removeVol(i: number) {}
+  addVol() {
+    const volumeLength = this.volumes.controls.length + 1;
+    const volumeControl = this.createVolumeForm(volumeLength.toString());
+    this.volumes.push(volumeControl);
+  }
+
+  removeVol(i: number) {
+    this.volumes.removeAt(i);
+  }
   
   addAuthor() {
       const dialogRef = this.dialog.open(AuthorFormDialogComponent, {
@@ -140,23 +179,8 @@ export class CustomFormComponent implements OnInit {
   get maisInfo(): FormGroup {
     return this.form.get('maisInfo') as FormGroup
   }
-}
 
-export interface CustomForm {
-  obra: FormControl<string | null>
-  autor: FormControl<string[] | null>
-  editora: FormControl<string | null>  
-  idioma: FormControl<string[] | null>
-  imagem: FormControl<string | null>
-  anotacoes: FormControl<string | null>
-  generos: FormControl<string[] | null>
-  volumeUnico: FormControl<string | null>
-  maisInfo: FormGroup<{
-    preco: FormControl<string | null>
-    pagina: FormControl<string | null>
-    dataCompra: FormControl<string | null>
-    lido: FormControl<string | null>
-    dataLeitura: FormControl<string | null>
-  }>
-  volumes?: FormArray<FormGroup>
+  get volumes(): FormArray<FormGroup<CustomVolumeForm>> {
+    return this.form.get('volumes') as FormArray
+  }
 }

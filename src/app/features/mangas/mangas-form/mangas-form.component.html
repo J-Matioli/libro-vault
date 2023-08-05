@@ -1,0 +1,6 @@
+<div class="c-container">
+    <app-custom-title [title]="actions[formType]"></app-custom-title>
+
+    <app-custom-form (backEvent)="backEvent()" [workType]="workType" (formValue)="onSubmit($event)"></app-custom-form>
+</div>
+

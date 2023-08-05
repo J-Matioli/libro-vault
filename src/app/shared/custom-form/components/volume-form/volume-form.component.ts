@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ControlContainer, FormGroup } from '@angular/forms';
+import { CustomVolumeForm } from 'src/app/core/utils/form-utils';
+
 
 @Component({
   selector: 'app-volume-form',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VolumeFormComponent implements OnInit {
 
-  constructor() { }
+  public volumeForm: FormGroup<CustomVolumeForm>;
+  @Output() remove: EventEmitter<void> = new EventEmitter<void>();
+
+  constructor(private controlContainer: ControlContainer) { }
 
   ngOnInit(): void {
+    this.volumeForm = this.controlContainer.control as FormGroup<CustomVolumeForm>;
+  }
+
+  requireValidator() {
+    this.volumeForm.markAllAsTouched();
   }
 
   croppedImage(ev: any) {

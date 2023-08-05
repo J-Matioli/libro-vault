@@ -1,10 +1,11 @@
-<div class="volume-form">
+<div class="volume-form" [formGroup]="volumeForm">
     <mat-form-field class="volume-form__volume" appearance="fill">
         <mat-label>Volume</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" formControlName="volume">
+        <mat-error *ngIf="volumeForm.get('volume')!.errors?.['required']">Insira o nome ou número do volume</mat-error>
     </mat-form-field>
     
-    <button class="volume-form__remove" color="" mat-mini-fab aria-label="Excluir obra">
+    <button class="volume-form__remove" type="button" color="" (click)="remove.emit()" mat-mini-fab aria-label="Excluir obra">
         <mat-icon>close</mat-icon>
     </button>
     
@@ -12,9 +13,9 @@
 
     <mat-form-field appearance="fill" class="volume-form__notations">
         <mat-label>Anotações</mat-label>
-        <textarea matInput style="height: 133px;"></textarea>
+        <textarea matInput style="height: 133px;" formControlName="anotacoes"></textarea>
     </mat-form-field>
 
 
-    <!-- <app-more-info-form class="volume-form__more-info"></app-more-info-form> -->
+    <app-more-info-form formGroupName="maisInfo" class="volume-form__more-info"></app-more-info-form>
 </div>

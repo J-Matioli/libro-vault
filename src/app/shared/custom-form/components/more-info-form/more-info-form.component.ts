@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
+import { CustomMaisInfoForm } from 'src/app/core/utils/form-utils';
 
 @Component({
   selector: '[formGroup] app-more-info-form, [formGroupName] app-more-info-form',
@@ -9,7 +10,7 @@ import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
 })
 export class MoreInfoFormComponent implements OnInit {
 
-  public moreInfoForm: FormGroup<MoreInfoForm>;
+  public moreInfoForm: FormGroup<CustomMaisInfoForm>;
 
   constructor(
     private controlContainer: ControlContainer,
@@ -18,7 +19,7 @@ export class MoreInfoFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.moreInfoForm = this.controlContainer.control as FormGroup<MoreInfoForm>;
+    this.moreInfoForm = this.controlContainer.control as FormGroup<CustomMaisInfoForm>;
 
     this.lido.valueChanges.subscribe(data => {      
       this.controlReadInput(data)
@@ -56,12 +57,4 @@ export class MoreInfoFormComponent implements OnInit {
     return this.moreInfoForm.get('dataCompra') as FormControl
   }
 
-}
-
-export interface MoreInfoForm {
-  preco: FormControl<string | null>
-  pagina: FormControl<string | null>
-  dataCompra: FormControl<string | null>
-  lido: FormControl<string | null>
-  dataLeitura: FormControl<string | null>
 }

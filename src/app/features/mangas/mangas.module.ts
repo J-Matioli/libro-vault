@@ -7,6 +7,7 @@ import { MangasListComponent } from './mangas-list/mangas-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MangasDetailsComponent } from './mangas-details/mangas-details.component';
 import { MangasVolumeComponent } from './mangas-volume/mangas-volume.component';
+import { MangasFormComponent } from './mangas-form/mangas-form.component';
 
 
 
@@ -15,7 +16,8 @@ import { MangasVolumeComponent } from './mangas-volume/mangas-volume.component';
     MangasComponent,
     MangasListComponent,
     MangasDetailsComponent,
-    MangasVolumeComponent
+    MangasVolumeComponent,
+    MangasFormComponent
   ],
   imports: [
     CommonModule,
