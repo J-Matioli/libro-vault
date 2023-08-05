@@ -2,7 +2,7 @@
     <div class="details__img-container">
         <img class="details__img" [src]="work.img" alt="Imagem da obra">
     </div>
-    <app-details-info-field class="details__work" title="Obra" [value]="work.title"></app-details-info-field>
+    <app-details-info-field class="details__work" title="Obra" [value]="work.title + (work.number ? ' - Volume ' + work.number : '' )"></app-details-info-field>
     <app-details-info-field class="details__author" title="Autor" [value]="work.author | arrToString: ','"></app-details-info-field>
     <app-details-info-field class="details__publisher" title="Editora" [value]="work.publisher"></app-details-info-field>
     <app-details-info-field class="details__idioma" title="Idioma" [value]="work.language | arrToString: ','"></app-details-info-field>

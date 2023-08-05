@@ -12,7 +12,7 @@ export class MangasVolumeComponent implements OnInit {
     mangId: '3',
     id: '2',
     title: 'Akira',
-    numero: 1,
+    number: 1,
     author: ['Katsuhiro Otomo'],
     publisher: 'JBC',
     language: ['Português'],
