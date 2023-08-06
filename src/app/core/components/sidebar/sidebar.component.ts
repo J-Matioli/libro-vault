@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit {
     {name: 'Livros', icon: 'menu_book' , route: '/livros'},
     {name: 'Mangás', icon: 'manga' , route: '/mangas'},
     {name: 'HQs', icon: 'comic_bubble' , route: '/hqs'},
-    {name: 'Listas', icon: 'list', route: '#' }
+    {name: 'Estantes', icon: 'list', route: '/estantes' }
   ]
 
   public menuAssets: Section[] = [
