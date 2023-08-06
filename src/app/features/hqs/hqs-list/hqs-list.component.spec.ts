@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HqsListComponent } from './hqs-list.component';
 
-describe('HqsListComponent', () => {
+describe(HqsListComponent.name, () => {
   let component: HqsListComponent;
   let fixture: ComponentFixture<HqsListComponent>;
 

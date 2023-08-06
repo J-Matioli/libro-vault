@@ -88,7 +88,7 @@ export class HqsListComponent implements OnInit {
     })
   }
 
-  addMangaRoute() {
+  addHqRoute() {
     this.router.navigate(['./adicionar'], {relativeTo: this.route})
   }
 }
