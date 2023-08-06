@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
     {name: 'Home', icon: 'home', route: '/home' },
     {name: 'Livros', icon: 'menu_book' , route: '/livros'},
     {name: 'Mangás', icon: 'manga' , route: '/mangas'},
-    {name: 'HQs', icon: 'comic_bubble' , route: '#'},
+    {name: 'HQs', icon: 'comic_bubble' , route: '/hqs'},
     {name: 'Listas', icon: 'list', route: '#' }
   ]
 

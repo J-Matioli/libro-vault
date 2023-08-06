@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'autores', loadChildren: () => import('./features/authors/authors.module').then(m => m.AuthorsModule) },
   { path: 'livros', loadChildren: () => import('./features/books/books.module').then(m => m.BooksModule) },
   { path: 'mangas', loadChildren: () => import('./features/mangas/mangas.module').then(m => m.MangasModule) },
+  { path: 'hqs', loadChildren: () => import('./features/hqs/hqs.module').then(m => m.HqsModule) },
   { path: 'generos', loadChildren: () => import('./features/genres/genres.module').then(m => m.GenresModule) },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
