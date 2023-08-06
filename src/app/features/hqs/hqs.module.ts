@@ -6,6 +6,8 @@ import { HqsFormComponent } from './hqs-form/hqs-form.component';
 import { HqsVolumeComponent } from './hqs-volume/hqs-volume.component';
 import { HqsComponent } from './hqs.component';
 import { HqsRoutingModule } from './hqs-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -19,7 +21,9 @@ import { HqsRoutingModule } from './hqs-routing.module';
   ],
   imports: [
     CommonModule,
-    HqsRoutingModule
+    HqsRoutingModule,
+    SharedModule,
+    MatPaginatorModule
   ]
 })
 export class HqsModule { }

@@ -1,1 +1,31 @@
-<p>hqs-list works!</p>
+<div class="hqs-list c-container">
+    <app-custom-title title="Hqs">
+        <app-custom-button (clickButton)="addMangaRoute()" color="accent">Adicionar</app-custom-button>
+    </app-custom-title>
+
+    <app-custom-filter (filterValue)="filter($event)"></app-custom-filter>
+
+    <app-custom-list>
+        <app-custom-card *ngFor="let hq of hqs"
+            [id]="hq.id"
+            [img]="hq.img"
+            [title]="hq.title"
+            [volumes]="hq.qtdVolumes"
+            [author]="hq.author"
+            [pages]="hq.pages"
+            [read]="hq.read"
+            [buyDate]="hq.buyDate"
+            [genres]="hq.genres"
+            (userAction)="cardAction($event)"
+        ></app-custom-card>
+    </app-custom-list>
+
+    <mat-paginator 
+        (page)="pageChanged($event)"
+        [pageSize]="pageSettings.pageSize" 
+        [length]="hqs.length"
+        [pageSizeOptions]="pageSizeOptions"
+        class="hqs-list__paginator"
+        showFirstLastButtons="true">
+    </mat-paginator>
+</div>
