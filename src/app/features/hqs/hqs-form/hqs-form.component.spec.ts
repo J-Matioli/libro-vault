@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HqsFormComponent } from './hqs-form.component';
 
-describe('HqsFormComponent', () => {
+describe(HqsFormComponent.name, () => {
   let component: HqsFormComponent;
   let fixture: ComponentFixture<HqsFormComponent>;
 
