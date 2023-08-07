@@ -10,15 +10,19 @@ export class CustomCardComponent implements OnInit {
   @Input() title: string = '';
   @Input() author: string[] = [];
   @Input() id: string = '';
-  @Input() buyDate: Date = new Date();
-  @Input() volumes: number = 0;
-  @Input() pages: number = 0;
+  @Input() buyDate: Date | undefined | null = new Date();
+  @Input() volumes: number | undefined = 0;
+  @Input() pages: number | undefined = 0;
   @Input() genres: string[] = [];
-  @Input() read: boolean = false;
-  @Input() img: string = '';
+  @Input() read: boolean | undefined = false;
+  @Input() img: string | undefined = '';
+
+  @Input() showDelete: boolean = true;
+  @Input() showEdit: boolean = true;
+  @Input() showMenu: boolean = true;
 
   @Output() userAction: EventEmitter<any> = new EventEmitter<any>();
-
+  
   constructor() { }
 
   ngOnInit(): void {

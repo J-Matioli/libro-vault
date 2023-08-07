@@ -1,6 +1,6 @@
 <mat-card class="card">
     <div class="card__img-container">
-        <app-card-menu (menuAction)="userActionMenu($event)"></app-card-menu>
+        <app-card-menu  [deleteBtn]="showDelete" [editBtn]="showEdit" *ngIf="showMenu"  (menuAction)="userActionMenu($event)"></app-card-menu>
         <img class="card__img" mat-card-image src="{{ img }}" alt="Imagem do livro">
         <app-card-save></app-card-save>
     </div>
@@ -12,7 +12,7 @@
         <p><span class="card__label">Páginas:</span> {{ pages }}</p>
         <p><span class="card__label">Lido:</span> {{ read ? 'Sim' : 'Não' }}</p>
         <p *ngIf="volumes"><span class="card__label">Volumes:</span> {{ volumes }} </p>
-        <p *ngIf="!volumes"><span class="card__label">Data de compra:</span> {{ buyDate | date: 'dd/MM/yyyy' }} </p>
+        <p *ngIf="!volumes"><span class="card__label">Data de compra:</span> {{ (buyDate | date: 'dd/MM/yyyy') || '- -' }} </p>
         <p class="card__genres"><span class="card__label">Gêneros:</span> {{ genres | arrToString: ' /' }}</p>
     </mat-card-content>
 </mat-card>

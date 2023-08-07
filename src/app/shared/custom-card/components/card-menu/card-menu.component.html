@@ -3,11 +3,11 @@
 </button>
 
 <mat-menu #cardMenu="matMenu">
-    <button mat-menu-item (click)="menuItemClick('EDIT')">
+    <button mat-menu-item (click)="menuItemClick('EDIT')" *ngIf="editBtn">
         <mat-icon class="material-icons-outlined">edit</mat-icon>
         <span>Editar</span>
       </button>
-    <button mat-menu-item (click)="menuItemClick('DELETE')">
+    <button mat-menu-item (click)="menuItemClick('DELETE')" *ngIf="deleteBtn">
         <mat-icon class="material-icons-outlined">close</mat-icon>
         <span>Excluir</span>
     </button>   

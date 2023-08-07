@@ -1,1 +1,31 @@
-<p>shelf-list works!</p>
+<div class="c-container">
+    <div class="shelf" *ngFor="let shelf  of shelfs; first as isFirst" [ngClass]="{'mg-top': !isFirst}">
+        <app-custom-title class="shelf__title" [title]="shelf.titulo">
+            <app-custom-button color="accent">Visualizar</app-custom-button>
+        </app-custom-title>
+        <app-custom-list>
+            <app-custom-card *ngFor="let work of shelf.works"
+            [id]="work.id"
+            [img]="work?.img"
+            [title]="work.title"
+            [volumes]="work?.qtdVolumes"
+            [author]="work.author"
+            [pages]="work?.pages"
+            [read]="work?.read"
+            [buyDate]="work?.buyDate"
+            [genres]="work?.genres || []"
+            [showDelete]="false"
+            (userAction)="cardAction($event)"
+            ></app-custom-card>
+        </app-custom-list>
+    </div>
+
+    <mat-paginator 
+        (page)="pageChanged($event)"
+        [pageSize]="pageSettings.pageSize" 
+        [length]="shelfs.length"
+        [pageSizeOptions]="pageSizeOptions"
+        class="paginator"
+        showFirstLastButtons="true">
+</mat-paginator>
+</div>

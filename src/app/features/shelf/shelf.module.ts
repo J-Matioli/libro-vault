@@ -4,6 +4,8 @@ import { ShelfComponent } from './shelf.component';
 import { ShelfListComponent } from './shelf-list/shelf-list.component';
 import { ShelfDetailsComponent } from './shelf-details/shelf-details.component';
 import { ShelfRoutingModule } from './shelf-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -15,7 +17,9 @@ import { ShelfRoutingModule } from './shelf-routing.module';
   ],
   imports: [
     CommonModule,
-    ShelfRoutingModule
+    ShelfRoutingModule,
+    SharedModule,
+    MatPaginatorModule
   ]
 })
 export class ShelfModule { }
