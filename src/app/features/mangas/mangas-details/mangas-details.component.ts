@@ -123,10 +123,20 @@ export class MangasDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.workTypeVolume = this.route.snapshot.queryParams['vol'] ? true : false;
+
+    this.configureRoute();
   }
 
   edit() {
     this.router.navigate(['../../editar', this.mangaId], { relativeTo: this.route });
+  }
+
+  configureRoute() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false
+    }
+
+    this.router.onSameUrlNavigation = 'reload';
   }
 
   onBackBtn() {
@@ -138,11 +148,6 @@ export class MangasDetailsComponent implements OnInit {
   cardAction(ev: any) {
     switch (ev.action) {
       case 'GET':
-        this.router.routeReuseStrategy.shouldReuseRoute = function () {
-          return false
-        }
-
-        this.router.onSameUrlNavigation = 'reload';
         this.router.navigate(['../../detalhes', this.mangaId], { relativeTo: this.route, queryParams: { vol: ev.id } });
         break;
       case 'EDIT':
