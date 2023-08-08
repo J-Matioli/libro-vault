@@ -15,7 +15,7 @@
             [buyDate]="work?.buyDate"
             [genres]="work?.genres || []"
             [showDelete]="false"
-            (userAction)="cardAction($event)"
+            (userAction)="cardAction($event, work)"
             ></app-custom-card>
         </app-custom-list>
     </div>

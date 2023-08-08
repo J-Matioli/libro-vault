@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, Params } from '@angular/router';
 import { Constants } from 'src/app/core/utils/Contants';
 
 @Component({
@@ -21,6 +21,7 @@ export class ShelfListComponent implements OnInit {
           author: ['Pierre Christin', 'Jean Claude Mézières'],
           pages: 945,
           read: true, 
+          type: 'hq',
           qtdVolumes: 5,
           genres: ['Ficção científica', 'Space opera'],
           img: 'https://ogimg.infoglobo.com.br/in/21278263-016-014/FT1086A/67354912_Segundo-CadernoCena-do-quadrinho-Valerian.jpg'
@@ -30,6 +31,7 @@ export class ShelfListComponent implements OnInit {
           title: '1984',
           author: ['George Orwell'],
           pages: 400,
+          type: 'book',
           read: true, 
           buyDate: new Date(2023, 2, 22),
           genres: ['Ficção Científica', 'Ficção Distópica'],
@@ -39,6 +41,7 @@ export class ShelfListComponent implements OnInit {
           id: '2',
           title: 'Akira',
           author: ['Katsuhiro Otomo'],
+          type: 'manga',
           pages: 1349,
           read: true, 
           qtdVolumes: 6,
@@ -50,6 +53,7 @@ export class ShelfListComponent implements OnInit {
           title: 'Jogador Nº 1',
           author: ['Ernest Cline'],
           pages: 464,
+          type: 'book',
           read: true, 
           buyDate: null,
           genres: ['Romance', 'Ficção científica'],
@@ -66,6 +70,7 @@ export class ShelfListComponent implements OnInit {
           title: 'Black Hole',
           author: ['Charles Burns'],
           pages: 368,
+          type: 'hq',
           read: true, 
           buyDate: new Date(2017, 9, 13),
           genres: ['Horror', 'Terror psicológico'],
@@ -75,6 +80,7 @@ export class ShelfListComponent implements OnInit {
           id: '2',
           title: 'O Iluminado',
           author: ['Stephen King'],
+          type: 'book',
           pages: 500,
           read: true, 
           buyDate: new Date(2023, 2, 10),
@@ -82,8 +88,10 @@ export class ShelfListComponent implements OnInit {
           img: 'https://cdn.quotesgram.com/img/49/19/1956396780-1350845502845114.jpg'
         },        
         {
+          workId: '2',
           id: '3',
           title: 'Berserk',
+          type: 'manga',
           author: ['Kentaro Miura'],
           pages: 5143,
           read: true, 
@@ -98,24 +106,41 @@ export class ShelfListComponent implements OnInit {
   public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
   pageSizeOptions: number[] = Constants.pageSizeOptions;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,) { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  cardAction(ev: any) {
+  cardAction(ev: any, work?: any) {
+
+    const workRoutes = TypedRoutes[work.type as 'book' | 'manga' | 'hq']
+
     switch (ev.action) {
       case 'GET':
-        this.router.navigate(['./detalhes', ev.id], {relativeTo: this.route});
+        
+        this.router.navigate([workRoutes, 'detalhes', this.isVolume(work.workId) ? work.workId : work.id ], { queryParams: this.volumeParams(work.workId, ev.id)});
         break;
       case 'EDIT':
-        this.router.navigate(['./editar', ev.id], {relativeTo: this.route});
+        this.router.navigate([workRoutes, 'editar', this.isVolume(work.workId) ? work.workId : work.id ]);
         break;      
       default:
         break;
     }
+  }
+
+  volumeParams(workId: any, volumeId: string): Params | null {
+
+    if(workId) {
+      console.log(workId);
+      
+      return { vol: volumeId }
+    }
+
+    return null
+  }
+
+  isVolume(workId: string) {
+    return workId ? true : false;
   }
 
   pageChanged(pageEvent: PageEvent) {
@@ -125,4 +150,10 @@ export class ShelfListComponent implements OnInit {
     console.log(pageEvent)
   }
 
+}
+
+export enum TypedRoutes {
+  'book' = 'livros',
+  'manga' = 'mangas',
+  'hq' = 'hqs'
 }
