@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Router, Params } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 import { Constants } from 'src/app/core/utils/Contants';
 
 @Component({
@@ -106,7 +106,9 @@ export class ShelfListComponent implements OnInit {
   public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
   pageSizeOptions: number[] = Constants.pageSizeOptions;
 
-  constructor( private router: Router) { }
+  constructor( 
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -117,7 +119,6 @@ export class ShelfListComponent implements OnInit {
 
     switch (ev.action) {
       case 'GET':
-        
         this.router.navigate([workRoutes, 'detalhes', this.isVolume(work.workId) ? work.workId : work.id ], { queryParams: this.volumeParams(work.workId, ev.id)});
         break;
       case 'EDIT':
@@ -148,6 +149,10 @@ export class ShelfListComponent implements OnInit {
         return;
     }
     console.log(pageEvent)
+  }
+
+  details(id: string) {
+    this.router.navigate(['./detalhes', id], {relativeTo: this.route});
   }
 
 }

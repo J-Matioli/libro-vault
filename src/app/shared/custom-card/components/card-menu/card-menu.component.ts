@@ -10,6 +10,7 @@ export class CardMenuComponent implements OnInit {
 
   @Input() deleteBtn: boolean = true;
   @Input() editBtn: boolean = true;
+  @Input() shelfDeleteBtn: boolean = false;
   @Output() menuAction: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private router: Router) { }

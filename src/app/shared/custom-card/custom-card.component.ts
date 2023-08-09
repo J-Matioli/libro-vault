@@ -19,6 +19,7 @@ export class CustomCardComponent implements OnInit {
 
   @Input() showDelete: boolean = true;
   @Input() showEdit: boolean = true;
+  @Input() showShelfDelete: boolean = false;
   @Input() showMenu: boolean = true;
 
   @Output() userAction: EventEmitter<any> = new EventEmitter<any>();

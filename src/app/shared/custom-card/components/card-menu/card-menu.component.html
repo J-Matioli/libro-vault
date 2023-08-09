@@ -11,4 +11,9 @@
         <mat-icon class="material-icons-outlined">close</mat-icon>
         <span>Excluir</span>
     </button>   
+
+    <button mat-menu-item (click)="menuItemClick('DELETE')" *ngIf="shelfDeleteBtn">
+        <mat-icon class="material-icons-outlined">close</mat-icon>
+        <span>Remover da estante</span>
+    </button>   
 </mat-menu>

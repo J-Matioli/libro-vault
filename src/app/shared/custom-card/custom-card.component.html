@@ -1,6 +1,6 @@
 <mat-card class="card">
     <div class="card__img-container">
-        <app-card-menu  [deleteBtn]="showDelete" [editBtn]="showEdit" *ngIf="showMenu"  (menuAction)="userActionMenu($event)"></app-card-menu>
+        <app-card-menu [shelfDeleteBtn]="showShelfDelete" [deleteBtn]="showDelete" [editBtn]="showEdit" *ngIf="showMenu"  (menuAction)="userActionMenu($event)"></app-card-menu>
         <img class="card__img" mat-card-image src="{{ img }}" alt="Imagem do livro">
         <app-card-save></app-card-save>
     </div>

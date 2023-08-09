@@ -1,1 +1,46 @@
-<p>shelf-details works!</p>
+<div class="shelf c-container">
+    <app-custom-title [title]="shelf.titulo">
+        <app-custom-button color="accent" [matMenuTriggerFor]="cardMenu">
+            <mat-icon>more_vert</mat-icon>
+        </app-custom-button>
+    </app-custom-title>
+
+    <mat-menu #cardMenu="matMenu">
+        <button mat-menu-item (click)="menuItemClick('EDIT')">
+            <mat-icon class="material-icons-outlined">edit</mat-icon>
+            <span>Editar</span>
+          </button>
+        <button mat-menu-item (click)="menuItemClick('DELETE')">
+            <mat-icon class="material-icons-outlined">close</mat-icon>
+            <span>Excluir</span>
+        </button>   
+    </mat-menu>
+
+    <app-custom-list>
+        <app-custom-card *ngFor="let work of shelf.works"
+        [id]="work.id"
+        [img]="work?.img"
+        [title]="work.title"
+        [volumes]="work?.qtdVolumes"
+        [author]="work.author"
+        [pages]="work?.pages"
+        [read]="work?.read"
+        [buyDate]="work?.buyDate"
+        [genres]="work?.genres || []"
+        [showShelfDelete]="true"
+        [showDelete]="false"
+        (userAction)="cardAction($event, work)"
+        ></app-custom-card>
+    </app-custom-list>
+
+    <mat-paginator 
+        (page)="pageChanged($event)"
+        [pageSize]="pageSettings.pageSize" 
+        [length]="shelf.works.length"
+        [pageSizeOptions]="pageSizeOptions"
+        class="paginator"
+        showFirstLastButtons="true">
+    </mat-paginator>
+
+    <app-custom-button class="shelf__back-btn" (clickButton)="onBackBtn()" color="">voltar</app-custom-button>
+</div>

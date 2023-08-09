@@ -1,0 +1,31 @@
+<ng-template #formShelf>
+    <h2 mat-dialog-title>Editar estante</h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="shelf-form" [formGroup]="form" (ngSubmit)="submit()">
+            <mat-form-field appearance="fill">
+                <mat-label>Estante</mat-label>
+                <input type="text" formControlName="estante" matInput>
+                <mat-error *ngIf="estante!.errors?.['required']">Insira um nome para sua estante.</mat-error>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="shelf-form__actions">
+        <app-custom-button class="shelf-form__close-btn" mat-dialog-close>Voltar</app-custom-button>
+        <app-custom-button class="shelf-form__submit-btn" color="primary"
+            (click)="submit()">Salvar</app-custom-button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-template #shelfDelete>
+    <h2 mat-dialog-title>Remover estante</h2>
+    <mat-dialog-content class="mat-typography">
+        <p>Tem certeza que deseja remover a estante: <b>{{ data.shelf.titulo }}</b></p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="shelf-form__actions">
+        <app-custom-button class="shelf-form__close-btn" mat-dialog-close>Voltar</app-custom-button>
+        <app-custom-button class="shelf-form__submit-btn" color="primary"
+            (click)="deleteShelf()">Remover</app-custom-button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-container [ngTemplateOutlet]="data.action != 'DELETE' ? formShelf : shelfDelete"></ng-container>
