@@ -4,7 +4,6 @@ import { HqsComponent } from './hqs.component';
 import { HqsListComponent } from './hqs-list/hqs-list.component';
 import { HqsDetailsComponent } from './hqs-details/hqs-details.component';
 import { HqsFormComponent } from './hqs-form/hqs-form.component';
-import { HqsVolumeComponent } from './hqs-volume/hqs-volume.component';
 
 
 const routes: Routes = [
@@ -14,7 +13,6 @@ const routes: Routes = [
     children: [
       { path: '', component: HqsListComponent},
       { path: 'adicionar', component: HqsFormComponent, data: {type: 'ADD'} },
-      { path: 'detalhes/:id/volume/:id', component: HqsVolumeComponent },
       { path: 'detalhes/:id', component: HqsDetailsComponent },
       { path: 'editar/:id', component: HqsFormComponent, data: {type: 'PUT'} }
     ]
