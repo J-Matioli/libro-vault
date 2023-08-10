@@ -50,7 +50,7 @@ export class RegisterFormComponent extends FormUtils implements OnInit {
 
   submit() {
     if(this.form.valid) {     
-      this.formSubmit.emit(this.form.getRawValue())
+      this.formSubmit.emit(this.form.value)
     }
   }
 }
