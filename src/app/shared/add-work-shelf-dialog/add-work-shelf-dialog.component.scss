@@ -1,0 +1,28 @@
+@import "../../scss/main.scss";
+
+.action {
+    @include respond(small) {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}
+
+.submit-btn {
+    margin-left: 10px;
+
+    @include respond(small) {
+        margin-left: 0;
+    }
+}
+
+.shelf {
+    width: 100%;
+}
+
+.new-shelf-btn {
+    margin-right: 20px;
+
+    @include respond(small) {
+        margin-right: 0;
+    }
+}

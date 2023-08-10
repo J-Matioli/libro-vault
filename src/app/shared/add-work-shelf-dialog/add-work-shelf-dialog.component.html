@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Adicionar obra à uma estante</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-form-field class="shelf" appearance="fill">
+        <mat-label>Estante</mat-label>
+        <input type="text"
+               placeholder="Selecione uma estante"
+               formControlName="editora"
+               aria-label="Number"
+               matInput
+               [matAutocomplete]="publisherAuto">
+        <mat-autocomplete autoActiveFirstOption #publisherAuto="matAutocomplete" [displayWith]="displayAutoComplete">
+          <mat-option *ngFor="let option of shelfOptions" [value]="option">
+            {{ option.viewValue }}
+          </mat-option>
+        </mat-autocomplete>        
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="action">
+    <app-custom-button class="new-shelf-btn" color="accent">Criar nova estante</app-custom-button>
+    <app-custom-button class="close-btn" [mat-dialog-close]="false">Voltar</app-custom-button>
+    <app-custom-button class="submit-btn" color="primary" [mat-dialog-close]="true">Adicionar</app-custom-button>
+</mat-dialog-actions>

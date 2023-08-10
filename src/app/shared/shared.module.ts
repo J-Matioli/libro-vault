@@ -47,6 +47,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { WorkDeleteDialogComponent } from './work-delete-dialog/work-delete-dialog.component';
 import { CustomDetailsComponent } from './custom-details/custom-details.component';
 import { DetailsInfoFieldComponent } from './custom-details/components/details-info-field/details-info-field.component';
+import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog/add-work-shelf-dialog.component';
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -73,7 +74,8 @@ import { DetailsInfoFieldComponent } from './custom-details/components/details-i
     VolumeFormComponent,
     WorkDeleteDialogComponent,
     CustomDetailsComponent,
-    DetailsInfoFieldComponent
+    DetailsInfoFieldComponent,
+    AddWorkShelfDialogComponent
   ],
   imports: [
     CommonModule,
