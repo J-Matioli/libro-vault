@@ -29,7 +29,8 @@ import { MatMenuModule } from '@angular/material/menu';
     HttpClientModule,
     SharedModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule
   ],
   exports: [
     NavbarComponent,
