@@ -3,7 +3,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -80,7 +80,7 @@ import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog/add-work-sh
   imports: [
     CommonModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatIconModule,
     MatDialogModule,
     MatDividerModule,
