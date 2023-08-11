@@ -11,5 +11,5 @@
         <input type="password" formControlName="senha" matInput>
         <mat-error *ngIf="senha!.errors?.['required']">Insira sua senha.</mat-error>
     </mat-form-field>
-    <app-custom-button type="submit" class="login-form__submit" mat-raised-button color="accent">Entrar</app-custom-button>
+    <app-custom-button [isLoading]="isLoading" type="submit" class="login-form__submit" mat-raised-button color="accent">Entrar</app-custom-button>
 </form>

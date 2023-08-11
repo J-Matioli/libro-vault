@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +9,23 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public isLoading: boolean = false;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void { }
 
   submit(event: any) {
-    console.log(event);
-    this.router.navigate(['home'])
+    this.isLoading = true;
+    this.authService.login(event).subscribe({
+      next: res => {
+        this.isLoading = false;
+        this.router.navigate(['home']);
+      },
+      error: err => {this.isLoading = false}
+    })
   }
 }
