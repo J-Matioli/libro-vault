@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormUtils } from 'src/app/core/utils/form-utils';
 import { CustomValidators } from 'src/app/core/validators/custom-validators.component';
@@ -12,6 +12,7 @@ export class RegisterFormComponent extends FormUtils implements OnInit {
   
   public form!: FormGroup<RegisterForm>;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
+  @Input() isLoading: boolean = false;
 
   constructor(private fb: FormBuilder) { super(); }
 
