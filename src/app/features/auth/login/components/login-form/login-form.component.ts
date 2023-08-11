@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,7 @@ export class LoginFormComponent implements OnInit {
 
   public form!: FormGroup<LoginForm>;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
+  @Input() isLoading: boolean = false;
 
   constructor( private fb: FormBuilder) { }
 
