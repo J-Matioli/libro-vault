@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-reset-password-email',
@@ -7,13 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPasswordEmailComponent implements OnInit {
 
-  constructor() { }
+  public isLoading: boolean = false;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
 
   submit(event: any) {
-    console.log(event);    
+    this.isLoading = true;
+
+    const emailFormData = new FormData();
+
+    emailFormData.append('email', event.email)
+
+    this.authService.sendEmailResetPassword(emailFormData).subscribe({
+      next: res => {
+        this.isLoading = false;
+        this.router.navigate(['login']);
+      },
+      error: err => {this.isLoading = false}
+    })
   }
 
 }

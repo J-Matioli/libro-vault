@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class ResetPasswordEmailFormComponent implements OnInit {
   public form!: FormGroup<EmailForm>;
+  @Input() isLoading: boolean = false;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
 
   constructor(
