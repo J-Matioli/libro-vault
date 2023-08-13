@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-reset-password-email-form',
-  templateUrl: './reset-password-email-form.component.html',
-  styleUrls: ['./reset-password-email-form.component.scss']
+  selector: 'app-send-email-form',
+  templateUrl: './send-email-form.component.html',
+  styleUrls: ['./send-email-form.component.scss']
 })
-export class ResetPasswordEmailFormComponent implements OnInit {
+export class SendEmailFormComponent implements OnInit {
   public form!: FormGroup<EmailForm>;
   @Input() isLoading: boolean = false;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();

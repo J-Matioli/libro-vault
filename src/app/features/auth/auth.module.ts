@@ -13,11 +13,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
-import { ResetPasswordEmailComponent } from './reset-password-email/reset-password-email.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordFormComponent } from './reset-password/components/reset-password-form/reset-password-form.component';
-import { ResetPasswordEmailFormComponent } from './reset-password-email/components/reset-password-email-form/reset-password-email-form.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SendEmailComponent } from './send-email/send-email.component';
+import { SendEmailFormComponent } from './send-email/components/send-email-form/send-email-form.component';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -37,10 +37,10 @@ const MY_DATE_FORMAT = {
     LoginFormComponent,
     RegisterComponent,
     RegisterFormComponent,
-    ResetPasswordEmailComponent,
+    SendEmailComponent,
     ResetPasswordFormComponent,
     ResetPasswordComponent,
-    ResetPasswordEmailFormComponent
+    SendEmailFormComponent
   ],
   imports: [
     CommonModule,

@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
-  selector: 'app-reset-password-email',
-  templateUrl: './reset-password-email.component.html',
-  styleUrls: ['./reset-password-email.component.scss']
+  selector: 'app-send-email',
+  templateUrl: './send-email.component.html',
+  styleUrls: ['./send-email.component.scss']
 })
-export class ResetPasswordEmailComponent implements OnInit {
+export class SendEmailComponent implements OnInit {
 
   public isLoading: boolean = false;
 
