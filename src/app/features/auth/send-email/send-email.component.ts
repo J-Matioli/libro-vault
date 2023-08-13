@@ -23,16 +23,34 @@ export class SendEmailComponent implements OnInit {
     this.isLoading = true;
 
     const emailFormData = new FormData();
-
     emailFormData.append('email', event.email)
 
-    this.authService.sendEmailResetPassword(emailFormData).subscribe({
+    if(event.action === 'RESET_PASSWORD') {
+      this.resetPassword(emailFormData);
+    }else {
+      this.resendConfirmEmail(emailFormData);
+    }
+  }
+
+  resetPassword(data: any) {
+    this.authService.sendEmailResetPassword(data).subscribe({
       next: res => {
-        this.isLoading = false;
-        this.router.navigate(['login']);
+        this.sendSuccess(res);
       },
       error: err => {this.isLoading = false}
     })
   }
 
+  resendConfirmEmail(data: any) {
+    this.authService.reSendEmailConfirmation(data).subscribe({
+      next: res => {this.sendSuccess(res);},
+      error: err => {this.isLoading = false}
+    })
+  }
+
+  sendSuccess(res: any) {
+    this.isLoading = false;
+    this.authService.openSnackBar(res['mensagem'][0]);
+    this.router.navigate(['login']);
+  }
 }

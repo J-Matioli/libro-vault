@@ -18,6 +18,7 @@ import { ResetPasswordFormComponent } from './reset-password/components/reset-pa
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { SendEmailFormComponent } from './send-email/components/send-email-form/send-email-form.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -52,6 +53,7 @@ const MY_DATE_FORMAT = {
     MatInputModule,
     MatSnackBarModule,
     ReactiveFormsModule,    
+    MatRadioModule,
     FormsModule,
     SharedModule
   ],

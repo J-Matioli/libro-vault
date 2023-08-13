@@ -38,6 +38,7 @@ describe(SendEmailFormComponent.name, () => {
 
     component.form.setValue({
       email: 'testemail@teste.com',
+      action: 'RESET_PASSWORD'
     })
 
     component.submit();

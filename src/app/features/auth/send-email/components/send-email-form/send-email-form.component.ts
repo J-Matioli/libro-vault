@@ -21,19 +21,22 @@ export class SendEmailFormComponent implements OnInit {
   createForm(): void {
     this.form = this.fb.group<EmailForm>({
       email: new FormControl(null, {validators: [Validators.required, Validators.email]}),
+      action: new FormControl(null, {validators: [Validators.required]}),
     })
   }
 
-  get email() { return this.form.get('email'); }  
+  get email() { return this.form.get('email'); }
+  get action() { return this.form.get('action'); }
 
   submit() {
+    this.form.markAllAsTouched();
     if(this.form.valid) {     
       this.formSubmit.emit(this.form.value)
     }
   }
-
 }
 
 export interface EmailForm {
   email: FormControl<string | null>
+  action: FormControl<'RESET_PASSWORD' | 'SEND_EMAIL' | null>
 }
