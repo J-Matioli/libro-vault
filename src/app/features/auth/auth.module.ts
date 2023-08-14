@@ -19,6 +19,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { SendEmailFormComponent } from './send-email/components/send-email-form/send-email-form.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -41,13 +43,15 @@ const MY_DATE_FORMAT = {
     SendEmailComponent,
     ResetPasswordFormComponent,
     ResetPasswordComponent,
-    SendEmailFormComponent
+    SendEmailFormComponent,
+    ConfirmEmailComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatProgressBarModule,
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
