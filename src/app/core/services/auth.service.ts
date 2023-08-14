@@ -47,6 +47,14 @@ export class AuthService {
     }))
   }
 
+  emailConfirmation(data: any): Observable<{[key: string]: any}> {
+    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/confirmar-cadastro`, data)
+    .pipe(catchError(err => {
+      this.openSnackBar(err.error.erros[0])
+      return throwError(() => err)
+    }))
+  }
+
   reSendEmailConfirmation(data: FormData): Observable<{[key: string]: any}> {
     return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/reenviar-confirmacao-email`, data)
     .pipe(catchError(err => {

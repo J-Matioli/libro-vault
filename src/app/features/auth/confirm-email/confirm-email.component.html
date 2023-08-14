@@ -1,0 +1,24 @@
+<div class="confirm-email">
+    <section class="confirm-email__banner">
+        <img class="confirm-email__img" src="./assets/img/create_account_bg.svg" alt="Imagem de fundo da tela de confirmar email">
+    </section>
+    <section class="confirm-email__box">
+        <img class="confirm-email__logo" src="./assets/img/logo.svg" alt="Logo LibroVault">
+
+        <div class="confirm-email__content" *ngIf="!validationFinished">
+            <h3>Validando o seu email...</h3>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+
+        <div class="confirm-email__content" *ngIf="validationFinished && validationSuccess">
+            <h2>Seja bem vindo!</h2>
+            <p>Validação concluída com sucesso, vá para a tela de login e comece a utilizar nossa plataforma.</p>
+            <app-custom-button routerLink="/login" mat-raised-button color="accent">Voltar para o login.</app-custom-button>
+        </div>
+
+        <div class="confirm-email__content" *ngIf="validationFinished && !validationSuccess">
+            <h3>Ocorreu um erro na validação do seu email :(</h3>            
+            <app-custom-button routerLink="/send-email" mat-raised-button color="accent">Tentar novamente</app-custom-button>        
+        </div>
+    </section>
+</div>
