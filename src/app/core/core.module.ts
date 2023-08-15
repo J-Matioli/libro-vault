@@ -12,13 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
+import { CookiesMessageComponent } from './components/cookies-message/cookies-message.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     SidenavDirective,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    CookiesMessageComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
     NavbarComponent,
     SidenavDirective,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    CookiesMessageComponent
   ]
 })
 export class CoreModule { }
