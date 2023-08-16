@@ -7,16 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CookiesMessageComponent implements OnInit {
 
-  public showMessage: boolean = true;
+  public cookiesAccepted: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
-     
+    this.cookiesAccepted = this.getCookies();
   }
   
+  getCookies() {   
+    return !!localStorage.getItem('cookiesAccepted');
+  }
+
   cookieAccept() {
-    console.log('OK');
-    localStorage.setItem('cookieMessage', 'false');
+    localStorage.setItem('cookiesAccepted', 'true');
+    this.cookiesAccepted = this.getCookies();
   }
 }
