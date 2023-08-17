@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, catchError, throwError } from 'rxjs';
+import { AuthResponse } from '../models/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class AuthService {
     private snackBar: MatSnackBar
   ) { }
 
-  login(data: {email: string, senha: string}): Observable<{[key: string]: any}> {
-    return this.http.post<{[key: string]: any}>(`${this.apiUrl}autenticacao/login`, data)
+  login(data: {email: string, senha: string}): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}autenticacao/login`, data)
     .pipe(catchError(err => {
       this.openSnackBar(err.error.erros[0])
       return throwError(() => err)

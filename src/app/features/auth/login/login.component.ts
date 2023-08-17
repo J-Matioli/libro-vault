@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void { }
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.authService.login(event).subscribe({
       next: res => {
+        this.cookieService.set('_token', res.dados.accessToken);
         this.isLoading = false;
         this.router.navigate(['home']);
       },
