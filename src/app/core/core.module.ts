@@ -13,6 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { CookiesMessageComponent } from './components/cookies-message/cookies-message.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromCore from './reducers/index';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { CookiesMessageComponent } from './components/cookies-message/cookies-me
     SharedModule,
     MatMenuModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forFeature('core', fromCore.reducers)
   ],
   exports: [
     NavbarComponent,
