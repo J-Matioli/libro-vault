@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Minha conta</h2>
 <mat-dialog-content class="mat-typography">
     <form class="account-form" [formGroup]="form" (ngSubmit)="submit()">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *appSkeleton="true; height: '50px'; width: '50%'">
             <mat-label>Nome</mat-label>
             <input (keydown)="preventChar($event, patterns.onlyLetters)" type="text" formControlName="nome" matInput>
             <mat-error *ngIf="form.get('nome')!.errors?.['required']">Insira seu nome de usuário.</mat-error>

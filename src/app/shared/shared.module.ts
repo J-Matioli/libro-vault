@@ -48,6 +48,9 @@ import { WorkDeleteDialogComponent } from './work-delete-dialog/work-delete-dial
 import { CustomDetailsComponent } from './custom-details/custom-details.component';
 import { DetailsInfoFieldComponent } from './custom-details/components/details-info-field/details-info-field.component';
 import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog/add-work-shelf-dialog.component';
+import { SkeletonComponent } from './skeleton/skeleton.component';
+import { SkeletonDirective } from '../core/directives/skeleton.directive';
+
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -75,7 +78,9 @@ import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog/add-work-sh
     WorkDeleteDialogComponent,
     CustomDetailsComponent,
     DetailsInfoFieldComponent,
-    AddWorkShelfDialogComponent
+    AddWorkShelfDialogComponent,
+    SkeletonComponent,
+    SkeletonDirective
   ],
   imports: [
     CommonModule,
