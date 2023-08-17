@@ -37,7 +37,7 @@ export class ConfirmEmailComponent implements OnInit {
   }
 
   async getParams(){
-    this.token = this.route.snapshot.queryParams['token'];
+    this.token =  encodeURIComponent(this.route.snapshot.queryParams['token']);
     this.userId = this.route.snapshot.queryParams['id'];
   }
 
