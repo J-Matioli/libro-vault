@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(event).subscribe({
       next: res => {
         this.cookieService.set('_token', res.dados.accessToken);
+        this.cookieService.set('_id', res.dados.id);
         this.isLoading = false;
         this.router.navigate(['home']);
       },

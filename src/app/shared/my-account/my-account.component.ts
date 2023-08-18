@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/core/models/user';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { FormUtils } from 'src/app/core/utils/form-utils';
 
 @Component({
@@ -9,12 +11,18 @@ import { FormUtils } from 'src/app/core/utils/form-utils';
 })
 export class MyAccountComponent  extends FormUtils implements OnInit {
 
+  public isLoading = false;
   public form!: FormGroup<MyAccountForm>;
   public formIsdisabled: boolean = true;
+  private user: User;
 
-  constructor(private fb: FormBuilder) { super(); }
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService  
+  ) { super(); }
 
   ngOnInit(): void {
+    this.getUser();
     this.createForm();
   }
 
@@ -26,7 +34,7 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
         Validators.maxLength(100)
       ]}),
       genero: new FormControl(null, {validators: [Validators.required]}),
-      dataDeNascimento: new FormControl(null, {validators: [Validators.required]}),
+      dataNascimento: new FormControl(null, {validators: [Validators.required]}),
       email: new FormControl(null, {validators: [
         Validators.required,
         Validators.email,
@@ -37,26 +45,49 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
   }
 
   submit() {
-    if(this.form.valid) { }
+    this.form.markAllAsTouched();
+    if(!this.form.valid) { return }
+    this.isLoading = true;
+    const payload = Object.assign({}, this.user, this.form.value)
+
+    this.authService.putUser(payload).subscribe({
+      next: res => {
+        this.user = res;
+        this.isLoading = false;
+      },
+      error: err => { this.isLoading = false; }
+    })
   }
 
   toggleForm() {
     this.formIsdisabled = !this.formIsdisabled;
 
     if (this.formIsdisabled) {
-      this.resetForm();
+      this.setForm();
       this.form.disable();
     } else {
       this.form.enable();
     }
   }
 
-  resetForm() {
+  setForm() {
     this.form.patchValue({
-      nome: '',
-      email: '',
-      genero: '',
-      dataDeNascimento: ''
+      nome: this.user.nome || '',
+      email: this.user.email || '',
+      genero: this.user.genero || '',
+      dataNascimento: this.user.dataNascimento || ''
+    })
+  }
+
+  getUser() {
+    this.isLoading = true;
+    this.authService.getUser().subscribe({
+      next: res => {
+        this.user = res.dados?.pagina[0]
+        this.setForm();
+        this.isLoading = false;
+      },
+      error: err => { this.isLoading = false; }
     })
   }
 
@@ -65,6 +96,6 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
 export interface MyAccountForm {
   nome: FormControl<string | null>
   genero: FormControl<string | null>
-  dataDeNascimento: FormControl<string | null>
+  dataNascimento: FormControl<string | null>
   email: FormControl<string | null>
 }
