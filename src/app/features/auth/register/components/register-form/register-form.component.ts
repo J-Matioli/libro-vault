@@ -28,7 +28,7 @@ export class RegisterFormComponent extends FormUtils implements OnInit {
         Validators.maxLength(100)
       ]}),
       genero: new FormControl(null, {validators: [Validators.required]}),
-      dataDeNascimento: new FormControl(null, {validators: [Validators.required]}),
+      dataNascimento: new FormControl(null, {validators: [Validators.required]}),
       email: new FormControl(null, {validators: [
         Validators.required,
         Validators.email,
@@ -59,7 +59,7 @@ export class RegisterFormComponent extends FormUtils implements OnInit {
 export interface RegisterForm {
   nome: FormControl<string | null>
   genero: FormControl<string | null>
-  dataDeNascimento: FormControl<string | null>
+  dataNascimento: FormControl<string | null>
   email: FormControl<string | null>
   senha: FormControl<string | null>
   confirmarSenha: FormControl<string | null>
