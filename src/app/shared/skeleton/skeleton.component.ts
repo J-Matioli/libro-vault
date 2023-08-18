@@ -27,7 +27,7 @@ export class SkeletonComponent implements OnInit {
     const host = this.host.nativeElement;
 
     if(this.className) {
-      host.classList.add(this.className);
+      this.className.split(',').forEach(className => host.classList.add(className))
     }
 
     host.style.setProperty('--skeleton-rect-width', this.width ?? '100%');

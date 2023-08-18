@@ -1,7 +1,7 @@
-<h2 mat-dialog-title>Minha conta</h2>
+<h2 mat-dialog-title *appSkeleton="true; height: '20px'; width: '30%'; className: 'mb-10'">Minha conta</h2>
 <mat-dialog-content class="mat-typography">
     <form class="account-form" [formGroup]="form" (ngSubmit)="submit()">
-        <mat-form-field appearance="fill" *appSkeleton="true; height: '50px'; width: '50%'">
+        <mat-form-field appearance="fill" *appSkeleton="true; height: '51px'; width: '100%'">            
             <mat-label>Nome</mat-label>
             <input (keydown)="preventChar($event, patterns.onlyLetters)" type="text" formControlName="nome" matInput>
             <mat-error *ngIf="form.get('nome')!.errors?.['required']">Insira seu nome de usuário.</mat-error>
@@ -9,7 +9,7 @@
             <mat-error *ngIf="form.get('nome')!.errors?.['pattern']">Nome inválido.</mat-error>
         </mat-form-field>
         <div class="row-2-columns">
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" *appSkeleton="true; height: '51px'; width: '210px'">
                 <mat-label>Gênero</mat-label>
                 <mat-select formControlName="genero">
                     <mat-option value="1">Feminino</mat-option>
@@ -18,7 +18,7 @@
                 </mat-select>
                 <mat-error *ngIf="form.get('genero')!.errors?.['required']">Insira seu gênero.</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" *appSkeleton="true; height: '51px'; width: '210px'">
                 <mat-label>Data de nascimento</mat-label>
                 <input matInput formControlName="dataDeNascimento" [matDatepicker]="picker" [min]="'1900-01-01'" [max]="maxBorn()" appMaskDate>
                 <mat-hint *ngIf="!formIsdisabled">DD/MM/YYYY</mat-hint>
@@ -30,7 +30,7 @@
                     ano.</mat-error>
             </mat-form-field>
         </div>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *appSkeleton="true; height: '51px'; width: '100%'">
             <mat-label>Email</mat-label>
             <input type="email" formControlName="email" matInput>
             <mat-error *ngIf="form.get('email')!.errors?.['required']">Insira seu email.</mat-error>
@@ -41,6 +41,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="account-form__actions">
     <app-custom-button class="account-form__close-btn" mat-dialog-close *ngIf="formIsdisabled">Voltar</app-custom-button>
-    <app-custom-button color="accent" (click)="toggleForm()">{{ formIsdisabled ? 'Editar' : 'Cancelar' }}</app-custom-button>
+    <app-custom-button [isLoading]="true" color="accent" (clickButton)="toggleForm()">{{ formIsdisabled ? 'Editar' : 'Cancelar' }}</app-custom-button>
     <app-custom-button class="account-form__submit-btn" color="primary" *ngIf="!formIsdisabled">Salvar</app-custom-button>
 </mat-dialog-actions>
