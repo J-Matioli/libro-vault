@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { RequestUser } from 'src/app/core/actions/user.actions';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormUtils } from 'src/app/core/utils/form-utils';
@@ -20,6 +22,7 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<MyAccountComponent>,
+    private store: Store,
     private authService: AuthService  
   ) { super(); }
 
@@ -83,6 +86,8 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
   }
 
   getUser() {
+    this.store.dispatch(new RequestUser())
+    
     this.isLoading = true;
     this.authService.getUser().subscribe({
       next: res => {

@@ -15,6 +15,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CookiesMessageComponent } from './components/cookies-message/cookies-message.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromCore from './reducers/index';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './effects/user.effects';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import * as fromCore from './reducers/index';
     MatMenuModule,
     MatListModule,
     HttpClientModule,
-    StoreModule.forFeature('core', fromCore.reducers)
+    StoreModule.forFeature('core', fromCore.reducers),
+    EffectsModule.forFeature([UserEffects])
   ],
   exports: [
     NavbarComponent,

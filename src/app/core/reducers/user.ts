@@ -1,5 +1,6 @@
-import { createReducer } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { User } from '../models/user';
+import { UserActionTypes, UserActions } from '../actions/user.actions';
 
 export const userFeatureKey = 'user';
 
@@ -9,7 +10,18 @@ export interface State {
 
 export const initialUserState = {} as State;
 
-export const userReducer = createReducer(
-  initialUserState,
+  export function userReducer(
+    state = initialUserState,
+    action: UserActions
+  ): State {
+    switch (action.type) {
 
-)
+      case UserActionTypes.LoadedUser:
+        {
+          return { ...state, ...action.payload.data }
+        }
+
+      default:
+        return state
+    }
+  }
