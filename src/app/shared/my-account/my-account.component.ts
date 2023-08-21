@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormUtils } from 'src/app/core/utils/form-utils';
@@ -17,7 +18,8 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
   private user: User;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<MyAccountComponent>,
     private authService: AuthService  
   ) { super(); }
 
@@ -54,6 +56,7 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
       next: res => {
         this.user = res;
         this.isLoading = false;
+        this.dialogRef.close();
       },
       error: err => { this.isLoading = false; }
     })
