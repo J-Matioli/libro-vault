@@ -43,6 +43,14 @@ export class AuthService {
       }))
   }
 
+  changePassword(data: any): Observable<{[key: string]: any}> {
+    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/alterar-senha`, data, this.authHeader())
+      .pipe(catchError(err => {
+          this.openSnackBar(err.error.erros[0])
+        return throwError(() => err)
+      }))
+  }
+
   sendEmailResetPassword(data: FormData): Observable<{[key: string]: any}> {
     return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/resetar-senha-email`, data)
     .pipe(catchError(err => {
