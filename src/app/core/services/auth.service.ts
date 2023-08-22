@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   register(data: any): Observable<{[key: string]: any}> {
-    return this.http.post<{[key: string]: any}>(`${this.apiUrl}autenticacao/cadastro-usuario`, data)
+    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/cadastro-usuario`, data)
       .pipe(catchError(err => {
           this.openSnackBar(err.error.erros[0])
         return throwError(() => err)

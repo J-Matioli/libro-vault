@@ -3,7 +3,7 @@ export interface User {
     nome: string
     sobrenome: string
     dataNascimento: string
-    genero: string
+    genero: "Masculino" | "Feminino" | "Outro"
     email: string
     notificar: boolean
     status: string

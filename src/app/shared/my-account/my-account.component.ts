@@ -93,7 +93,7 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
     this.form.patchValue({
       nome: this.user.nome || '',
       email: this.user.email || '',
-      genero: this.user.genero || '',
+      genero: Gender[this.user.genero] || '',
       dataNascimento: this.user.dataNascimento || ''
     })
   }
@@ -104,4 +104,10 @@ export interface MyAccountForm {
   genero: FormControl<string | null>
   dataNascimento: FormControl<string | null>
   email: FormControl<string | null>
+}
+
+export enum Gender {
+  "Feminino" = "1",
+  "Masculino" = "2",
+  "Outro" = "3"
 }
