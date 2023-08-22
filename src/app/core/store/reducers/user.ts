@@ -1,5 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
-import { User } from '../models/user';
+import { User } from '../../models/user';
 import { UserActionTypes, UserActions } from '../actions/user.actions';
 
 export const userFeatureKey = 'user';

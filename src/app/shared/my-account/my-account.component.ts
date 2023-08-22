@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { RequestUser } from 'src/app/core/actions/user.actions';
+import { RequestUser } from 'src/app/core/store/actions/user.actions';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormUtils } from 'src/app/core/utils/form-utils';
+import { selectUser } from 'src/app/core/store/selectors/user.selectors';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-my-account',
@@ -14,7 +16,7 @@ import { FormUtils } from 'src/app/core/utils/form-utils';
 })
 export class MyAccountComponent  extends FormUtils implements OnInit {
 
-  public isLoading = false;
+  public isLoading = true;
   public form!: FormGroup<MyAccountForm>;
   public formIsdisabled: boolean = true;
   private user: User;
@@ -27,8 +29,19 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
   ) { super(); }
 
   ngOnInit(): void {
-    this.getUser();
+    this.store.dispatch(new RequestUser());
     this.createForm();
+
+    this.store.select(selectUser)
+    .pipe(filter(user => Object.keys(user).length > 0))
+    .subscribe({
+      next: user => {
+        this.user = user;
+        this.isLoading = false;
+        this.setForm();
+    },
+    error: err => { this.isLoading = false; }
+    })
   }
 
   createForm(): void {
@@ -84,21 +97,6 @@ export class MyAccountComponent  extends FormUtils implements OnInit {
       dataNascimento: this.user.dataNascimento || ''
     })
   }
-
-  getUser() {
-    this.store.dispatch(new RequestUser())
-    
-    this.isLoading = true;
-    this.authService.getUser().subscribe({
-      next: res => {
-        this.user = res.dados?.pagina[0]
-        this.setForm();
-        this.isLoading = false;
-      },
-      error: err => { this.isLoading = false; }
-    })
-  }
-
 }
 
 export interface MyAccountForm {

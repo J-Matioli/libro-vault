@@ -14,9 +14,9 @@ import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { CookiesMessageComponent } from './components/cookies-message/cookies-message.component';
 import { StoreModule } from '@ngrx/store';
-import * as fromCore from './reducers/index';
+import * as fromCore from './store/reducers/index';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './effects/user.effects';
+import { UserEffects } from './store/effects/user.effects';
 
 @NgModule({
   declarations: [
