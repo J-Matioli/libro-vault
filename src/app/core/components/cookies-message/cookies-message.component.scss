@@ -1,0 +1,55 @@
+@import "../../../scss/main.scss";
+
+.cookie {
+    position: fixed;
+    width: 85%;
+    max-width: 830px;
+    z-index: 10;
+    bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: grid;
+    
+    grid-template-columns: 1fr 150px;
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 5px;
+
+    @include respond(small) {
+        grid-row-gap: 13px;
+    }
+
+    p, h3 {
+        margin: 0;
+    }
+
+    &__header {
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+
+        grid-column: 1 / -1;
+        grid-row: 1 / 2;
+    }
+
+    &__text {
+        grid-row: 2 / 3;
+        align-self: flex-end;
+
+        @include respond(small) {
+            grid-column: 1 / -1;
+        }
+    }
+
+    &__btn {
+        grid-column: 2 / -1;
+
+        @include respond(small) {
+            grid-column: 1 / -1;
+            justify-self: end;
+            width: 150px;
+        }
+    }
+}

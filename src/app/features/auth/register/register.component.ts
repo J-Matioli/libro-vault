@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { noop } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,12 +10,24 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public isLoading: boolean = false;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void { }
 
   submit(event: any) {
-    console.log(event);
-    this.router.navigate(['login'])
+    this.isLoading = true
+    this.authService.register(event).subscribe({
+      next: res => {
+        this.authService.openSnackBar(res['mensagem'][0]);
+        this.isLoading = false;
+        this.router.navigate(['login']);
+      },
+      error: err => {this.isLoading = false}
+    })
   }
 }

@@ -6,9 +6,7 @@
     [type]="type"
     [color]="color"
     (click)="onClick()">
-        <mat-icon *ngIf="icon && !isLoading" [svgIcon]="icon" class="custom-button__icon"> </mat-icon>
-        <mat-icon *ngIf="isLoading" color="primary" class="custom-button__icon">
-            <mat-spinner diameter="20"></mat-spinner>
-        </mat-icon>
+        <mat-icon *ngIf="icon" [svgIcon]="icon" class="custom-button__icon"></mat-icon>
         <ng-content></ng-content>
-</button> 
+    </button> 
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>

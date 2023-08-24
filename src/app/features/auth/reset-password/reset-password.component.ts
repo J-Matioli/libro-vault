@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -8,14 +9,42 @@ import { Router } from '@angular/router';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  private userId: string;
+  private token: string;
+  public isLoading: boolean
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.getParams();
   }
 
   submit(event: any) {
-    console.log(event);
-    this.router.navigate(['login'])
+    this.isLoading = true;
+
+    const req = {
+      ...event,
+      token: this.token,
+      usuarioId: this.userId
+    }
+
+    this.authService.resetPassword(req).subscribe({
+      next: res => {
+        this.authService.openSnackBar(res['mensagem'][0]);
+        this.isLoading = false;
+        this.router.navigate(['login']);
+      },
+      error: err => {this.isLoading = false}
+    })
+  }
+
+  getParams(){
+    this.token = this.route.snapshot.queryParams['token'];
+    this.userId = this.route.snapshot.queryParams['UsuarioId'];
   }
 
 }

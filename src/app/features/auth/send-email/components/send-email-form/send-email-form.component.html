@@ -1,0 +1,22 @@
+<form class="send-email-form" [formGroup]="form" (ngSubmit)="submit()">
+    <span>Insira seu email e selecione uma das opções para continuar.</span>
+    <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="text" formControlName="email" matInput>
+        <mat-error *ngIf="email!.errors?.['required']">Insira seu email.</mat-error>
+        <mat-error *ngIf="email!.errors?.['email']">Email inválido.</mat-error>
+    </mat-form-field>
+
+    <mat-radio-group class="send-email-form__radio-group" formControlName="action">
+        <mat-radio-button class="send-email-form__radio-button" [value]="'RESET_PASSWORD'">
+            Redefinir senha.
+        </mat-radio-button>
+        <mat-radio-button class="send-email-form__radio-button" [value]="'SEND_EMAIL'">
+            Reenviar email de confirmação.
+        </mat-radio-button>
+        <mat-error *ngIf="action!.errors?.['required'] && action!.touched ">Selecione uma das opções.</mat-error>
+    </mat-radio-group>   
+
+    <app-custom-button [isLoading]="isLoading" type="submit" class="reset-password-email-form__submit" mat-raised-button
+        color="accent">Enviar</app-custom-button>
+</form>

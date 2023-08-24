@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormUtils } from 'src/app/core/utils/form-utils';
 import { CustomValidators } from 'src/app/core/validators/custom-validators.component';
@@ -12,6 +12,7 @@ export class RegisterFormComponent extends FormUtils implements OnInit {
   
   public form!: FormGroup<RegisterForm>;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
+  @Input() isLoading: boolean = false;
 
   constructor(private fb: FormBuilder) { super(); }
 
@@ -27,7 +28,7 @@ export class RegisterFormComponent extends FormUtils implements OnInit {
         Validators.maxLength(100)
       ]}),
       genero: new FormControl(null, {validators: [Validators.required]}),
-      dataDeNascimento: new FormControl(null, {validators: [Validators.required]}),
+      dataNascimento: new FormControl(null, {validators: [Validators.required]}),
       email: new FormControl(null, {validators: [
         Validators.required,
         Validators.email,
@@ -50,7 +51,7 @@ export class RegisterFormComponent extends FormUtils implements OnInit {
 
   submit() {
     if(this.form.valid) {     
-      this.formSubmit.emit(this.form.getRawValue())
+      this.formSubmit.emit(this.form.value)
     }
   }
 }
@@ -58,7 +59,7 @@ export class RegisterFormComponent extends FormUtils implements OnInit {
 export interface RegisterForm {
   nome: FormControl<string | null>
   genero: FormControl<string | null>
-  dataDeNascimento: FormControl<string | null>
+  dataNascimento: FormControl<string | null>
   email: FormControl<string | null>
   senha: FormControl<string | null>
   confirmarSenha: FormControl<string | null>

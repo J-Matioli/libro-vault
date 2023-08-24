@@ -12,13 +12,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
+import { CookiesMessageComponent } from './components/cookies-message/cookies-message.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromCore from './store/reducers/index';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/effects/user.effects';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     SidenavDirective,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    CookiesMessageComponent
   ],
   imports: [
     CommonModule,
@@ -29,13 +35,17 @@ import { MatMenuModule } from '@angular/material/menu';
     HttpClientModule,
     SharedModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule,
+    StoreModule.forFeature('core', fromCore.reducers),
+    EffectsModule.forFeature([UserEffects])
   ],
   exports: [
     NavbarComponent,
     SidenavDirective,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    CookiesMessageComponent
   ]
 })
 export class CoreModule { }

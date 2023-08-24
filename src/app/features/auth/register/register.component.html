@@ -4,7 +4,7 @@
     </section>
     <section class="register__form-box">
         <img class="register__logo" src="./assets/img/logo.svg" alt="Logo LibroVault">
-        <app-register-form (formSubmit)="submit($event)"></app-register-form>
+        <app-register-form [isLoading]="isLoading" (formSubmit)="submit($event)"></app-register-form>
         <div class="register__options">
             <span class="register__options-text" routerLink="/login" >Voltar para o login.</span>
         </div>

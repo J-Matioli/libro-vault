@@ -3,7 +3,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -48,6 +48,9 @@ import { WorkDeleteDialogComponent } from './work-delete-dialog/work-delete-dial
 import { CustomDetailsComponent } from './custom-details/custom-details.component';
 import { DetailsInfoFieldComponent } from './custom-details/components/details-info-field/details-info-field.component';
 import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog/add-work-shelf-dialog.component';
+import { SkeletonComponent } from './skeleton/skeleton.component';
+import { SkeletonDirective } from '../core/directives/skeleton.directive';
+
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -75,12 +78,14 @@ import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog/add-work-sh
     WorkDeleteDialogComponent,
     CustomDetailsComponent,
     DetailsInfoFieldComponent,
-    AddWorkShelfDialogComponent
+    AddWorkShelfDialogComponent,
+    SkeletonComponent,
+    SkeletonDirective
   ],
   imports: [
     CommonModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatIconModule,
     MatDialogModule,
     MatDividerModule,

@@ -1,9 +1,20 @@
-.reset-password-email-form {
+.send-email-form {
     max-width: 570px;    
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     row-gap: 12px;
+
+    &__radio-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 0 15PX;
+    }
+
+    &__radio-button {
+        margin: 5px;
+    }
 
     ::ng-deep {
         .mat-form-field-appearance-fill .mat-form-field-flex {

@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResetPasswordEmailComponent } from './reset-password-email.component';
 import { AuthModule } from '../auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { SendEmailComponent } from './send-email.component';
 
-describe(ResetPasswordEmailComponent.name, () => {
-  let component: ResetPasswordEmailComponent;
-  let fixture: ComponentFixture<ResetPasswordEmailComponent>;
+describe(SendEmailComponent.name, () => {
+  let component: SendEmailComponent;
+  let fixture: ComponentFixture<SendEmailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,7 +19,7 @@ describe(ResetPasswordEmailComponent.name, () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ResetPasswordEmailComponent);
+    fixture = TestBed.createComponent(SendEmailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

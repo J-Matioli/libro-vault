@@ -21,6 +21,7 @@ export class CustomButtonComponent implements OnInit {
   }
 
   onClick(){
+    if(this.disabled || this.isLoading) return;
     this.clickButton.emit();
   }
 }

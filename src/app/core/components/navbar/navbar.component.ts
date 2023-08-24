@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MyAccountComponent } from 'src/app/shared/my-account/my-account.component';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { ChangePasswordComponent } from 'src/app/shared/change-password/change-password.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +19,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private sidenav: SidenavService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {}
@@ -46,6 +48,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.sidenav.sidebarChange('close');
     setTimeout(() => {
+      this.cookieService.deleteAll();
       this.router.navigate(['login']);
     }, 500);
    }

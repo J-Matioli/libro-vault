@@ -1,0 +1,53 @@
+@import "../../../scss/main.scss";
+
+.confirm-email {
+    background-color: var(--primary-color);
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+
+    @include respond(small) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    &__banner {
+        background-color: var(--bg-color);
+        position: relative;
+        overflow: hidden;
+
+        @include respond(small) {
+            display: none;
+        }
+    }
+
+    &__img {
+        min-width: 900px;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__logo {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        max-width: 400px;
+    }
+    
+    &__box {
+        padding: 2rem;
+        align-self: center;
+        text-align: center;
+    }
+
+    &__content {
+        max-width: 570px;
+        margin: 0 auto;
+    }
+}

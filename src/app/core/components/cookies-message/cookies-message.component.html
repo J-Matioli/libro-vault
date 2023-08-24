@@ -1,0 +1,10 @@
+<div class="cookie mat-elevation-z5" *ngIf="!cookiesAccepted">
+    
+    <div class="cookie__header">
+        <h3>Um cookie pra você :)</h3>
+        <mat-icon class="material-icons-outlined">cookie</mat-icon>
+    </div>
+    
+    <p class="cookie__text">Este <i>site</i> utiliza <i>cookies</i> e tecnologias semelhantes essenciais para sua navegação.</p>
+    <app-custom-button class="cookie__btn" color="accent" (clickButton)="cookieAccept()">Ok</app-custom-button>
+</div>
