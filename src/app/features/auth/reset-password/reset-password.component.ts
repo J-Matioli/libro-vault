@@ -44,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
 
   getParams(){
     this.token = this.route.snapshot.queryParams['token'];
-    this.userId = this.route.snapshot.queryParams['id'];
+    this.userId = this.route.snapshot.queryParams['UsuarioId'];
   }
 
 }
