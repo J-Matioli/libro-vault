@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   changePassword(data: any): Observable<{[key: string]: any}> {
-    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/alterar-senha`, data, this.authHeader())
+    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/alterar-senha`, data)
       .pipe(catchError(err => {
           this.openSnackBar(err.error.erros[0])
         return throwError(() => err)
@@ -77,7 +77,7 @@ export class AuthService {
 
   getUser(): Observable<UserResponse> {
     const id = this.cookieService.get('_id')
-    return this.http.get<UserResponse>(`${this.apiUrl}usuario/usuario?id=${id}`, this.authHeader())
+    return this.http.get<UserResponse>(`${this.apiUrl}usuario/usuario?id=${id}`)
     .pipe(catchError(err => {
       this.openSnackBar(err.error.erros[0])
       return throwError(() => err)
@@ -85,22 +85,13 @@ export class AuthService {
   }
 
   putUser(user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}usuario/atualiza-usuario`, user, this.authHeader())
+    return this.http.put<User>(`${this.apiUrl}usuario/atualiza-usuario`, user)
     .pipe(catchError(err => {
       this.openSnackBar(err.error.erros[0])
       return throwError(() => err)
     }))
   }
 
-  authHeader() {
-    const token = this.cookieService.get('_token');
-
-    return {
-      headers: new HttpHeaders({
-        "authorization": `bearer ${token}`
-      })
-    };
-  }
 
   openSnackBar(message: string) {
     this.snackBar.open(message, undefined, {

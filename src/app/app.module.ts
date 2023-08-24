@@ -14,8 +14,19 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './features/auth/auth.module';
 import { registerLocaleData } from '@angular/common';
+import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
+import { TokenService } from './core/services/token.service';
 
 registerLocaleData(localePt)
+
+export function jwtOptionsFactory(tokenService: TokenService) {
+  return {
+    tokenGetter: () => {      
+      return tokenService.getAsyncToken();
+    },
+    allowedDomains: ["librovaultapi.fickert.space"]
+  }
+}
 
 @NgModule({
   declarations: [
@@ -32,9 +43,17 @@ registerLocaleData(localePt)
     }),
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [TokenService]
+      }
+    })
   ],
   providers: [
+    TokenService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
