@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BooksListComponent } from './books-list.component';
+import { BooksModule } from '../books.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(BooksListComponent.name, () => {
   let component: BooksListComponent;
@@ -8,7 +12,12 @@ describe(BooksListComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BooksListComponent ]
+      imports: [
+        BooksModule,
+        RouterTestingModule,
+        MatNativeDateModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 

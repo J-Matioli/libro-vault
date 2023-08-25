@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HqsListComponent } from './hqs-list.component';
+import { HqsModule } from '../hqs.module';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe(HqsListComponent.name, () => {
   let component: HqsListComponent;
@@ -8,7 +12,12 @@ describe(HqsListComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HqsListComponent ]
+      imports: [
+        HqsModule,
+        RouterTestingModule,
+        MatNativeDateModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 
