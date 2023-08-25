@@ -39,7 +39,7 @@ describe(RegisterFormComponent.name, () => {
     component.form.setValue({
       nome: "Nome Sobrenome",
       email: "teste@email.com",
-      dataDeNascimento: "2012-01-26T13:51:50.417-07:00",
+      dataNascimento: "2012-01-26T13:51:50.417-07:00",
       genero: "2",
       senha: 'Teste@123',
       confirmarSenha:"Teste@123"
