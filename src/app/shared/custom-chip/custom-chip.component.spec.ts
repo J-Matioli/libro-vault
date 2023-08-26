@@ -1,14 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomChipComponent } from './custom-chip.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
-describe('CustomChipComponent', () => {
+describe(CustomChipComponent.name, () => {
   let component: CustomChipComponent;
   let fixture: ComponentFixture<CustomChipComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomChipComponent ]
+      declarations: [ CustomChipComponent ],
+      imports: [ MatAutocompleteModule ]
     })
     .compileComponents();
 
