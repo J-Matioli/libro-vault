@@ -11,3 +11,9 @@ export interface AuthResponse {
     mensagem: string[] 
     sucesso: boolean
 }
+
+export interface RegisterResponse {
+    dados: boolean
+    mensagem: string[];
+    sucesso: boolean
+}

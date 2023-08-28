@@ -5,17 +5,23 @@ import { AuthModule } from '../auth.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { of } from 'rxjs';
+import { buildRegister } from './test/build-register';
 
 describe(RegisterComponent.name, () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
-  let router: Router
+  let router: Router;
+  let service: AuthService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         AuthModule,
         AppRoutingModule,
+        HttpClientModule,
         BrowserAnimationsModule
       ]
     })
@@ -24,6 +30,7 @@ describe(RegisterComponent.name, () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
+    service = TestBed.inject(AuthService); 
     fixture.detectChanges();
   });
 
@@ -33,6 +40,7 @@ describe(RegisterComponent.name, () => {
 
   it('should navigate when submit method is called', () => {
 
+    const registerResponse = buildRegister();
     const formValue = {
       nome: "Nome Sobrenome",
       email: "teste@email.com",
@@ -41,6 +49,10 @@ describe(RegisterComponent.name, () => {
       senha: 'sdalk2312',
       confirmarSenha:"teste@email.com"
     }
+
+    spyOn(service, 'register')
+      .and.returnValue(of(registerResponse));
+    fixture.detectChanges();
 
     const navigateSpy = spyOn(router, 'navigate');
     component.submit(formValue);
