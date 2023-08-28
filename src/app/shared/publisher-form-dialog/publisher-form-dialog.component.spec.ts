@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PublisherFormDialogComponent } from './publisher-form-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 describe(PublisherFormDialogComponent.name, () => {
@@ -8,7 +10,12 @@ describe(PublisherFormDialogComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PublisherFormDialogComponent ]
+      declarations: [ PublisherFormDialogComponent ],
+      imports: [ ReactiveFormsModule ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
 
