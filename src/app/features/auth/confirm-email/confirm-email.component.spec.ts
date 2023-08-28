@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfirmEmailComponent } from './confirm-email.component';
+import { AuthModule } from '../auth.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 describe(ConfirmEmailComponent.name, () => {
   let component: ConfirmEmailComponent;
@@ -8,7 +11,11 @@ describe(ConfirmEmailComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmEmailComponent ]
+      imports: [ 
+        AuthModule,
+        AppRoutingModule,
+        HttpClientModule
+      ]
     })
     .compileComponents();
 
