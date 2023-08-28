@@ -5,6 +5,10 @@ import { NavbarComponent } from './navbar.component';
 import { Router } from '@angular/router';
 import { SidenavService } from '../../services/sidenav.service';
 import { CoreModule } from '../../core.module';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, reducers } from 'src/app/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe(NavbarComponent.name, () => {
   let component: NavbarComponent;
@@ -16,7 +20,12 @@ describe(NavbarComponent.name, () => {
     await TestBed.configureTestingModule({      
       imports: [ 
         CoreModule,
-        RouterTestingModule.withRoutes([]) ]
+        MatSnackBarModule,
+        StoreModule.forRoot(reducers, {
+          metaReducers
+        }),
+        EffectsModule.forRoot([])
+      ]
     })
     .compileComponents();
 
