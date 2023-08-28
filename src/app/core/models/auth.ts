@@ -2,7 +2,7 @@ export interface Auth {
     accessToken: string
     id: string
     nome: string
-    notificar: string
+    notificar: boolean
     refreshToken: string
 }
 
