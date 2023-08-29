@@ -1,14 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HqsDetailsComponent } from './hqs-details.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { HqsModule } from '../hqs.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('HqsDetailsComponent', () => {
+describe(HqsDetailsComponent.name, () => {
   let component: HqsDetailsComponent;
   let fixture: ComponentFixture<HqsDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HqsDetailsComponent ]
+      imports: [ 
+        HqsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 
