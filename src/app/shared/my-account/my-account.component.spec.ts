@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from 'src/app/reducers';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CustomButtonComponent } from '../custom-button/custom-button.component';
 
 describe(MyAccountComponent.name, () => {
   let component: MyAccountComponent;
@@ -14,14 +15,17 @@ describe(MyAccountComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MyAccountComponent ],
+      declarations: [ 
+        MyAccountComponent,
+        CustomButtonComponent
+      ],
       imports: [
         ReactiveFormsModule,
         StoreModule.forRoot(reducers, {
           metaReducers
         }),
         HttpClientModule,
-        MatSnackBarModule
+        MatSnackBarModule,
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CookiesMessageComponent } from './cookies-message.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CustomButtonComponent } from 'src/app/shared/custom-button/custom-button.component';
 
 describe(CookiesMessageComponent.name, () => {
   let component: CookiesMessageComponent;
@@ -8,7 +10,13 @@ describe(CookiesMessageComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CookiesMessageComponent ]
+      declarations: [ 
+        CookiesMessageComponent,
+        CustomButtonComponent
+      ],
+      imports: [
+        MatIconModule
+      ]
     })
     .compileComponents();
 

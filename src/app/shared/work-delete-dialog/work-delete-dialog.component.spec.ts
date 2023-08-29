@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WorkDeleteDialogComponent } from './work-delete-dialog.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 describe(WorkDeleteDialogComponent.name, () => {
   let component: WorkDeleteDialogComponent;
@@ -11,6 +11,9 @@ describe(WorkDeleteDialogComponent.name, () => {
     await TestBed.configureTestingModule({
       declarations: [ 
         WorkDeleteDialogComponent
+      ],
+      imports: [
+        MatDialogModule
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },

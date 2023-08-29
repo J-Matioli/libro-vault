@@ -3,6 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VolumeFormComponent } from './volume-form.component';
 import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomVolumeForm } from 'src/app/core/utils/form-utils';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(VolumeFormComponent.name, () => {
   let component: VolumeFormComponent;
@@ -29,7 +32,10 @@ describe(VolumeFormComponent.name, () => {
       declarations: [ VolumeFormComponent ],
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule
       ],
       providers: [
         {provide: ControlContainer, useValue: fgd}

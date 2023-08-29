@@ -5,6 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(ChangePasswordComponent.name, () => {
   let component: ChangePasswordComponent;
@@ -16,6 +19,9 @@ describe(ChangePasswordComponent.name, () => {
       imports: [
         ReactiveFormsModule,
         MatSnackBarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
         HttpClientModule
       ],
       providers: [

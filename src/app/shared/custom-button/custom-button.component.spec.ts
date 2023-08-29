@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomButtonComponent } from './custom-button.component';
 import { SharedModule } from '../shared.module';
+import { MatButtonModule } from '@angular/material/button';
 
 describe(CustomButtonComponent.name, () => {
   let component: CustomButtonComponent;
@@ -9,7 +10,8 @@ describe(CustomButtonComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ SharedModule ]
+      declarations: [ CustomButtonComponent ],
+      imports: [ MatButtonModule ]
     })
     .compileComponents();
 
