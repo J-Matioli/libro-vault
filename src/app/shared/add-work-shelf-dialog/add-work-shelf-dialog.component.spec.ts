@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CustomButtonComponent } from '../custom-button/custom-button.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(AddWorkShelfDialogComponent.name, () => {
   let component: AddWorkShelfDialogComponent;
@@ -8,7 +15,22 @@ describe(AddWorkShelfDialogComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddWorkShelfDialogComponent ]
+      declarations: [ 
+        AddWorkShelfDialogComponent,
+        CustomButtonComponent
+      ],
+      imports: [ 
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule
+      ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
 

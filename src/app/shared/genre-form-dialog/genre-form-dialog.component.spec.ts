@@ -3,6 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GenreFormDialogComponent } from './genre-form-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(GenreFormDialogComponent.name, () => {
   let component: GenreFormDialogComponent;
@@ -13,7 +16,10 @@ describe(GenreFormDialogComponent.name, () => {
       declarations: [ GenreFormDialogComponent ],
       imports: [ 
         ReactiveFormsModule,
-        MatDialogModule
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },

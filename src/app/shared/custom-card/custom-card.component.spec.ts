@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomCardComponent } from './custom-card.component';
+import { ArrToStringPipe } from 'src/app/core/pipes/arr-to-string.pipe';
+import { MatCardModule } from '@angular/material/card';
+import { CardSaveComponent } from './components/card-save/card-save.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe(CustomCardComponent.name, () => {
   let component: CustomCardComponent;
@@ -8,7 +12,15 @@ describe(CustomCardComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomCardComponent ]
+      declarations: [ 
+        CustomCardComponent,
+        CardSaveComponent,
+        ArrToStringPipe
+      ],
+      imports: [
+        MatCardModule,
+        MatDialogModule
+      ]
     })
     .compileComponents();
 

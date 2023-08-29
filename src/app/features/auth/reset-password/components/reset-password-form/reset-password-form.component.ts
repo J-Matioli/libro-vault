@@ -22,7 +22,7 @@ export class ResetPasswordFormComponent implements OnInit {
 
   createForm(): void {
     this.form = this.fb.group<ResetPasswordForm>({
-      senha: new FormControl(null, {validators: [
+      novaSenha: new FormControl(null, {validators: [
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(30),
@@ -38,7 +38,7 @@ export class ResetPasswordFormComponent implements OnInit {
     })
   }
 
-  get senha() { return this.form.get('senha'); }
+  get novaSenha() { return this.form.get('novaSenha'); }
   get confirmarSenha() { return this.form.get('confirmarSenha'); }
 
   submit() {
@@ -50,6 +50,6 @@ export class ResetPasswordFormComponent implements OnInit {
 }
 
 export interface ResetPasswordForm {
-  senha: FormControl<string | null>
+  novaSenha: FormControl<string | null>
   confirmarSenha: FormControl<string | null>
 }

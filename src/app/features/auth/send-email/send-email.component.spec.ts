@@ -4,6 +4,7 @@ import { AuthModule } from '../auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SendEmailComponent } from './send-email.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe(SendEmailComponent.name, () => {
   let component: SendEmailComponent;
@@ -14,7 +15,8 @@ describe(SendEmailComponent.name, () => {
       imports: [ 
         AuthModule,
         AppRoutingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientModule
        ]
     })
     .compileComponents();

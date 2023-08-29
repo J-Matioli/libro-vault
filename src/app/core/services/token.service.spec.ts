@@ -1,14 +1,14 @@
-import { TestBed } from '@angular/core/testing';
 
 import { TokenService } from './token.service';
+import { CookieService } from 'ngx-cookie-service';
 
 describe(TokenService.name, () => {
   let service: TokenService;
+  let cookieservice: CookieService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(TokenService);
-  });
+    service = new TokenService(cookieservice)
+})
 
   it('should be created', () => {
     expect(service).toBeTruthy();

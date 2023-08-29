@@ -1,14 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PublishersComponent } from './publishers.component';
+import { PublishersModule } from './publishers.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('PublishersComponent', () => {
+describe(PublishersComponent.name, () => {
   let component: PublishersComponent;
   let fixture: ComponentFixture<PublishersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PublishersComponent ]
+      imports: [ 
+        PublishersModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 

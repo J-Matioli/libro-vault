@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShelfDetailsComponent } from './shelf-details.component';
+import { ShelfModule } from '../shelf.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(ShelfDetailsComponent.name, () => {
   let component: ShelfDetailsComponent;
@@ -8,7 +10,10 @@ describe(ShelfDetailsComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShelfDetailsComponent ]
+      imports: [ 
+        ShelfModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 

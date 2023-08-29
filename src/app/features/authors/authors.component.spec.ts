@@ -1,14 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthorsComponent } from './authors.component';
+import { AuthorsModule } from './authors.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('AuthorsComponent', () => {
+describe(AuthorsComponent.name, () => {
   let component: AuthorsComponent;
   let fixture: ComponentFixture<AuthorsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthorsComponent ]
+      imports: [ 
+        AuthorsModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 
