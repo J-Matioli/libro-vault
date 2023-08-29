@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 describe(AddWorkShelfDialogComponent.name, () => {
   let component: AddWorkShelfDialogComponent;
@@ -8,7 +11,15 @@ describe(AddWorkShelfDialogComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddWorkShelfDialogComponent ]
+      declarations: [ AddWorkShelfDialogComponent ],
+      imports: [ 
+        ReactiveFormsModule,
+        MatAutocompleteModule
+      ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
 
