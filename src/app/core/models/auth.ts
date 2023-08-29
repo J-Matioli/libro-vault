@@ -12,8 +12,11 @@ export interface AuthResponse {
     sucesso: boolean
 }
 
-export interface RegisterResponse {
+export interface AuthGenericResponse {
     dados: boolean
     mensagem: string[];
     sucesso: boolean
 }
+
+export interface RegisterResponse extends AuthGenericResponse { }
+export interface ResetPasswordResponse extends AuthGenericResponse {}

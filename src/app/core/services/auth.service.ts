@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, catchError, throwError } from 'rxjs';
-import { AuthResponse, RegisterResponse } from '../models/auth';
+import { AuthResponse, RegisterResponse, ResetPasswordResponse } from '../models/auth';
 import { User, UserResponse } from '../models/user';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -35,8 +35,8 @@ export class AuthService {
       }))
   }
 
-  resetPassword(data: any): Observable<{[key: string]: any}> {
-    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/resetar-senha`, data)
+  resetPassword(data: any): Observable<ResetPasswordResponse> {
+    return this.http.post<ResetPasswordResponse>(`${this.apiUrl}usuario/resetar-senha`, data)
       .pipe(catchError(err => {
           this.openSnackBar(err.error.erros[0])
         return throwError(() => err)
