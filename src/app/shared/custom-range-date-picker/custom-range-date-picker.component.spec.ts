@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe(CustomRangeDatePickerComponent.name, () => {
   let component: CustomRangeDatePickerComponent;
@@ -30,6 +31,8 @@ describe(CustomRangeDatePickerComponent.name, () => {
       imports: [ 
         MatFormFieldModule,
         MatDatepickerModule,
+        FormsModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule,
         MatMomentDateModule
       ],

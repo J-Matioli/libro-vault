@@ -8,6 +8,7 @@ import { CustomButtonComponent } from '../custom-button/custom-button.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 
 describe(AddWorkShelfDialogComponent.name, () => {
   let component: AddWorkShelfDialogComponent;
@@ -24,6 +25,7 @@ describe(AddWorkShelfDialogComponent.name, () => {
         MatAutocompleteModule,
         MatDialogModule,
         MatFormFieldModule,
+        MatButtonModule,
         MatInputModule,
         BrowserAnimationsModule
       ],

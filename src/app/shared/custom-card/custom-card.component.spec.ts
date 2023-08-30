@@ -5,6 +5,9 @@ import { ArrToStringPipe } from 'src/app/core/pipes/arr-to-string.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { CardSaveComponent } from './components/card-save/card-save.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CardMenuComponent } from './components/card-menu/card-menu.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 describe(CustomCardComponent.name, () => {
   let component: CustomCardComponent;
@@ -14,12 +17,15 @@ describe(CustomCardComponent.name, () => {
     await TestBed.configureTestingModule({
       declarations: [ 
         CustomCardComponent,
+        CardMenuComponent,
         CardSaveComponent,
         ArrToStringPipe
       ],
       imports: [
         MatCardModule,
-        MatDialogModule
+        MatMenuModule,
+        MatDialogModule,
+        MatIconModule
       ]
     })
     .compileComponents();

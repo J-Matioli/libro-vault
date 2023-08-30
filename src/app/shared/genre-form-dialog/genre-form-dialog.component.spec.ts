@@ -6,6 +6,8 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomButtonComponent } from '../custom-button/custom-button.component';
+import { MatButtonModule } from '@angular/material/button';
 
 describe(GenreFormDialogComponent.name, () => {
   let component: GenreFormDialogComponent;
@@ -13,10 +15,14 @@ describe(GenreFormDialogComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GenreFormDialogComponent ],
+      declarations: [ 
+        GenreFormDialogComponent,
+        CustomButtonComponent
+      ],
       imports: [ 
         ReactiveFormsModule,
         MatDialogModule,
+        MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
         BrowserAnimationsModule

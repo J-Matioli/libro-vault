@@ -6,6 +6,9 @@ import { CustomVolumeForm } from 'src/app/core/utils/form-utils';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { ImgCropperComponent } from 'src/app/shared/img-cropper/img-cropper.component';
+import { ImageCropperComponent } from 'ngx-image-cropper';
 
 describe(VolumeFormComponent.name, () => {
   let component: VolumeFormComponent;
@@ -29,11 +32,16 @@ describe(VolumeFormComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VolumeFormComponent ],
+      declarations: [ 
+        VolumeFormComponent,
+        ImgCropperComponent,
+        ImageCropperComponent
+      ],
       imports: [
         FormsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
+        MatIconModule,
         MatInputModule,
         BrowserAnimationsModule
       ],

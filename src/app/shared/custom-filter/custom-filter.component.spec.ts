@@ -15,6 +15,7 @@ import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { CustomChipComponent } from '../custom-chip/custom-chip.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
 
 describe(CustomFilterComponent.name, () => {
   let component: CustomFilterComponent;
@@ -50,6 +51,7 @@ describe(CustomFilterComponent.name, () => {
         MatAutocompleteModule,
         CdkAccordionModule,
         MatInputModule,
+        MatIconModule,
         BrowserAnimationsModule,
         MatMomentDateModule,
         MatDatepickerModule

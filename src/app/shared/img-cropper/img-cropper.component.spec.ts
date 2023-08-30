@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImgCropperComponent } from './img-cropper.component';
+import { ImageCropperComponent, ImageCropperModule } from 'ngx-image-cropper';
 
 describe(ImgCropperComponent.name, () => {
   let component: ImgCropperComponent;
@@ -8,7 +9,11 @@ describe(ImgCropperComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImgCropperComponent ]
+      declarations: [ 
+        ImgCropperComponent,
+        ImageCropperComponent
+      ],
+      imports: [ ImageCropperModule ]
     })
     .compileComponents();
 

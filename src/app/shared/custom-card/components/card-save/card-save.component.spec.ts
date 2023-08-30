@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardSaveComponent } from './card-save.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 describe(CardSaveComponent.name, () => {
   let component: CardSaveComponent;
@@ -13,6 +14,7 @@ describe(CardSaveComponent.name, () => {
       declarations: [ CardSaveComponent ],
       imports: [ 
         MatDialogModule,
+        MatButtonModule,
         MatIconModule
       ]
     })

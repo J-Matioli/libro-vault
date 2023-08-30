@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PublisherFormDialogComponent } from './publisher-form-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomButtonComponent } from '../custom-button/custom-button.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 describe(PublisherFormDialogComponent.name, () => {
@@ -21,6 +22,8 @@ describe(PublisherFormDialogComponent.name, () => {
       imports: [ 
         ReactiveFormsModule,
         MatFormFieldModule,
+        MatButtonModule,
+        MatDialogModule,
         MatInputModule,
         BrowserAnimationsModule
       ],
