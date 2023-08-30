@@ -1,5 +1,5 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 
 import localePt from '@angular/common/locales/pt';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +36,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     BrowserModule,
     AuthModule,
     CoreModule,
+    HammerModule,
     MatSidenavModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, {

@@ -19,6 +19,9 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 
+import * as fromCore from '../../core/store/reducers/index';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 describe(MyAccountComponent.name, () => {
   let component: MyAccountComponent;
   let fixture: ComponentFixture<MyAccountComponent>;
@@ -45,12 +48,14 @@ describe(MyAccountComponent.name, () => {
       ],
       imports: [
         ReactiveFormsModule,
-        StoreModule.forRoot(reducers, {
+        StoreModule.forRoot({}), 
+        StoreModule.forFeature('core', fromCore.reducers, {
           metaReducers
         }),
         HttpClientModule,
         MatSelectModule,
         MatFormFieldModule,
+        MatProgressBarModule,
         MatInputModule,
         BrowserAnimationsModule,
         MatButtonModule,
