@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyAccountComponent } from './my-account.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MyAccountComponent, MyAccountForm } from './my-account.component';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from 'src/app/reducers';
@@ -21,10 +21,14 @@ import { MatButtonModule } from '@angular/material/button';
 
 import * as fromCore from '../../core/store/reducers/index';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 describe(MyAccountComponent.name, () => {
   let component: MyAccountComponent;
   let fixture: ComponentFixture<MyAccountComponent>;
+  let fb: FormBuilder;
+  let authService: AuthService;
+  
 
   const MY_DATE_FORMAT = {
     parse: {
@@ -74,10 +78,27 @@ describe(MyAccountComponent.name, () => {
 
     fixture = TestBed.createComponent(MyAccountComponent);
     component = fixture.componentInstance;
+    fb = TestBed.inject(FormBuilder);
+    authService = TestBed.inject(AuthService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should not request if form value is invalid', () => {
+    component.form = fb.group<MyAccountForm>({
+      dataNascimento: new FormControl(''),
+      email: new FormControl(''),
+      genero: new FormControl(''),
+      nome: new FormControl(''),
+    })
+
+    component.submit();
+
+    const req = spyOn(authService, 'putUser');
+
+    expect(req).not.toHaveBeenCalled();   
+  })
 });
