@@ -20,3 +20,6 @@ export interface AuthGenericResponse {
 
 export interface RegisterResponse extends AuthGenericResponse { }
 export interface ResetPasswordResponse extends AuthGenericResponse {}
+export interface ChangePasswordResponse extends AuthGenericResponse {}
+export interface ResetPasswordEmailResponse extends AuthGenericResponse {}
+export interface EmailConfirmResponse extends AuthGenericResponse {}

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, catchError, throwError } from 'rxjs';
-import { AuthResponse, RegisterResponse, ResetPasswordResponse } from '../models/auth';
+import { AuthResponse, ChangePasswordResponse, RegisterResponse, EmailConfirmResponse, ResetPasswordEmailResponse, ResetPasswordResponse } from '../models/auth';
 import { User, UserResponse } from '../models/user';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -43,32 +43,32 @@ export class AuthService {
       }))
   }
 
-  changePassword(data: any): Observable<{[key: string]: any}> {
-    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/alterar-senha`, data)
+  changePassword(data: any): Observable<ChangePasswordResponse> {
+    return this.http.post<ChangePasswordResponse>(`${this.apiUrl}usuario/alterar-senha`, data)
       .pipe(catchError(err => {
           this.openSnackBar(err.error.erros[0])
         return throwError(() => err)
       }))
   }
 
-  sendEmailResetPassword(data: FormData): Observable<{[key: string]: any}> {
-    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/resetar-senha-email`, data)
+  sendEmailResetPassword(data: FormData): Observable<ResetPasswordEmailResponse> {
+    return this.http.post<ResetPasswordEmailResponse>(`${this.apiUrl}usuario/resetar-senha-email`, data)
     .pipe(catchError(err => {
       this.openSnackBar(err.error.erros[0])
       return throwError(() => err)
     }))
   }
 
-  emailConfirmation(data: any): Observable<{[key: string]: any}> {
-    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/confirmar-cadastro`, data)
+  emailConfirmation(data: any): Observable<EmailConfirmResponse> {
+    return this.http.post<EmailConfirmResponse>(`${this.apiUrl}usuario/confirmar-cadastro`, data)
     .pipe(catchError(err => {
       this.openSnackBar(err.error.erros[0])
       return throwError(() => err)
     }))
   }
 
-  reSendEmailConfirmation(data: FormData): Observable<{[key: string]: any}> {
-    return this.http.post<{[key: string]: any}>(`${this.apiUrl}usuario/reenviar-confirmacao-email`, data)
+  reSendEmailConfirmation(data: FormData): Observable<EmailConfirmResponse> {
+    return this.http.post<EmailConfirmResponse>(`${this.apiUrl}usuario/reenviar-confirmacao-email`, data)
     .pipe(catchError(err => {
       this.openSnackBar(err.error.erros[0])
       return throwError(() => err)

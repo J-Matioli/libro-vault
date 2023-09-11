@@ -42,7 +42,7 @@ describe(LoginComponent.name, () => {
 
     const loginResponse = buildLogin();
     const formValue = {
-      usuario: 'yeweh57232@vikinoko.com',
+      email: 'yeweh57232@vikinoko.com',
       senha: 'Teste@123'
     }
     spyOn(service, 'login')
