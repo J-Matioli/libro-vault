@@ -122,16 +122,49 @@
     }
   ],
   "generos": [
-    "Ficção",
-    "Terror",
-    "Ação",
-    "Aventura",
-    "Fantasia sombria",
-    "Distopia",
-    "Ficção científica",
-    "Ficção filosófica",
-    "Mistério",
-    "Romance",
-    "Utopia"
+    {
+      "nome": "Ficção",
+      "obras": 14
+    },
+    {
+      "nome": "Terror",
+      "obras": 11
+    },
+    {
+      "nome": "Ação",
+      "obras": 19
+    },
+    {
+      "nome": "Aventura",
+      "obras": 11
+    },
+    {
+      "nome": "Fantasia sombria",
+      "obras": 4
+    },
+    {
+      "nome": "Distopia",
+      "obras": 15
+    },
+    {
+      "nome": "Ficção científica",
+      "obras": 6
+    },
+    {
+      "nome": "Ficção filosófica",
+      "obras": 12
+    },
+    {
+      "nome": "Mistério",
+      "obras": 15
+    },
+    {
+      "nome": "Romance",
+      "obras": 11
+    },
+    {
+      "nome": "Utopia",
+      "obras": 14
+    }
   ]
 }

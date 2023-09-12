@@ -1,3 +1,5 @@
+import { Dados } from "./data"
+
 export interface User {
     id: string
     nome: string
@@ -16,13 +18,4 @@ export interface UserResponse {
     }
     mensagem: string[];
     sucesso: boolean
-}
-
-export interface Dados {
-    paginaAtual: number
-    totalPaginas: number
-    resultadosExibidosPagina: number
-    contagemTotalResultados: number
-    existePaginaAnterior: boolean
-    existePaginaPosterior: boolean
 }
