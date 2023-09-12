@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
      
     this.cookieService.deleteAll();
     this.router.navigate(['login']);
-    return true;
+    return false;
   }
   
 }
