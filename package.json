@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=false --browsers ChromeHeadless,FirefoxHeadless",
     "test-watch": "ng test --browsers Chrome,Firefox",
-    "test-coverage": "ng test --watch=false --source-map=true --code-coverage=true --reporters junit --browsers ChromeHeadless,FirefoxHeadless && start coverage/the-dukes-archives/index.html"
+    "test-coverage": "ng test --watch=false --source-map=true --code-coverage=true --reporters junit --browsers ChromeHeadless,FirefoxHeadless && start coverage/the-dukes-archives/index.html",
+    "generate-docs": "compodoc -p tsconfig.json",
+    "serve-docs": "compodoc -s tsconfig.json"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +42,7 @@
     "@angular-devkit/build-angular": "^14.2.11",
     "@angular/cli": "^14.2.11",
     "@angular/compiler-cli": "^14.3.0",
+    "@compodoc/compodoc": "^1.1.21",
     "@ngrx/schematics": "^14.3.3",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
