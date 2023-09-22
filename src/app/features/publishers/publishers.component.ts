@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { PublisherService } from 'src/app/core/services/publisher.service';
 import { PublisherFormDialogComponent } from 'src/app/shared/publisher-form-dialog/publisher-form-dialog.component';
 
 @Component({
@@ -31,9 +32,19 @@ export class PublishersComponent implements OnInit {
 
   public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
 
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog,
+    private publisherService: PublisherService
+  ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+
+    this.publisherService.getPublisher().subscribe({
+      next: res => {
+        console.log('publishers: ', res)
+      }
+    })
+  }
 
 
   searchAction(ev: any) {
