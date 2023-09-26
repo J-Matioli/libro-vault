@@ -1,5 +1,3 @@
-import { Data } from "./data"
-
 export interface Publisher {
     id: string,
     usuarioId: string,
@@ -7,11 +5,8 @@ export interface Publisher {
     status: string
 }
 
-export interface PublisherResponse {
-    dados: {
-        dados: Data,
-        pagina: Publisher[]
-    } | null
+export interface PublisherResponse<T> {
+    dados: T
     mensagem: string[]
     sucesso: boolean
 }

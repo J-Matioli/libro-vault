@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { PublisherService } from 'src/app/core/services/publisher.service';
+import { Store } from '@ngrx/store';
 import { PublisherFormDialogComponent } from 'src/app/shared/publisher-form-dialog/publisher-form-dialog.component';
+import { RequestPublishers } from './store/actions/publisher.actions';
+import { Observable, tap } from 'rxjs';
+import { Publisher } from 'src/app/core/models/publisher';
+import { selectPublishers } from './store/selectors/publisher.selectors';
 
 @Component({
   selector: 'app-publishers',
@@ -11,39 +15,25 @@ import { PublisherFormDialogComponent } from 'src/app/shared/publisher-form-dial
 })
 export class PublishersComponent implements OnInit {
 
+  public publishers$: Observable<Publisher[]> = this.store.select(selectPublishers)
+    .pipe(
+      tap((data: Publisher[]) => console.log(data))
+    );
+
   public tableHeaders = {
-    id: 'Id',
-    name: 'Editora',
+    nome: 'Editora',
     qtdObras: 'Qtd. Obras'
   }
-
-  public publishers = [
-    { id: 1, name: 'Panini', qtdObras: 7 },
-    { id: 2, name: 'JBC', qtdObras: 4 },
-    { id: 3, name: 'Pipoca e Nanquim', qtdObras: 3 },
-    { id: 4, name: 'Devir', qtdObras: 2 },
-    { id: 5, name: 'NewPop', qtdObras: 1 },
-    { id: 6, name: 'DarkSide', qtdObras: 1 },
-    { id: 7, name: 'L&PM', qtdObras: 2 },
-    { id: 8, name: 'Companhia das Letras', qtdObras: 3 },
-    { id: 9, name: 'SESI', qtdObras: 2 },
-    { id: 10, name: 'Rocco', qtdObras: 1 }
-  ]
 
   public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
 
   constructor(
     private dialog: MatDialog,
-    private publisherService: PublisherService
+    private store: Store
   ) { }
 
   ngOnInit(): void { 
-
-    this.publisherService.getPublisher().subscribe({
-      next: res => {
-        console.log('publishers: ', res)
-      }
-    })
+    this.store.dispatch(new RequestPublishers({filter: {}}));
   }
 
 

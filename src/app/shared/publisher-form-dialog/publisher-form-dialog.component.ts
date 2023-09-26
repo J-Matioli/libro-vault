@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PublisherService } from 'src/app/core/services/publisher.service';
 
 export interface PublisherDialogData {
   action: 'ADD' | 'UPDATE' | 'DELETE';
@@ -18,6 +19,7 @@ export class PublisherFormDialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private publisherService: PublisherService,
     @Inject(MAT_DIALOG_DATA) public data: PublisherDialogData) { }
 
   ngOnInit(): void {
@@ -27,34 +29,58 @@ export class PublisherFormDialogComponent implements OnInit {
     }
   }
 
-  get editora() { return this.form.get('editora'); }
+  get nome() { return this.form.get('nome'); }
 
   createForm(): void {
     this.form = this.fb.group<PublisherForm>({
-      editora: new FormControl(null, { validators: [Validators.required] }),
+      nome: new FormControl(null, { validators: [Validators.required] }),
     })
   }
 
   populateForm() {
     this.form.patchValue({
-      editora: this.data.publisher.name
+      nome: this.data.publisher.name
     })
   }
 
   submit() {
     this.form.markAllAsTouched();
-    if (this.form.valid) {
-      console.log(this.data.action, this.form.value)
+    if (!this.form.valid) { return };
+    console.log(this.data.action, this.form.value)
+    
+    switch (this.data.action) {
+      case 'ADD':
+        this.addPublisher();
+        break;
+      case 'UPDATE':
+        this.updatePublisher();
+        break;
+      case 'DELETE':
+        this.deletePublisher();
+        break;
+      default:
+        break;
     }
   }
 
+  addPublisher() {
+    this.publisherService.postPublisher(this.form.value).subscribe({
+      next: res => {
+        console.log(res)
+      },
+      error: err => {
+        console.log(err)
+      }
+    })
+  }
+  updatePublisher() {}
   deletePublisher() {
     console.log(this.data.action, this.data.publisher.id)
   }
 }
 
 export interface PublisherForm {
-  editora: FormControl<string | null>
+  nome: FormControl<string | null>
 }
 
 export enum Actions {

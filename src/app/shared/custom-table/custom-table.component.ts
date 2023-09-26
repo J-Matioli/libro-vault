@@ -16,7 +16,7 @@ export class CustomTableComponent implements OnInit, OnChanges {
     // the value should be the column display name.
     @Input() columnDefinition: any = {}; 
     // This is an array of the table data which needs to be displayed.
-    @Input() tableData: any[];
+    @Input() tableData: any[] | null;
     // pixles after which the table data must be over flowed.
     @Input() tableOverFlowLimit: any;
  
