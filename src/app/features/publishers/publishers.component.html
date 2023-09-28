@@ -4,6 +4,7 @@
     </app-custom-title>
 
     <app-custom-table 
+        *appSkeleton="isloading; height: '500px'; width: '100%'"
         [columnDefinition]="tableHeaders"
         [tableData]="publishers$ | async"
         [displayDeleteAction]="true"

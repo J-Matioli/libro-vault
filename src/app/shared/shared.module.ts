@@ -118,6 +118,7 @@ import { SkeletonDirective } from '../core/directives/skeleton.directive';
     CustomFilterComponent,
     CustomFormComponent,
     CustomDetailsComponent,
+    SkeletonDirective,
     CustomCardComponent
   ],
   providers: [

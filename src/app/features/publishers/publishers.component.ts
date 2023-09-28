@@ -17,6 +17,8 @@ import { CustomTableComponent } from 'src/app/shared/custom-table/custom-table.c
 })
 export class PublishersComponent implements OnInit {
 
+  public isloading = true;
+
   @ViewChild(CustomTableComponent) table: CustomTableComponent
   public publishers$: Observable<Publisher[]> = this.store.select(selectPublishers) 
   public publishersInfo: Data
@@ -44,7 +46,7 @@ export class PublishersComponent implements OnInit {
       this.pageSettings.pageIndex = this.publishersInfo.paginaAtual - 1;
 
       if(this.pageSettings.pageIndex === 0) {
-        this.table.paginator.firstPage();
+        this.table?.paginator.firstPage();
       }
     });
   }
