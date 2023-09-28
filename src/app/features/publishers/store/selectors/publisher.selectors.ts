@@ -9,3 +9,8 @@ export const selectPublishers = createSelector(
     selectPublishersState,
     fromPublishers.selectAll
 )
+
+export const selectPublishersData = createSelector(
+    selectPublishersState,
+    state => state.data
+)

@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { debounceTime, fromEvent, map } from 'rxjs';
 import { Constants } from 'src/app/core/utils/Contants';
 
 @Component({
@@ -59,12 +60,15 @@ export class CustomTableComponent implements OnInit, OnChanges {
     @ViewChild(MatTable, { static: true }) table: MatTable<any>;
     @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
+    @ViewChild('filter', { static: true }) filter: ElementRef;
 
 
    constructor() {
        this.dataSource = new MatTableDataSource([]) as unknown as MatTableDataSource<any>;
    }
-  ngOnInit(): void {  }
+  ngOnInit(): void {  
+    this.applySearchFilter();
+  }
 
    ngOnChanges() {
        this.columnDefinition.CRUD_OPERATION = this.actionColumnName;
@@ -75,21 +79,29 @@ export class CustomTableComponent implements OnInit, OnChanges {
        }
    }
 
-   applySearchFilter(filterEvent: any) {
-        const filterValue = filterEvent.target.value;
-       const valueToSearch = filterValue.trim().toLowerCase();
-       if(this.enableBackendSearch) {
-           this.searchCalled.emit(valueToSearch);      
-       }
-       if (this.enableBackendPagination) {
-           this.paginator.firstPage();
-       } else {
-           this.dataSource.filter = valueToSearch;
-           if (this.dataSource.paginator) {
-               this.dataSource.paginator.firstPage();
-           }
-       }
-   }
+   applySearchFilter() {
+
+    const filter: HTMLInputElement = this.filter.nativeElement
+    fromEvent(filter, 'keyup')
+        .pipe(
+            debounceTime<any>(700),
+            map((_: KeyboardEvent) => filter.value))
+                .subscribe({
+                    next: (res: string) => {
+                        if(this.enableBackendSearch) {
+                            this.searchCalled.emit(res);      
+                        }
+                        if (this.enableBackendPagination) {
+                            this.paginator.firstPage();
+                        } else {
+                            this.dataSource.filter = res;
+                            if (this.dataSource.paginator) {
+                                this.dataSource.paginator.firstPage();
+                            }
+                        }
+                    }
+    })      
+}
 
    performAction(action: any, obj: any) {
        // If actionCalled is not defined, then simply return.

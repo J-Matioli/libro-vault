@@ -1,6 +1,6 @@
 <p>
   <mat-form-field color="accent">
-      <input matInput (keyup)="applySearchFilter($event)" placeholder="Pesquisar">
+      <input #filter matInput placeholder="Pesquisar">
   </mat-form-field>
 
   <button *ngIf="displayCreateAction" mat-fab (click)="performAction(userActions.Add, {})" 

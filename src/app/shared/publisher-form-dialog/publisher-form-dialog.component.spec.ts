@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomButtonComponent } from '../custom-button/custom-button.component';
 import { MatButtonModule } from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
+import { publisherReducer } from 'src/app/features/publishers/store/reducer/publisher';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 describe(PublisherFormDialogComponent.name, () => {
@@ -22,7 +25,10 @@ describe(PublisherFormDialogComponent.name, () => {
       imports: [ 
         ReactiveFormsModule,
         MatFormFieldModule,
+        StoreModule.forRoot({}), 
+        StoreModule.forFeature('publisher', publisherReducer),
         MatButtonModule,
+        HttpClientTestingModule,
         MatDialogModule,
         MatInputModule,
         BrowserAnimationsModule

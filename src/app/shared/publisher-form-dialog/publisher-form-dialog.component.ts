@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { PublisherService } from 'src/app/core/services/publisher.service';
+import { AddPublisher } from 'src/app/features/publishers/store/actions/publisher.actions';
 
 export interface PublisherDialogData {
   action: 'ADD' | 'UPDATE' | 'DELETE';
@@ -19,6 +21,7 @@ export class PublisherFormDialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private store: Store,
     private publisherService: PublisherService,
     @Inject(MAT_DIALOG_DATA) public data: PublisherDialogData) { }
 
@@ -46,8 +49,6 @@ export class PublisherFormDialogComponent implements OnInit {
   submit() {
     this.form.markAllAsTouched();
     if (!this.form.valid) { return };
-    console.log(this.data.action, this.form.value)
-    
     switch (this.data.action) {
       case 'ADD':
         this.addPublisher();
@@ -64,15 +65,9 @@ export class PublisherFormDialogComponent implements OnInit {
   }
 
   addPublisher() {
-    this.publisherService.postPublisher(this.form.value).subscribe({
-      next: res => {
-        console.log(res)
-      },
-      error: err => {
-        console.log(err)
-      }
-    })
+    this.store.dispatch(new AddPublisher({data: this.form.value}))
   }
+
   updatePublisher() {}
   deletePublisher() {
     console.log(this.data.action, this.data.publisher.id)

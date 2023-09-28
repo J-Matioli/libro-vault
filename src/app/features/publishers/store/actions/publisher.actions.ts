@@ -1,6 +1,6 @@
-import { Data } from "@angular/router";
 import { Update } from "@ngrx/entity";
 import { Action } from "@ngrx/store";
+import { Data } from "src/app/core/models/data";
 import { Publisher, PublisherResponse } from "src/app/core/models/publisher";
 
 export enum PublisherActionTypes {
@@ -19,7 +19,7 @@ export enum PublisherActionTypes {
 
 export class RequestPublishers implements Action {
     readonly type = PublisherActionTypes.RequestPublishers;
-    constructor(public payload: { filter: any }) {}
+    constructor(public payload: { filter: Filter }) {}
 }
 
 export class LoadedPublishers implements Action {
@@ -62,6 +62,13 @@ export class DeletePublisherSuccess implements Action {
     readonly type = PublisherActionTypes.DeletePublisherSuccess;
 
     constructor(public payload: {id: string}) {}
+}
+
+export interface Filter {
+    PalavraChave?: string
+    Ordenar?: 'Crescente' | 'Decrescente' | 'Novos' | 'Antigos'
+    NumeroPagina?: number
+    ResultadosExibidos?: number
 }
 
 export type PublisherActions =

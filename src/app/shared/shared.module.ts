@@ -33,6 +33,7 @@ import { CustomFilterComponent } from './custom-filter/custom-filter.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSortModule } from '@angular/material/sort';
 import { CustomChipComponent } from './custom-chip/custom-chip.component';
 import { CustomSelectComponent } from './custom-select/custom-select.component';
 import { MatRippleModule } from '@angular/material/core';
@@ -88,6 +89,7 @@ import { SkeletonDirective } from '../core/directives/skeleton.directive';
     MatProgressBarModule,
     MatIconModule,
     MatDialogModule,
+    MatSortModule,
     MatDividerModule,
     MatFormFieldModule,
     MatMenuModule,
