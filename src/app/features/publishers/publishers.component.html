@@ -1,10 +1,10 @@
 <div class="publishers c-container">
-    <app-custom-title title="Editoras">
+    <app-custom-title title="Editoras" *appSkeleton="isloading; height: '51px'; width: '100%'" >
         <app-custom-button color="accent" (clickButton)="userAction()"  >Adicionar</app-custom-button>
     </app-custom-title>
 
-    <app-custom-table 
-        *appSkeleton="isloading; height: '500px'; width: '100%'"
+    <app-custom-table
+        [isLoading]="isloading || false"
         [columnDefinition]="tableHeaders"
         [tableData]="publishers$ | async"
         [displayDeleteAction]="true"
@@ -17,5 +17,6 @@
         [pageProperties]="pageSettings"
         (searchCalled)="searchAction($event)"
         (pageEventCalled)="pageAction($event)"
+        (sortCalled)="sortAction($event)"
     ></app-custom-table>
 </div>

@@ -17,10 +17,11 @@ import { CustomTableComponent } from 'src/app/shared/custom-table/custom-table.c
 })
 export class PublishersComponent implements OnInit {
 
-  public isloading = true;
+  public isloading: boolean;
 
   @ViewChild(CustomTableComponent) table: CustomTableComponent
-  public publishers$: Observable<Publisher[]> = this.store.select(selectPublishers) 
+  
+  public publishers$: Observable<Publisher[]> = this.store.select(selectPublishers).pipe(tap(_ => this.isloading = false )) 
   public publishersInfo: Data
 
   public tableHeaders = {
@@ -52,6 +53,7 @@ export class PublishersComponent implements OnInit {
   }
 
   searchAction(ev: string) {
+    this.isloading = true
     this.filter = ev;
     this.store.dispatch(new RequestPublishers({filter: {
         PalavraChave: this.filter,
@@ -61,12 +63,17 @@ export class PublishersComponent implements OnInit {
   }
 
   pageAction(ev: any) {
+    this.isloading = true
     this.store.dispatch(new RequestPublishers({filter: {
         PalavraChave: this.filter,
         ResultadosExibidos: ev.pageSize,
         NumeroPagina: ev.pageIndex + 1
       }})
     );
+  }
+
+  sortAction(ev: any) {
+    console.log(ev);
   }
 
   userAction(ev?: any) {

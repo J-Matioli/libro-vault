@@ -6,6 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSortModule } from '@angular/material/sort';
 
 describe(CustomTableComponent.name, () => {
   let component: CustomTableComponent;
@@ -18,6 +19,7 @@ describe(CustomTableComponent.name, () => {
         MatPaginatorModule,
         MatTableModule,
         MatFormFieldModule,
+        MatSortModule,
         MatInputModule,
         BrowserAnimationsModule
       ]

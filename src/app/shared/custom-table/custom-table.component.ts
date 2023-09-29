@@ -20,7 +20,9 @@ export class CustomTableComponent implements OnInit, OnChanges {
     @Input() tableData: any[] | null;
     // pixles after which the table data must be over flowed.
     @Input() tableOverFlowLimit: any;
- 
+
+    @Input() isLoading: boolean;
+
     dataSource: MatTableDataSource<any>; // its any since, the data type is defined at runtime by the parent component.
     pageSizeOptions: number[] = Constants.pageSizeOptions; // This tells how many items can be displayed per page.
     @Input()pageProperties: PageEvent = Constants.pageSettings();
@@ -56,6 +58,8 @@ export class CustomTableComponent implements OnInit, OnChanges {
     // If enableBackendSearch is set to true, a call is made to the Parent component, which in turn calls the API.
     @Output() readonly searchCalled = new EventEmitter();
 
+    @Output() readonly sortCalled = new EventEmitter();
+
     // Respective components as per Angular Material Design Guidelines.
     @ViewChild(MatTable, { static: true }) table: MatTable<any>;
     @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -68,6 +72,7 @@ export class CustomTableComponent implements OnInit, OnChanges {
    }
   ngOnInit(): void {  
     this.applySearchFilter();
+    this.applySort();
   }
 
    ngOnChanges() {
@@ -77,6 +82,12 @@ export class CustomTableComponent implements OnInit, OnChanges {
        if (!this.enableBackendPagination) {
            this.dataSource.paginator = this.paginator;
        }
+   }
+
+   applySort() {
+        this.sort.sortChange.subscribe(sort => {
+            this.sortCalled.emit(sort)
+        })
    }
 
    applySearchFilter() {

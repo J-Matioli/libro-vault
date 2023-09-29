@@ -51,6 +51,7 @@ import { DetailsInfoFieldComponent } from './custom-details/components/details-i
 import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog/add-work-shelf-dialog.component';
 import { SkeletonComponent } from './skeleton/skeleton.component';
 import { SkeletonDirective } from '../core/directives/skeleton.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { SkeletonDirective } from '../core/directives/skeleton.directive';
     FormsModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatProgressSpinnerModule,
     MatCardModule,
     MatRippleModule,
     ImageCropperModule,
