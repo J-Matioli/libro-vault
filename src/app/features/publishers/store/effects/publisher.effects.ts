@@ -29,7 +29,9 @@ export class PublisherEffects{
                 ofType(PublisherActionTypes.AddPublisher),
                 concatMap((action: any) => this.publisherService.postPublisher(action.payload.data)
                 .pipe(
-                    map((data: any) => new RequestPublishers({filter: {}}))
+                    map((data: any) => new RequestPublishers({filter: {
+                        Ordenar: 'Novos',
+                    }}))
                 ))
             ),        
     );

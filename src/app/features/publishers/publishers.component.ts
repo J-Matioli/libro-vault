@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 import { PublisherFormDialogComponent } from 'src/app/shared/publisher-form-dialog/publisher-form-dialog.component';
-import { RequestPublishers } from './store/actions/publisher.actions';
+import { RequestPublishers, Sort } from './store/actions/publisher.actions';
 import { Observable, take, tap } from 'rxjs';
 import { Publisher } from 'src/app/core/models/publisher';
 import { selectPublishers, selectPublishersData, selectPublishersLoader } from './store/selectors/publisher.selectors';
@@ -32,6 +32,7 @@ export class PublishersComponent implements OnInit {
 
   public pageSettings: PageEvent = { length: 0, pageIndex: 0, pageSize: 10 }
   public filter: string = '';
+  public sort: Sort = 'Novos';
 
   constructor(
     private dialog: MatDialog,
@@ -39,7 +40,9 @@ export class PublishersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
-    this.store.dispatch(new RequestPublishers({filter: {} }));
+    this.store.dispatch(new RequestPublishers({filter: {
+      Ordenar: this.sort || 'Novos'
+    } }));
     
     this.store.select(selectPublishersData).subscribe(data => {
       this.publishersInfo = data;
@@ -58,6 +61,7 @@ export class PublishersComponent implements OnInit {
     this.filter = ev;
     this.store.dispatch(new RequestPublishers({filter: {
         PalavraChave: this.filter,
+        Ordenar: this.sort || 'Novos',
         ResultadosExibidos: this.publishersInfo.resultadosExibidosPagina
       }
     }));
@@ -68,13 +72,22 @@ export class PublishersComponent implements OnInit {
     this.store.dispatch(new RequestPublishers({filter: {
         PalavraChave: this.filter,
         ResultadosExibidos: ev.pageSize,
+        Ordenar: this.sort || 'Novos',
         NumeroPagina: ev.pageIndex + 1
       }})
     );
   }
 
   sortAction(ev: any) {
-    console.log(ev);
+    this.isloading = true;
+    this.sort = SortTypes[ev.direction as 'asc' | 'desc'] ;
+    
+    this.store.dispatch(new RequestPublishers({filter: {
+      PalavraChave: this.filter,
+      Ordenar: this.sort || 'Novos',
+      ResultadosExibidos: this.publishersInfo.resultadosExibidosPagina
+    }
+    }));
   }
 
   userAction(ev?: any) {
@@ -86,4 +99,9 @@ export class PublishersComponent implements OnInit {
       },
     });
   }
+}
+
+export enum SortTypes {
+  'asc' = 'Crescente',
+  'desc' = 'Decrescente'
 }

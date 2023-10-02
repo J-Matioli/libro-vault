@@ -66,10 +66,12 @@ export class DeletePublisherSuccess implements Action {
 
 export interface Filter {
     PalavraChave?: string
-    Ordenar?: 'Crescente' | 'Decrescente' | 'Novos' | 'Antigos'
+    Ordenar?: Sort
     NumeroPagina?: number
     ResultadosExibidos?: number
 }
+
+export type Sort = 'Crescente' | 'Decrescente' | 'Novos' | 'Antigos'
 
 export type PublisherActions =
     RequestPublishers
