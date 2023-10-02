@@ -14,3 +14,8 @@ export const selectPublishersData = createSelector(
     selectPublishersState,
     state => state.data
 )
+
+export const selectPublishersLoader = createSelector(
+    selectPublishersState,
+    state => state.requestLoader
+)

@@ -4,9 +4,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 import { PublisherFormDialogComponent } from 'src/app/shared/publisher-form-dialog/publisher-form-dialog.component';
 import { RequestPublishers } from './store/actions/publisher.actions';
-import { Observable, tap } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { Publisher } from 'src/app/core/models/publisher';
-import { selectPublishers, selectPublishersData } from './store/selectors/publisher.selectors';
+import { selectPublishers, selectPublishersData, selectPublishersLoader } from './store/selectors/publisher.selectors';
 import { Data } from 'src/app/core/models/data';
 import { CustomTableComponent } from 'src/app/shared/custom-table/custom-table.component';
 
@@ -21,7 +21,8 @@ export class PublishersComponent implements OnInit {
 
   @ViewChild(CustomTableComponent) table: CustomTableComponent
   
-  public publishers$: Observable<Publisher[]> = this.store.select(selectPublishers).pipe(tap(_ => this.isloading = false )) 
+  public routeNotReady$: Observable<boolean> = this.store.select(selectPublishersLoader).pipe(take(2))
+  public publishers$: Observable<Publisher[]> = this.store.select(selectPublishers).pipe(tap(_ => this.isloading = false ))
   public publishersInfo: Data
 
   public tableHeaders = {

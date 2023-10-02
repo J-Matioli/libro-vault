@@ -1,9 +1,14 @@
 <div class="publishers c-container">
-    <app-custom-title title="Editoras" *appSkeleton="isloading; height: '51px'; width: '100%'" >
+    <app-custom-title title="Editoras" *appSkeleton="(routeNotReady$ | async)!; height: '51px'; width: '100%'; className: 'mb-40'" >
         <app-custom-button color="accent" (clickButton)="userAction()"  >Adicionar</app-custom-button>
     </app-custom-title>
 
+    <ng-container *ngIf="(routeNotReady$ | async)">
+        <div class="publishers__table-skeleton" *appSkeleton="true; height: '500px'; width: '100%'"></div>
+    </ng-container>
+
     <app-custom-table
+        *ngIf="!(routeNotReady$ | async)"
         [isLoading]="isloading || false"
         [columnDefinition]="tableHeaders"
         [tableData]="publishers$ | async"

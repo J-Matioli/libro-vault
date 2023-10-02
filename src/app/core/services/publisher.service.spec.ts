@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { PublisherService } from './publisher.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { StoreModule } from '@ngrx/store';
+import { publisherReducer } from 'src/app/features/publishers/store/reducer/publisher';
 
 describe(PublisherService.name, () => {
   let service: PublisherService;
@@ -9,7 +11,11 @@ describe(PublisherService.name, () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [
+        HttpClientTestingModule,
+        StoreModule.forRoot({}), 
+        StoreModule.forFeature('publisher', publisherReducer),
+      ]
     });
     service = TestBed.inject(PublisherService);
     httpController = TestBed.inject(HttpTestingController);
