@@ -1,13 +1,16 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { PublisherService } from 'src/app/core/services/publisher.service';
-import { AddPublisher } from 'src/app/features/publishers/store/actions/publisher.actions';
+import { Subject, takeUntil } from 'rxjs';
+import { Publisher } from 'src/app/core/models/publisher';
+import { AddPublisher, DeletePublisher, PublisherActionTypes, UpdatePublisher } from 'src/app/features/publishers/store/actions/publisher.actions';
+
 
 export interface PublisherDialogData {
   action: 'ADD' | 'UPDATE' | 'DELETE';
-  publisher: any;
+  publisher: Publisher;
 }
 
 @Component({
@@ -15,15 +18,44 @@ export interface PublisherDialogData {
   templateUrl: './publisher-form-dialog.component.html',
   styleUrls: ['./publisher-form-dialog.component.scss']
 })
-export class PublisherFormDialogComponent implements OnInit {
-  public actions: typeof Actions = Actions;
+export class PublisherFormDialogComponent implements OnInit, OnDestroy {
+  isLoading: boolean = false;
+  destroyed$ = new Subject<boolean>();
+  public actions: typeof ReqActions = ReqActions;
   public form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private store: Store,
-    private publisherService: PublisherService,
-    @Inject(MAT_DIALOG_DATA) public data: PublisherDialogData) { }
+    private dialogRef: MatDialogRef<PublisherFormDialogComponent>,
+    actions$: Actions,
+    @Inject(MAT_DIALOG_DATA) public data: PublisherDialogData) {
+
+      actions$.pipe(
+        ofType(
+          PublisherActionTypes.AddPublisherSucces,
+          PublisherActionTypes.UpdatePublisherSuccess,
+          PublisherActionTypes.DeletePublisherSuccess),
+        takeUntil(this.destroyed$)
+     )
+     .subscribe(() => {
+        this.isLoading = false;
+        this.dialogRef.close();
+     });
+
+     actions$.pipe(
+      ofType(
+        PublisherActionTypes.AddPublisherError,
+        PublisherActionTypes.UpdatePublisherError,
+        PublisherActionTypes.DeletePublisherError),
+      takeUntil(this.destroyed$)
+   )
+   .subscribe(() => {
+      this.isLoading = false;
+      this.form.reset();
+   });
+
+    }
 
   ngOnInit(): void {
     this.createForm();
@@ -42,13 +74,14 @@ export class PublisherFormDialogComponent implements OnInit {
 
   populateForm() {
     this.form.patchValue({
-      nome: this.data.publisher.name
+      nome: this.data.publisher.nome
     })
   }
 
   submit() {
     this.form.markAllAsTouched();
     if (!this.form.valid) { return };
+    this.isLoading = true;
     switch (this.data.action) {
       case 'ADD':
         this.addPublisher();
@@ -60,6 +93,7 @@ export class PublisherFormDialogComponent implements OnInit {
         this.deletePublisher();
         break;
       default:
+        this.isLoading = false;
         break;
     }
   }
@@ -68,9 +102,18 @@ export class PublisherFormDialogComponent implements OnInit {
     this.store.dispatch(new AddPublisher({data: this.form.value}))
   }
 
-  updatePublisher() {}
+  updatePublisher() {
+    const pyload = Object.assign({}, this.data.publisher, this.form.value)    
+    this.store.dispatch(new UpdatePublisher({data: pyload}))
+  }
+  
   deletePublisher() {
-    console.log(this.data.action, this.data.publisher.id)
+    this.store.dispatch(new DeletePublisher({id: this.data.publisher.id}))
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 }
 
@@ -78,7 +121,7 @@ export interface PublisherForm {
   nome: FormControl<string | null>
 }
 
-export enum Actions {
+export enum ReqActions {
   'ADD' = 'Adicionar',
   'UPDATE' = 'Atualizar',
   'DELETE' = 'Remover'

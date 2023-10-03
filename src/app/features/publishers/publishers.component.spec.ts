@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { publisherReducer } from './store/reducer/publisher';
 import { EffectsModule } from '@ngrx/effects';
 import { PublisherEffects } from './store/effects/publisher.effects';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe(PublishersComponent.name, () => {
   let component: PublishersComponent;
@@ -19,6 +20,7 @@ describe(PublishersComponent.name, () => {
         PublishersModule,
         HttpClientTestingModule,
         StoreModule.forRoot({}), 
+        MatSnackBarModule,
         StoreModule.forFeature('publisher', publisherReducer),
         EffectsModule.forRoot([]),
         EffectsModule.forFeature([PublisherEffects]),

@@ -11,7 +11,10 @@
     </mat-dialog-content>
     <mat-dialog-actions align="end" class="publisher-form__actions">
         <app-custom-button class="publisher-form__close-btn" mat-dialog-close>Voltar</app-custom-button>
-        <app-custom-button class="publisher-form__submit-btn" color="primary"
+        <app-custom-button 
+            class="publisher-form__submit-btn"
+            color="primary"
+            [isLoading]="isLoading"            
             (click)="submit()">Salvar</app-custom-button>
     </mat-dialog-actions>
 </ng-template>
@@ -19,11 +22,14 @@
 <ng-template #publisherDelete>
     <h2 mat-dialog-title>{{ actions[data.action] }} editora</h2>
     <mat-dialog-content class="mat-typography">
-        <p>Tem certeza que deseja remover a editora: {{ data.publisher.name }}</p>
+        <p>Tem certeza que deseja remover a editora: {{ data.publisher.nome }}</p>
     </mat-dialog-content>
     <mat-dialog-actions align="end" class="publisher-form__actions">
         <app-custom-button class="publisher-form__close-btn" mat-dialog-close>Voltar</app-custom-button>
-        <app-custom-button class="publisher-form__submit-btn" color="primary"
+        <app-custom-button 
+            class="publisher-form__submit-btn"
+            color="primary"
+            [isLoading]="isLoading"
             (click)="deletePublisher()">Remover</app-custom-button>
     </mat-dialog-actions>
 </ng-template>
