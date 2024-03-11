@@ -7,12 +7,12 @@ export enum PublisherLoaderActionTypes {
 
 export class RequestLoaderPublisher implements Action {
     readonly type = PublisherLoaderActionTypes.RequestLoaderPublisher
-    constructor(public payload: any) {}
+    constructor() {}
 }
 
 export class RequestFinishLoaderPublisher implements Action {
     readonly type = PublisherLoaderActionTypes.RequestFinishLoaderPublisher
-    constructor(public payload: any) {}
+    constructor() {}
 }
 
 export type PublisherLoaderActions =

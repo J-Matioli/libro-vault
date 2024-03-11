@@ -23,10 +23,10 @@ export class PublisherService {
   ) { }
 
   getPublisher(params?: string): Observable<PublisherResponse<{dados: Data, pagina: Publisher[]} | null>>  {
-    this.store.dispatch(new RequestLoaderPublisher({}))
+    this.store.dispatch(new RequestLoaderPublisher())
     return this.http.get<PublisherResponse<{dados: Data, pagina: Publisher[]} | null>>(`${this.apiUrl}editoras?${params || ''}`)
       .pipe(
-        finalize(() => this.store.dispatch(new RequestFinishLoaderPublisher({})))
+        finalize(() => this.store.dispatch(new RequestFinishLoaderPublisher()))
       )
   }
 
