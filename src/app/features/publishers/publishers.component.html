@@ -3,13 +3,13 @@
         <app-custom-button color="accent" (clickButton)="userAction()"  >Adicionar</app-custom-button>
     </app-custom-title>
 
-    <ng-container *ngIf="(routeNotReady$ | async)">
+    <ng-container *ngIf="(routeNotReady$ | async) || (isloading | async)">
+        <div class="publishers__filter-skeleton" *appSkeleton="true; height: '50px'; width: '100%'; className: 'mb-40'"></div>
         <div class="publishers__table-skeleton" *appSkeleton="true; height: '500px'; width: '100%'"></div>
     </ng-container>
 
     <app-custom-table
-        *ngIf="!(routeNotReady$ | async)"
-        [isLoading]="isloading || false"
+        [ngClass]="{'invisible': (routeNotReady$ | async) || (isloading | async)}"
         [columnDefinition]="tableHeaders"
         [tableData]="publishers$ | async"
         [displayDeleteAction]="true"
