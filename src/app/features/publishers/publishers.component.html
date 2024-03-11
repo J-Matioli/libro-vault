@@ -9,7 +9,8 @@
     </ng-container>
 
     <app-custom-table
-        [ngClass]="{'invisible': (routeNotReady$ | async) || (isloading | async)}"
+        [ngClass]="{'invisible': (routeNotReady$ | async)}"
+        [isLoading]="(isloading | async)!"
         [columnDefinition]="tableHeaders"
         [tableData]="publishers$ | async"
         [displayDeleteAction]="true"
