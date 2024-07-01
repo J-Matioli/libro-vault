@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { concatMap, map, mergeMap } from "rxjs";
 import { PublisherService } from "src/app/core/services/publisher.service";
-import { AddPublisherSucces, DeletePublisherSuccess, LoadedPublishers, PublisherActionTypes, RequestPublishers, UpdatePublisherSuccess } from "../actions/publisher.actions";
+import { AddPublisherSuccess, DeletePublisherSuccess, LoadedPublishers, PublisherActionTypes, RequestPublishers, UpdatePublisherSuccess } from "../actions/publisher.actions";
 
 @Injectable()
 export class PublisherEffects{
@@ -29,7 +29,7 @@ export class PublisherEffects{
                 ofType(PublisherActionTypes.AddPublisher),
                 concatMap((action: any) => this.publisherService.postPublisher(action.payload.data)
                 .pipe(
-                    map((data: any) => new AddPublisherSucces({}))
+                    map((_) => new AddPublisherSuccess())
                 ))
             ),        
     );
@@ -37,8 +37,8 @@ export class PublisherEffects{
     addPublisherSucces = createEffect(
         () => this.actions$
             .pipe(
-                ofType(PublisherActionTypes.AddPublisherSucces),
-                map((action: any) => new RequestPublishers({filter: {
+                ofType(PublisherActionTypes.AddPublisherSuccess),
+                map((_) => new RequestPublishers({data: {
                     Ordenar: 'Novos',
                 }})
             ),        
@@ -50,7 +50,7 @@ export class PublisherEffects{
                 ofType(PublisherActionTypes.UpdatePublisher),
                 concatMap((action: any) => this.publisherService.updatePublisher(action.payload.data)
                 .pipe(
-                    map((data: any) => new UpdatePublisherSuccess({}))
+                    map((_) => new UpdatePublisherSuccess())
                 ))
             ),        
     );
@@ -59,7 +59,7 @@ export class PublisherEffects{
         () => this.actions$
             .pipe(
                 ofType(PublisherActionTypes.UpdatePublisherSuccess),
-                map((action: any) => new RequestPublishers({filter: {
+                map((_) => new RequestPublishers({data: {
                     Ordenar: 'Novos',
                 }})
             ),        
@@ -71,7 +71,7 @@ export class PublisherEffects{
                 ofType(PublisherActionTypes.DeletePublisher),
                 concatMap((action: any) => this.publisherService.deletePublisher(action.payload.id)
                 .pipe(
-                    map((data: any) => new DeletePublisherSuccess({}))
+                    map((_) => new DeletePublisherSuccess())
                 ))
             ),        
     );
@@ -80,7 +80,7 @@ export class PublisherEffects{
         () => this.actions$
             .pipe(
                 ofType(PublisherActionTypes.DeletePublisherSuccess),
-                map((action: any) => new RequestPublishers({filter: {
+                map((_) => new RequestPublishers({data: {
                     Ordenar: 'Novos',
                 }})
             ),        

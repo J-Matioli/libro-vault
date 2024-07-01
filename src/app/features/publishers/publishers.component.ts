@@ -39,7 +39,7 @@ export class PublishersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
-    this.store.dispatch(new RequestPublishers({filter: {
+    this.store.dispatch(new RequestPublishers({data: {
       Ordenar: this.sort || 'Novos'
     } }));
     
@@ -57,7 +57,7 @@ export class PublishersComponent implements OnInit {
 
   searchAction(ev: string) {
     this.filter = ev;
-    this.store.dispatch(new RequestPublishers({filter: {
+    this.store.dispatch(new RequestPublishers({data: {
         PalavraChave: this.filter,
         Ordenar: this.sort || 'Novos',
         ResultadosExibidos: this.publishersInfo.resultadosExibidosPagina
@@ -66,7 +66,7 @@ export class PublishersComponent implements OnInit {
   }
 
   pageAction(ev: any) {
-    this.store.dispatch(new RequestPublishers({filter: {
+    this.store.dispatch(new RequestPublishers({data: {
         PalavraChave: this.filter,
         ResultadosExibidos: ev.pageSize,
         Ordenar: this.sort || 'Novos',
@@ -78,7 +78,7 @@ export class PublishersComponent implements OnInit {
   sortAction(ev: any) {;
     this.sort = SortTypes[ev.direction as 'asc' | 'desc'] ;
     
-    this.store.dispatch(new RequestPublishers({filter: {
+    this.store.dispatch(new RequestPublishers({data: {
       PalavraChave: this.filter,
       Ordenar: this.sort || 'Novos',
       ResultadosExibidos: this.publishersInfo.resultadosExibidosPagina

@@ -8,7 +8,7 @@ export enum PublisherActionTypes {
     LoadedPublishers = '[APP Publisher Effects] All Publishers Loaded',
 
     AddPublisher = '[APP Publisher Dialog Component] Add Publisher',
-    AddPublisherSucces = '[APP Publisher Effects] Add Publisher Success',
+    AddPublisherSuccess = '[APP Publisher Effects] Add Publisher Success',
     AddPublisherError = '[APP Publisher Service] Add Publisher Error',
 
     UpdatePublisher = '[APP Publisher Dialog Component] Update Publisher',
@@ -22,7 +22,7 @@ export enum PublisherActionTypes {
 
 export class RequestPublishers implements Action {
     readonly type = PublisherActionTypes.RequestPublishers;
-    constructor(public payload: { filter: Filter }) {}
+    constructor(public payload: { data: Filter }) {}
 }
 
 export class LoadedPublishers implements Action {
@@ -37,16 +37,12 @@ export class AddPublisher implements Action {
     constructor(public payload: { data: Publisher }) {}
 }
 
-export class AddPublisherSucces implements Action {
-    readonly type = PublisherActionTypes.AddPublisherSucces;
-
-    constructor(public payload: any) {}
+export class AddPublisherSuccess implements Action {
+    readonly type = PublisherActionTypes.AddPublisherSuccess;
 }
 
 export class AddPublisherError implements Action {
     readonly type = PublisherActionTypes.AddPublisherError;
-
-    constructor(public payload: any) {}
 }
 
 export class UpdatePublisher implements Action {
@@ -57,14 +53,10 @@ export class UpdatePublisher implements Action {
 
 export class UpdatePublisherSuccess implements Action {
     readonly type = PublisherActionTypes.UpdatePublisherSuccess;
-
-    constructor(public payload: any) {}
 }
 
 export class UpdatePublisherError implements Action {
     readonly type = PublisherActionTypes.UpdatePublisherError;
-
-    constructor(public payload: {}) {}
 }
 
 export class DeletePublisher implements Action {
@@ -75,14 +67,10 @@ export class DeletePublisher implements Action {
 
 export class DeletePublisherSuccess implements Action {
     readonly type = PublisherActionTypes.DeletePublisherSuccess;
-
-    constructor(public payload: {}) {}
 }
 
 export class DeletePublisherError implements Action {
     readonly type = PublisherActionTypes.DeletePublisherError;
-
-    constructor(public payload: {}) {}
 }
 
 export interface Filter {
@@ -98,7 +86,7 @@ export type PublisherActions =
     RequestPublishers
     | LoadedPublishers
     | AddPublisher
-    | AddPublisherSucces
+    | AddPublisherSuccess
     | AddPublisherError
     | UpdatePublisher
     | UpdatePublisherSuccess

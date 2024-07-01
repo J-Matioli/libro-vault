@@ -33,7 +33,7 @@ export class PublisherFormDialogComponent implements OnInit, OnDestroy {
 
       actions$.pipe(
         ofType(
-          PublisherActionTypes.AddPublisherSucces,
+          PublisherActionTypes.AddPublisherSuccess,
           PublisherActionTypes.UpdatePublisherSuccess,
           PublisherActionTypes.DeletePublisherSuccess),
         takeUntil(this.destroyed$)
