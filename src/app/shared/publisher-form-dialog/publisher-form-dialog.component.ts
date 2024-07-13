@@ -103,8 +103,8 @@ export class PublisherFormDialogComponent implements OnInit, OnDestroy {
   }
 
   updatePublisher() {
-    const pyload = Object.assign({}, this.data.publisher, this.form.value)    
-    this.store.dispatch(new UpdatePublisher({data: pyload}))
+    const payload = Object.assign({}, this.data.publisher, this.form.value)
+    this.store.dispatch(new UpdatePublisher({data: payload}))
   }
   
   deletePublisher() {

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, finalize, tap, throwError } from 'rxjs';
 import { Publisher, PublisherResponse } from '../models/publisher';
@@ -6,7 +6,7 @@ import { Data } from '../models/data';
 import { Store } from '@ngrx/store';
 import { RequestFinishLoaderPublisher, RequestLoaderPublisher } from 'src/app/features/publishers/store/actions/loader.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AddPublisherError, DeletePublisherError } from 'src/app/features/publishers/store/actions/publisher.actions';
+import { AddPublisherError, DeletePublisherError, UpdatePublisherError } from 'src/app/features/publishers/store/actions/publisher.actions';
 
 
 @Injectable({
@@ -34,9 +34,9 @@ export class PublisherService {
     return this.http.post<PublisherResponse<Publisher>>(`${this.apiUrl}editoras`, publisher)
       .pipe(
         tap(res => this.openSnackBar(res.mensagem[0])),
-        catchError(err => {
+        catchError((err: HttpErrorResponse) => {
           this.store.dispatch(new AddPublisherError())
-          this.openSnackBar(err.error.erros[0])
+          this.openSnackBar(err.error?.erros[0])
           return throwError(() => err)
         })
       )
@@ -47,8 +47,8 @@ export class PublisherService {
       .pipe(
         tap(res => this.openSnackBar(res.mensagem[0])),
         catchError(err => {
-          this.store.dispatch(new AddPublisherError())
-          this.openSnackBar(err.error.erros[0])
+          this.store.dispatch(new UpdatePublisherError())
+          this.openSnackBar(err.error?.erros[0])
           return throwError(() => err)
         })
       )
@@ -60,7 +60,7 @@ export class PublisherService {
         tap(res => this.openSnackBar(res.mensagem[0])),
         catchError(err => {
           this.store.dispatch(new DeletePublisherError())
-          this.openSnackBar(err.error.erros[0])
+          this.openSnackBar(err.error?.erros[0])
           return throwError(() => err)
         })
       )

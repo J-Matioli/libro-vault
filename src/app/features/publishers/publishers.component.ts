@@ -26,7 +26,7 @@ export class PublishersComponent implements OnInit {
 
   public tableHeaders = {
     nome: 'Editora',
-    qtdObras: 'Qtd. Obras'
+    quantidadeObras: 'Qtd. Obras'
   }
 
   public pageSettings: PageEvent = { length: 0, pageIndex: 0, pageSize: 10 }

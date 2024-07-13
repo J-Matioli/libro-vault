@@ -16,8 +16,8 @@ export class PublisherEffects{
             .pipe(
                 ofType(PublisherActionTypes.RequestPublishers),
                 mergeMap(({payload}) => {
-                    const { filter } = payload
-                    return this.publisherService.getPublisher(this.parseParams(filter))
+                    const { data } = payload
+                    return this.publisherService.getPublisher(this.parseParams(data))
                 }),
                 map(data =>  new LoadedPublishers({data}))
             )            
