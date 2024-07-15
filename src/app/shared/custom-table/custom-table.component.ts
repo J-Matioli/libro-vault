@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { debounceTime, fromEvent, map } from 'rxjs';
 import { Constants } from 'src/app/core/utils/Contants';
 
 @Component({
@@ -16,10 +17,12 @@ export class CustomTableComponent implements OnInit, OnChanges {
     // the value should be the column display name.
     @Input() columnDefinition: any = {}; 
     // This is an array of the table data which needs to be displayed.
-    @Input() tableData: any[];
+    @Input() tableData: any[] | null;
     // pixles after which the table data must be over flowed.
     @Input() tableOverFlowLimit: any;
- 
+
+    @Input() isLoading: boolean;
+
     dataSource: MatTableDataSource<any>; // its any since, the data type is defined at runtime by the parent component.
     pageSizeOptions: number[] = Constants.pageSizeOptions; // This tells how many items can be displayed per page.
     @Input()pageProperties: PageEvent = Constants.pageSettings();
@@ -55,16 +58,22 @@ export class CustomTableComponent implements OnInit, OnChanges {
     // If enableBackendSearch is set to true, a call is made to the Parent component, which in turn calls the API.
     @Output() readonly searchCalled = new EventEmitter();
 
+    @Output() readonly sortCalled = new EventEmitter();
+
     // Respective components as per Angular Material Design Guidelines.
     @ViewChild(MatTable, { static: true }) table: MatTable<any>;
     @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
+    @ViewChild('filter', { static: true }) filter: ElementRef;
 
 
    constructor() {
        this.dataSource = new MatTableDataSource([]) as unknown as MatTableDataSource<any>;
    }
-  ngOnInit(): void {  }
+  ngOnInit(): void {  
+    this.applySearchFilter();
+    this.applySort();
+  }
 
    ngOnChanges() {
        this.columnDefinition.CRUD_OPERATION = this.actionColumnName;
@@ -75,21 +84,35 @@ export class CustomTableComponent implements OnInit, OnChanges {
        }
    }
 
-   applySearchFilter(filterEvent: any) {
-        const filterValue = filterEvent.target.value;
-       const valueToSearch = filterValue.trim().toLowerCase();
-       if(this.enableBackendSearch) {
-           this.searchCalled.emit(valueToSearch);      
-       }
-       if (this.enableBackendPagination) {
-           this.paginator.firstPage();
-       } else {
-           this.dataSource.filter = valueToSearch;
-           if (this.dataSource.paginator) {
-               this.dataSource.paginator.firstPage();
-           }
-       }
+   applySort() {
+        this.sort.sortChange.subscribe(sort => {
+            this.sortCalled.emit(sort)
+        })
    }
+
+   applySearchFilter() {
+
+    const filter: HTMLInputElement = this.filter.nativeElement
+    fromEvent(filter, 'keyup')
+        .pipe(
+            debounceTime<any>(700),
+            map((_: KeyboardEvent) => filter.value))
+                .subscribe({
+                    next: (res: string) => {
+                        if(this.enableBackendSearch) {
+                            this.searchCalled.emit(res);      
+                        }
+                        if (this.enableBackendPagination) {
+                            this.paginator.firstPage();
+                        } else {
+                            this.dataSource.filter = res;
+                            if (this.dataSource.paginator) {
+                                this.dataSource.paginator.firstPage();
+                            }
+                        }
+                    }
+    })      
+}
 
    performAction(action: any, obj: any) {
        // If actionCalled is not defined, then simply return.

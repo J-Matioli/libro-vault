@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { Observable, take } from 'rxjs';
+import { Data } from 'src/app/core/models/data';
+import { CustomTableComponent } from 'src/app/shared/custom-table/custom-table.component';
 import { GenreFormDialogComponent } from 'src/app/shared/genre-form-dialog/genre-form-dialog.component';
+import { RequestGenres, Sort } from './store/actions/genre.actions';
+import { Store } from '@ngrx/store';
+import { Genre } from 'src/app/core/models/genre';
+import { selectGenres, selectGenresData, selectGenresLoader } from './store/selectors/genre.selectors';
+
 
 @Component({
   selector: 'app-genres',
@@ -10,42 +18,76 @@ import { GenreFormDialogComponent } from 'src/app/shared/genre-form-dialog/genre
 })
 export class GenresComponent implements OnInit {
 
+  @ViewChild(CustomTableComponent) table: CustomTableComponent
+  
+  public isloading: Observable<boolean> = this.store.select(selectGenresLoader)  
+  public routeNotReady$: Observable<boolean> = this.store.select(selectGenresLoader).pipe(take(2))
+  public genres$: Observable<Genre[]> = this.store.select(selectGenres)
+  public genresInfo: Data
+
   public tableHeaders = {
-    id: 'Id',
-    name: 'Gênero',
-    qtdObras: 'Qtd. Obras'
+    nome: 'Editora',
+    quantidadeObras: 'Qtd. Obras'
   }
 
-  public genres = [
-    { id: 1, name: 'Aventura', qtdObras: 10 },
-    { id: 2, name: 'Comédia', qtdObras: 31 },
-    { id: 3, name: 'Drama', qtdObras: 15 },
-    { id: 4, name: 'Fantasia', qtdObras: 4 },
-    { id: 5, name: 'Romance', qtdObras: 20 },
-    { id: 6, name: 'Ficção científica', qtdObras: 13 },
-    { id: 7, name: 'Suspense', qtdObras: 9 },
-    { id: 8, name: 'Terror', qtdObras: 25 },
-    { id: 9, name: 'Autoajuda', qtdObras: 45 },
-    { id: 10, name: 'Fábula', qtdObras: 3 }
-  ]
+  public pageSettings: PageEvent = { length: 0, pageIndex: 0, pageSize: 10 }
+  public filter: string = '';
+  public sort: Sort = 'Novos';
 
-  public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
+  constructor(
+    private dialog: MatDialog,
+    private store: Store
+  ) { }
 
-  constructor(private dialog: MatDialog) { }
+  ngOnInit(): void { 
+    this.store.dispatch(new RequestGenres({data: {
+      Ordenar: this.sort || 'Novos'
+    } }));
+    
+    this.store.select(selectGenresData).subscribe(data => {
+      this.genresInfo = data;
+      this.pageSettings.length = this.genresInfo.contagemTotalResultados;
+      this.pageSettings.pageSize = this.genresInfo.resultadosExibidosPagina;
+      this.pageSettings.pageIndex = this.genresInfo.paginaAtual - 1;
 
-  ngOnInit(): void { }
+      if(this.pageSettings.pageIndex === 0) {
+        this.table?.paginator.firstPage();
+      }
+    });
+  }
 
-
-  searchAction(ev: any) {
-    console.log(ev)
+  searchAction(ev: string) {
+    this.filter = ev;
+    this.store.dispatch(new RequestGenres({data: {
+        PalavraChave: this.filter,
+        Ordenar: this.sort || 'Novos',
+        ResultadosExibidos: this.genresInfo.resultadosExibidosPagina
+      }
+    }));
   }
 
   pageAction(ev: any) {
-    console.log(ev)
+    this.store.dispatch(new RequestGenres({data: {
+        PalavraChave: this.filter,
+        ResultadosExibidos: ev.pageSize,
+        Ordenar: this.sort || 'Novos',
+        NumeroPagina: ev.pageIndex + 1
+      }})
+    );
+  }
+
+  sortAction(ev: any) {;
+    this.sort = SortTypes[ev.direction as 'asc' | 'desc'] ;
+    
+    this.store.dispatch(new RequestGenres({data: {
+      PalavraChave: this.filter,
+      Ordenar: this.sort || 'Novos',
+      ResultadosExibidos: this.genresInfo.resultadosExibidosPagina
+    }
+    }));
   }
 
   userAction(ev?: any) {
-    
     const dialogRef = this.dialog.open(GenreFormDialogComponent, {
       restoreFocus: false,
       data: {
@@ -54,5 +96,9 @@ export class GenresComponent implements OnInit {
       },
     });
   }
+}
 
+export enum SortTypes {
+  'asc' = 'Crescente',
+  'desc' = 'Decrescente'
 }

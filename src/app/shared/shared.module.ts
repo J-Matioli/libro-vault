@@ -33,6 +33,7 @@ import { CustomFilterComponent } from './custom-filter/custom-filter.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSortModule } from '@angular/material/sort';
 import { CustomChipComponent } from './custom-chip/custom-chip.component';
 import { CustomSelectComponent } from './custom-select/custom-select.component';
 import { MatRippleModule } from '@angular/material/core';
@@ -50,6 +51,7 @@ import { DetailsInfoFieldComponent } from './custom-details/components/details-i
 import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog/add-work-shelf-dialog.component';
 import { SkeletonComponent } from './skeleton/skeleton.component';
 import { SkeletonDirective } from '../core/directives/skeleton.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,7 @@ import { SkeletonDirective } from '../core/directives/skeleton.directive';
     MatProgressBarModule,
     MatIconModule,
     MatDialogModule,
+    MatSortModule,
     MatDividerModule,
     MatFormFieldModule,
     MatMenuModule,
@@ -102,6 +105,7 @@ import { SkeletonDirective } from '../core/directives/skeleton.directive';
     FormsModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatProgressSpinnerModule,
     MatCardModule,
     MatRippleModule,
     ImageCropperModule,
@@ -116,6 +120,7 @@ import { SkeletonDirective } from '../core/directives/skeleton.directive';
     CustomFilterComponent,
     CustomFormComponent,
     CustomDetailsComponent,
+    SkeletonDirective,
     CustomCardComponent
   ],
   providers: [

@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { Store } from '@ngrx/store';
 import { PublisherFormDialogComponent } from 'src/app/shared/publisher-form-dialog/publisher-form-dialog.component';
+import { RequestPublishers, Sort } from './store/actions/publisher.actions';
+import { Observable, take, tap } from 'rxjs';
+import { Publisher } from 'src/app/core/models/publisher';
+import { selectPublishers, selectPublishersData, selectPublishersLoader } from './store/selectors/publisher.selectors';
+import { Data } from 'src/app/core/models/data';
+import { CustomTableComponent } from 'src/app/shared/custom-table/custom-table.component';
 
 @Component({
   selector: 'app-publishers',
@@ -10,38 +17,73 @@ import { PublisherFormDialogComponent } from 'src/app/shared/publisher-form-dial
 })
 export class PublishersComponent implements OnInit {
 
+  @ViewChild(CustomTableComponent) table: CustomTableComponent
+  
+  public isloading: Observable<boolean> = this.store.select(selectPublishersLoader)  
+  public routeNotReady$: Observable<boolean> = this.store.select(selectPublishersLoader).pipe(take(2))
+  public publishers$: Observable<Publisher[]> = this.store.select(selectPublishers)
+  public publishersInfo: Data
+
   public tableHeaders = {
-    id: 'Id',
-    name: 'Editora',
-    qtdObras: 'Qtd. Obras'
+    nome: 'Editora',
+    quantidadeObras: 'Qtd. Obras'
   }
 
-  public publishers = [
-    { id: 1, name: 'Panini', qtdObras: 7 },
-    { id: 2, name: 'JBC', qtdObras: 4 },
-    { id: 3, name: 'Pipoca e Nanquim', qtdObras: 3 },
-    { id: 4, name: 'Devir', qtdObras: 2 },
-    { id: 5, name: 'NewPop', qtdObras: 1 },
-    { id: 6, name: 'DarkSide', qtdObras: 1 },
-    { id: 7, name: 'L&PM', qtdObras: 2 },
-    { id: 8, name: 'Companhia das Letras', qtdObras: 3 },
-    { id: 9, name: 'SESI', qtdObras: 2 },
-    { id: 10, name: 'Rocco', qtdObras: 1 }
-  ]
+  public pageSettings: PageEvent = { length: 0, pageIndex: 0, pageSize: 10 }
+  public filter: string = '';
+  public sort: Sort = 'Novos';
 
-  public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
+  constructor(
+    private dialog: MatDialog,
+    private store: Store
+  ) { }
 
-  constructor(private dialog: MatDialog) { }
+  ngOnInit(): void { 
+    this.store.dispatch(new RequestPublishers({data: {
+      Ordenar: this.sort || 'Novos'
+    } }));
+    
+    this.store.select(selectPublishersData).subscribe(data => {
+      this.publishersInfo = data;
+      this.pageSettings.length = this.publishersInfo.contagemTotalResultados;
+      this.pageSettings.pageSize = this.publishersInfo.resultadosExibidosPagina;
+      this.pageSettings.pageIndex = this.publishersInfo.paginaAtual - 1;
 
-  ngOnInit(): void { }
+      if(this.pageSettings.pageIndex === 0) {
+        this.table?.paginator.firstPage();
+      }
+    });
+  }
 
-
-  searchAction(ev: any) {
-    console.log(ev)
+  searchAction(ev: string) {
+    this.filter = ev;
+    this.store.dispatch(new RequestPublishers({data: {
+        PalavraChave: this.filter,
+        Ordenar: this.sort || 'Novos',
+        ResultadosExibidos: this.publishersInfo.resultadosExibidosPagina
+      }
+    }));
   }
 
   pageAction(ev: any) {
-    console.log(ev)
+    this.store.dispatch(new RequestPublishers({data: {
+        PalavraChave: this.filter,
+        ResultadosExibidos: ev.pageSize,
+        Ordenar: this.sort || 'Novos',
+        NumeroPagina: ev.pageIndex + 1
+      }})
+    );
+  }
+
+  sortAction(ev: any) {;
+    this.sort = SortTypes[ev.direction as 'asc' | 'desc'] ;
+    
+    this.store.dispatch(new RequestPublishers({data: {
+      PalavraChave: this.filter,
+      Ordenar: this.sort || 'Novos',
+      ResultadosExibidos: this.publishersInfo.resultadosExibidosPagina
+    }
+    }));
   }
 
   userAction(ev?: any) {
@@ -53,4 +95,9 @@ export class PublishersComponent implements OnInit {
       },
     });
   }
+}
+
+export enum SortTypes {
+  'asc' = 'Crescente',
+  'desc' = 'Decrescente'
 }
