@@ -134,14 +134,14 @@ describe(PublisherFormDialogComponent.name, () => {
     spyOn(store, 'dispatch').and.callThrough();
 
     const form: any = new FormGroup({
-      nome: new FormControl('new teste name')
+      nome: new FormControl('new test name')
     });
     
     component.form = form;
     
      const expectedPayload: Publisher = {
        id: '1',
-       nome: 'new teste name',
+       nome: 'new test name',
        status: 'Status',
        usuarioId: 'usuarioId'
      };
