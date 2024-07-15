@@ -34,7 +34,7 @@ export class PublisherEffects{
             ),        
     );
 
-    addPublisherSucces = createEffect(
+    addPublisherSuccess = createEffect(
         () => this.actions$
             .pipe(
                 ofType(PublisherActionTypes.AddPublisherSuccess),
@@ -55,7 +55,7 @@ export class PublisherEffects{
             ),        
     );
 
-    updatePublisherSucces = createEffect(
+    updatePublisherSuccess = createEffect(
         () => this.actions$
             .pipe(
                 ofType(PublisherActionTypes.UpdatePublisherSuccess),
@@ -76,7 +76,7 @@ export class PublisherEffects{
             ),        
     );
 
-    deletePublisherSucces = createEffect(
+    deletePublisherSuccess = createEffect(
         () => this.actions$
             .pipe(
                 ofType(PublisherActionTypes.DeletePublisherSuccess),

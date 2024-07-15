@@ -1,11 +1,18 @@
 <div class="genres c-container">
-    <app-custom-title title="Gêneros">
-        <app-custom-button color="accent" (clickButton)="userAction()">Adicionar</app-custom-button>
+    <app-custom-title title="Gêneros" *appSkeleton="(routeNotReady$ | async)!; height: '51px'; width: '100%'; className: 'mb-40'" >
+        <app-custom-button color="accent" (clickButton)="userAction()"  >Adicionar</app-custom-button>
     </app-custom-title>
 
-    <app-custom-table 
+    <ng-container *ngIf="(routeNotReady$ | async) || (isloading | async)">
+        <div class="genres__filter-skeleton" *appSkeleton="true; height: '50px'; width: '100%'; className: 'mb-40'"></div>
+        <div class="genres__table-skeleton" *appSkeleton="true; height: '500px'; width: '100%'"></div>
+    </ng-container>
+
+    <app-custom-table
+        [ngClass]="{'invisible': (routeNotReady$ | async)}"
+        [isLoading]="(isloading | async)!"
         [columnDefinition]="tableHeaders"
-        [tableData]="genres"
+        [tableData]="genres$ | async"
         [displayDeleteAction]="true"
         [displayEditAction]="true"
         [enableBackendPagination]="true"
@@ -16,5 +23,6 @@
         [pageProperties]="pageSettings"
         (searchCalled)="searchAction($event)"
         (pageEventCalled)="pageAction($event)"
+        (sortCalled)="sortAction($event)"
     ></app-custom-table>
 </div>

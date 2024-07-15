@@ -4,7 +4,7 @@ import { Observable, catchError, finalize, tap, throwError } from 'rxjs';
 import { Publisher, PublisherResponse } from '../models/publisher';
 import { Data } from '../models/data';
 import { Store } from '@ngrx/store';
-import { RequestFinishLoaderPublisher, RequestLoaderPublisher } from 'src/app/features/publishers/store/actions/loader.actions';
+import { RequestFinishLoaderPublisher, RequestLoaderPublisher } from 'src/app/features/publishers/store/actions/publisher-loader.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddPublisherError, DeletePublisherError, UpdatePublisherError } from 'src/app/features/publishers/store/actions/publisher.actions';
 

@@ -1,4 +1,3 @@
-import { Update } from "@ngrx/entity";
 import { Action } from "@ngrx/store";
 import { Data } from "src/app/core/models/data";
 import { Publisher, PublisherResponse } from "src/app/core/models/publisher";

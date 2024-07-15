@@ -2,7 +2,7 @@ import { EntityState, createEntityAdapter } from "@ngrx/entity";
 import { Publisher } from "src/app/core/models/publisher";
 import { PublisherActionTypes, PublisherActions } from "../actions/publisher.actions";
 import { Data } from "src/app/core/models/data";
-import { PublisherLoaderActionTypes, PublisherLoaderActions } from "../actions/loader.actions";
+import { PublisherLoaderActionTypes, PublisherLoaderActions } from "../actions/publisher-loader.actions";
 
 export interface PublisherState extends EntityState<Publisher> {     
     data: Data,
