@@ -1,11 +1,18 @@
 <div class="publishers c-container">
-    <app-custom-title title="Editoras">
+    <app-custom-title title="Editoras" *appSkeleton="(routeNotReady$ | async)!; height: '51px'; width: '100%'; className: 'mb-40'" >
         <app-custom-button color="accent" (clickButton)="userAction()"  >Adicionar</app-custom-button>
     </app-custom-title>
 
-    <app-custom-table 
+    <ng-container *ngIf="(routeNotReady$ | async) || (isloading | async)">
+        <div class="publishers__filter-skeleton" *appSkeleton="true; height: '50px'; width: '100%'; className: 'mb-40'"></div>
+        <div class="publishers__table-skeleton" *appSkeleton="true; height: '500px'; width: '100%'"></div>
+    </ng-container>
+
+    <app-custom-table
+        [ngClass]="{'invisible': (routeNotReady$ | async)}"
+        [isLoading]="(isloading | async)!"
         [columnDefinition]="tableHeaders"
-        [tableData]="publishers"
+        [tableData]="publishers$ | async"
         [displayDeleteAction]="true"
         [displayEditAction]="true"
         [enableBackendPagination]="true"
@@ -16,5 +23,6 @@
         [pageProperties]="pageSettings"
         (searchCalled)="searchAction($event)"
         (pageEventCalled)="pageAction($event)"
+        (sortCalled)="sortAction($event)"
     ></app-custom-table>
 </div>

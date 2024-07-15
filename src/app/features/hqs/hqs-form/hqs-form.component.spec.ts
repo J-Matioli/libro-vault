@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HqsFormComponent } from './hqs-form.component';
+import { HqsModule } from '../hqs.module';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 describe(HqsFormComponent.name, () => {
   let component: HqsFormComponent;
@@ -8,7 +12,12 @@ describe(HqsFormComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HqsFormComponent ]
+      imports: [ 
+        HqsModule,
+        AppRoutingModule,
+        MatNativeDateModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 

@@ -37,7 +37,7 @@ describe(ResetPasswordFormComponent.name, () => {
     const fomrEmitterSpy = spyOn(component.formSubmit, 'emit');
 
     component.form.setValue({
-      senha: 'Teste@123',
+      novaSenha: 'Teste@123',
       confirmarSenha: 'Teste@123'
     })
 

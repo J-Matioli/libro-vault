@@ -4,8 +4,8 @@
         <form class="genre-form" [formGroup]="form" (ngSubmit)="submit()">
             <mat-form-field appearance="fill">
                 <mat-label>Gênero</mat-label>
-                <input type="text" formControlName="genero" matInput>
-                <mat-error *ngIf="genero!.errors?.['required']">Insira o nome do gênero.</mat-error>
+                <input type="text" formControlName="nome" matInput>
+                <mat-error *ngIf="nome!.errors?.['required']">Insira o nome do gênero.</mat-error>
             </mat-form-field>
         </form>
     </mat-dialog-content>

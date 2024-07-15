@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BooksFormComponent } from './books-form.component';
+import { BooksModule } from '../books.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe(BooksFormComponent.name, () => {
   let component: BooksFormComponent;
@@ -8,7 +12,12 @@ describe(BooksFormComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BooksFormComponent ]
+      imports: [ 
+        BooksModule,
+        AppRoutingModule,
+        MatNativeDateModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 

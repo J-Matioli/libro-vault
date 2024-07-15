@@ -28,6 +28,18 @@ export class ShelfDetailsComponent implements OnInit {
         img: 'https://ogimg.infoglobo.com.br/in/21278263-016-014/FT1086A/67354912_Segundo-CadernoCena-do-quadrinho-Valerian.jpg'
       },
       {
+        workId: '2',
+        id: '3',
+        title: 'Berserk',
+        type: 'manga',
+        author: ['Kentaro Miura'],
+        pages: 5143,
+        read: true, 
+        qtdVolumes: 41,
+        genres: ['Fantasia sombria', 'Alta fantasia'],
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAGm4BiQc5-ONWBL4-jgASr5eoflQcjZ6OqQ&usqp=CAU'
+      },
+      {
         id: '1',
         title: '1984',
         author: ['George Orwell'],
@@ -80,7 +92,7 @@ export class ShelfDetailsComponent implements OnInit {
 
     switch (ev.action) {
       case 'GET':
-        this.router.navigate([workRoutes, 'detalhes', this.isVolume(work.workId) ? work.workId : work.id ], { queryParams: this.volumeParams(work.workId, ev.id)});
+        this.router.navigate([workRoutes, 'detalhes', this.isVolume(work.workId) ? work.workId : work.id ], { queryParams: this.volumeParams(work.workId, work.id)});
         break;
       case 'EDIT':
         this.router.navigate([workRoutes, 'editar', this.isVolume(work.workId) ? work.workId : work.id ]);
@@ -96,15 +108,13 @@ export class ShelfDetailsComponent implements OnInit {
   volumeParams(workId: any, volumeId: string): Params | null {
 
     if(workId) {
-      console.log(workId);
-      
       return { vol: volumeId }
     }
 
     return null
   }
 
-  isVolume(workId: string) {
+  isVolume(workId: string | undefined) {
     return workId ? true : false;
   }
 

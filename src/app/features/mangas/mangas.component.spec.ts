@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MangasComponent } from './mangas.component';
+import { MangasModule } from './mangas.module';
 
 describe(MangasComponent.name, () => {
   let component: MangasComponent;
@@ -8,7 +9,7 @@ describe(MangasComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MangasComponent ]
+      imports: [ MangasModule ],
     })
     .compileComponents();
 

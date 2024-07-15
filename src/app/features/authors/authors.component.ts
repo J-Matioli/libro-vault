@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { Store } from '@ngrx/store';
+import { Observable, take } from 'rxjs';
+import { Author } from 'src/app/core/models/author';
 import { AuthorFormDialogComponent } from 'src/app/shared/author-form-dialog/author-form-dialog.component';
+import { CustomTableComponent } from 'src/app/shared/custom-table/custom-table.component';
+import { RequestAuthors, Sort } from './store/actions/author.actions';
+import { selectAuthorsLoader, selectAuthors, selectAuthorsData } from './store/selectors/author.selectors';
+import { Data } from 'src/app/core/models/data';
 
 @Component({
   selector: 'app-authors',
@@ -10,41 +17,76 @@ import { AuthorFormDialogComponent } from 'src/app/shared/author-form-dialog/aut
 })
 export class AuthorsComponent implements OnInit {
 
+  @ViewChild(CustomTableComponent) table: CustomTableComponent
+  
+  public isloading: Observable<boolean> = this.store.select(selectAuthorsLoader)  
+  public routeNotReady$: Observable<boolean> = this.store.select(selectAuthorsLoader).pipe(take(2))
+  public authors$: Observable<Author[]> = this.store.select(selectAuthors)
+  public authorsInfo: Data
+
   public tableHeaders = {
-    id: 'Id',
-    name: 'Autor',
-    qtdObras: 'Qtd. Obras'
+    nome: 'Editora',
+    quantidadeObras: 'Qtd. Obras'
   }
 
-  public authors = [
-    { id: 1, name: 'Junji Ito', qtdObras: 10 },
-    { id: 2, name: 'Margaret Atwood', qtdObras: 2 },
-    { id: 3, name: 'Neil Gaiman', qtdObras: 3 },
-    { id: 4, name: 'Inio Asano', qtdObras: 4 },
-    { id: 5, name: 'C. S. Lewis', qtdObras: 1 },
-    { id: 6, name: 'George Orwell', qtdObras: 1 },
-    { id: 7, name: 'Jules Verne', qtdObras: 3 },
-    { id: 8, name: 'Ursula K. Le Guin', qtdObras: 1 },
-    { id: 9, name: 'Isaac Asimov', qtdObras: 1 },
-    { id: 10, name: 'Franz Kafka', qtdObras: 1 }
-  ]
+  public pageSettings: PageEvent = { length: 0, pageIndex: 0, pageSize: 10 }
+  public filter: string = '';
+  public sort: Sort = 'Novos';
 
-  public pageSettings: PageEvent = { length: 10, pageIndex: 0, pageSize: 10 }
+  constructor(
+    private dialog: MatDialog,
+    private store: Store
+  ) { }
 
-  constructor(private dialog: MatDialog) { }
+  ngOnInit(): void { 
+    this.store.dispatch(new RequestAuthors({data: {
+      Ordenar: this.sort || 'Novos'
+    } }));
+    
+    this.store.select(selectAuthorsData).subscribe(data => {
+      this.authorsInfo = data;
+      this.pageSettings.length = this.authorsInfo.contagemTotalResultados;
+      this.pageSettings.pageSize = this.authorsInfo.resultadosExibidosPagina;
+      this.pageSettings.pageIndex = this.authorsInfo.paginaAtual - 1;
 
-  ngOnInit(): void { }
+      if(this.pageSettings.pageIndex === 0) {
+        this.table?.paginator.firstPage();
+      }
+    });
+  }
 
-
-  searchAction(ev: any) {
-    console.log(ev)
+  searchAction(ev: string) {
+    this.filter = ev;
+    this.store.dispatch(new RequestAuthors({data: {
+        PalavraChave: this.filter,
+        Ordenar: this.sort || 'Novos',
+        ResultadosExibidos: this.authorsInfo.resultadosExibidosPagina
+      }
+    }));
   }
 
   pageAction(ev: any) {
-    console.log(ev)
+    this.store.dispatch(new RequestAuthors({data: {
+        PalavraChave: this.filter,
+        ResultadosExibidos: ev.pageSize,
+        Ordenar: this.sort || 'Novos',
+        NumeroPagina: ev.pageIndex + 1
+      }})
+    );
   }
 
-  userAction(ev?: any) {    
+  sortAction(ev: any) {;
+    this.sort = SortTypes[ev.direction as 'asc' | 'desc'] ;
+    
+    this.store.dispatch(new RequestAuthors({data: {
+      PalavraChave: this.filter,
+      Ordenar: this.sort || 'Novos',
+      ResultadosExibidos: this.authorsInfo.resultadosExibidosPagina
+    }
+    }));
+  }
+
+  userAction(ev?: any) {
     const dialogRef = this.dialog.open(AuthorFormDialogComponent, {
       restoreFocus: false,
       data: {
@@ -53,5 +95,9 @@ export class AuthorsComponent implements OnInit {
       },
     });
   }
+}
 
+export enum SortTypes {
+  'asc' = 'Crescente',
+  'desc' = 'Decrescente'
 }

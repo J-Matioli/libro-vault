@@ -1,14 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomTableComponent } from './custom-table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSortModule } from '@angular/material/sort';
 
-describe('CustomTableComponent', () => {
+describe(CustomTableComponent.name, () => {
   let component: CustomTableComponent;
   let fixture: ComponentFixture<CustomTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomTableComponent ]
+      declarations: [ CustomTableComponent ],
+      imports: [
+        MatPaginatorModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatSortModule,
+        MatInputModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HqsComponent } from './hqs.component';
+import { HqsModule } from './hqs.module';
 
 describe(HqsComponent.name, () => {
   let component: HqsComponent;
@@ -8,7 +9,7 @@ describe(HqsComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HqsComponent ]
+      imports: [ HqsModule ]
     })
     .compileComponents();
 

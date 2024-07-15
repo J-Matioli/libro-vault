@@ -1,6 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Actions, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
+import { AddGenre, DeleteGenre, GenreActionTypes, UpdateGenre } from 'src/app/features/genres/store/actions/genre.actions';
 
 export interface GenreDialogData {
   action: 'ADD' | 'UPDATE' | 'DELETE';
@@ -13,14 +17,43 @@ export interface GenreDialogData {
   styleUrls: ['./genre-form-dialog.component.scss']
 })
 export class GenreFormDialogComponent implements OnInit {
-
-  public actions: typeof Actions = Actions;
+  isLoading: boolean = false;
+  destroyed$ = new Subject<boolean>();
+  public actions: typeof ReqActions = ReqActions;
   public form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: GenreDialogData
-  ) { }
+    private store: Store,
+    private dialogRef: MatDialogRef<GenreFormDialogComponent>,
+    actions$: Actions,
+    @Inject(MAT_DIALOG_DATA) public data: GenreDialogData) {
+
+      actions$.pipe(
+        ofType(
+          GenreActionTypes.AddGenreSuccess,
+          GenreActionTypes.UpdateGenreSuccess,
+          GenreActionTypes.DeleteGenreSuccess),
+        takeUntil(this.destroyed$)
+     )
+     .subscribe(() => {
+        this.isLoading = false;
+        this.dialogRef.close();
+     });
+
+     actions$.pipe(
+      ofType(
+        GenreActionTypes.AddGenreError,
+        GenreActionTypes.UpdateGenreError,
+        GenreActionTypes.DeleteGenreError),
+      takeUntil(this.destroyed$)
+   )
+   .subscribe(() => {
+      this.isLoading = false;
+      this.form.reset();
+   });
+
+    }
 
   ngOnInit(): void {
     this.createForm();
@@ -29,38 +62,64 @@ export class GenreFormDialogComponent implements OnInit {
     }
   }
 
-  get genero() { return this.form.get('genero'); }
+  get nome() { return this.form.get('nome'); }
 
   createForm(): void {
     this.form = this.fb.group<GenreForm>({
-      genero: new FormControl(null, { validators: [Validators.required] }),
+      nome: new FormControl(null, { validators: [Validators.required] }),
     })
   }
 
-  populateForm() {        
+  populateForm() {
     this.form.patchValue({
-      genero: this.data.genre.name
+      nome: this.data.genre.nome
     })
   }
 
   submit() {
     this.form.markAllAsTouched();
-    if (this.form.valid) {
-      console.log(this.data.action, this.form.value)
+    if (!this.form.valid) { return };
+    this.isLoading = true;
+    switch (this.data.action) {
+      case 'ADD':
+        this.addGenre();
+        break;
+      case 'UPDATE':
+        this.updateGenre();
+        break;
+      case 'DELETE':
+        this.deleteGenre();
+        break;
+      default:
+        this.isLoading = false;
+        break;
     }
   }
 
-  deleteGenre() {
-    console.log(this.data.action, this.data.genre.id)
+  addGenre() {
+    this.store.dispatch(new AddGenre({data: this.form.value}))
   }
 
+  updateGenre() {
+    const payload = Object.assign({}, this.data.genre, this.form.value)
+    this.store.dispatch(new UpdateGenre({data: payload}))
+  }
+  
+  deleteGenre() {
+    this.store.dispatch(new DeleteGenre({id: this.data.genre.id}))
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+  }
 }
 
 export interface GenreForm {
-  genero: FormControl<string | null>
+  nome: FormControl<string | null>
 }
 
-export enum Actions {
+export enum ReqActions {
   'ADD' = 'Adicionar',
   'UPDATE' = 'Atualizar',
   'DELETE' = 'Remover'

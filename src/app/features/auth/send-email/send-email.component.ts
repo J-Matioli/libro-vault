@@ -27,7 +27,7 @@ export class SendEmailComponent implements OnInit {
 
     if(event.action === 'RESET_PASSWORD') {
       this.resetPassword(emailFormData);
-    }else {
+    }else if(event.action === 'SEND_EMAIL') {
       this.resendConfirmEmail(emailFormData);
     }
   }

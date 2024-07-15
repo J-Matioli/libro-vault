@@ -119,7 +119,7 @@ export class ShelfListComponent implements OnInit {
 
     switch (ev.action) {
       case 'GET':
-        this.router.navigate([workRoutes, 'detalhes', this.isVolume(work.workId) ? work.workId : work.id ], { queryParams: this.volumeParams(work.workId, ev.id)});
+        this.router.navigate([workRoutes, 'detalhes', this.isVolume(work.workId) ? work.workId : work.id ], { queryParams: this.volumeParams(work.workId, work.id)});
         break;
       case 'EDIT':
         this.router.navigate([workRoutes, 'editar', this.isVolume(work.workId) ? work.workId : work.id ]);
@@ -131,16 +131,14 @@ export class ShelfListComponent implements OnInit {
 
   volumeParams(workId: any, volumeId: string): Params | null {
 
-    if(workId) {
-      console.log(workId);
-      
+    if(workId) {      
       return { vol: volumeId }
     }
 
     return null
   }
 
-  isVolume(workId: string) {
+  isVolume(workId: string | undefined) {
     return workId ? true : false;
   }
 

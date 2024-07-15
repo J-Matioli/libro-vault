@@ -1,14 +1,53 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VolumeFormComponent } from './volume-form.component';
+import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomVolumeForm } from 'src/app/core/utils/form-utils';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { ImgCropperComponent } from 'src/app/shared/img-cropper/img-cropper.component';
+import { ImageCropperComponent } from 'ngx-image-cropper';
 
-describe('VolumeFormComponent', () => {
+describe(VolumeFormComponent.name, () => {
   let component: VolumeFormComponent;
   let fixture: ComponentFixture<VolumeFormComponent>;
 
+  const fg: FormGroup<CustomVolumeForm> = new FormGroup<CustomVolumeForm>({
+    volume: new FormControl(''),
+    anotacoes: new FormControl(''),
+    imagem: new FormControl(''),
+    maisInfo: new FormGroup({
+      dataCompra: new FormControl(''),
+      dataLeitura: new FormControl(''),
+      lido: new FormControl(''),
+      pagina: new FormControl(''),
+      preco: new FormControl('')
+    })
+  });
+
+  const fgd: FormGroupDirective = new FormGroupDirective([], []);
+  fgd.form = fg;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VolumeFormComponent ]
+      declarations: [ 
+        VolumeFormComponent,
+        ImgCropperComponent,
+        ImageCropperComponent
+      ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        BrowserAnimationsModule
+      ],
+      providers: [
+        {provide: ControlContainer, useValue: fgd}
+      ]
     })
     .compileComponents();
 

@@ -30,7 +30,7 @@ export class CustomChipComponent implements OnInit {
   constructor() { }
 
 
-  requireValidator() {
+  requireValidator() {    
     if(this.required && this.control.invalid) {
       this.chipList.errorState = true;
     }else {
