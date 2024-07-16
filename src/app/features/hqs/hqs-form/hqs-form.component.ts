@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomFormComponent } from 'src/app/shared/custom-form/custom-form.component';
 
 @Component({
   selector: 'app-hqs-form',
@@ -7,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./hqs-form.component.scss']
 })
 export class HqsFormComponent implements OnInit {
+
+  @ViewChild('customForm') customForm!: CustomFormComponent;
 
   public actions: typeof Actions = Actions;
   public formType: 'ADD' | 'PUT';
@@ -27,6 +30,10 @@ export class HqsFormComponent implements OnInit {
 
   backEvent() {
     this.router.navigate(['hqs']);
+  }
+
+  submit() {
+    this.customForm.submit()
   }
 
 }

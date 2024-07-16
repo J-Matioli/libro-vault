@@ -1,0 +1,12 @@
+@import "../../../scss/main.scss";
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+
+    @include respond(xxsmall) {
+        flex-direction: column;
+        row-gap: 15px;
+    }
+}

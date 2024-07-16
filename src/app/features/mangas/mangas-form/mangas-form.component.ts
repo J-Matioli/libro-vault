@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomFormComponent } from 'src/app/shared/custom-form/custom-form.component';
 
 @Component({
   selector: 'app-mangas-form',
@@ -7,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./mangas-form.component.scss']
 })
 export class MangasFormComponent implements OnInit {
+  @ViewChild('customForm') customForm!: CustomFormComponent;
 
   public actions: typeof Actions = Actions;
   public formType: 'ADD' | 'PUT';
@@ -27,6 +29,10 @@ export class MangasFormComponent implements OnInit {
 
   backEvent() {
     this.router.navigate(['mangas']);
+  }
+
+  submit() {
+    this.customForm.submit()
   }
 }
 

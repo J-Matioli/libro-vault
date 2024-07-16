@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomFormComponent } from 'src/app/shared/custom-form/custom-form.component';
 
 @Component({
   selector: 'app-books-form',
@@ -7,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./books-form.component.scss']
 })
 export class BooksFormComponent implements OnInit {
+  @ViewChild('customForm') customForm!: CustomFormComponent;
 
   public actions: typeof Actions = Actions;
   public formType: 'ADD' | 'PUT';
@@ -27,6 +29,9 @@ export class BooksFormComponent implements OnInit {
 
   backEvent() {
     this.router.navigate(['livros']);
+  }
+  submit() {
+    this.customForm.submit()
   }
 }
 

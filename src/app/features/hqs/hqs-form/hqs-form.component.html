@@ -1,6 +1,11 @@
 <div class="c-container">
     <app-custom-title [title]="actions[formType]"></app-custom-title>
 
-    <app-custom-form (backEvent)="backEvent()" [workType]="workType" (formValue)="onSubmit($event)"></app-custom-form>
+    <app-custom-form #customForm [workType]="workType" (formValue)="onSubmit($event)"></app-custom-form>
+
+    <section class="buttons">
+        <app-custom-button class="buttons__back" (clickButton)="backEvent()" color="">voltar</app-custom-button>
+        <app-custom-button class="buttons__add" (clickButton)="submit()" color="primary">Adicionar</app-custom-button>
+    </section>
 </div>
 

@@ -25,7 +25,6 @@ export class CustomFormComponent implements OnInit {
 
   @Input() workType: 'livro' | 'manga' | 'hq';
   @Output() formValue: EventEmitter<any> = new EventEmitter<any>();
-  @Output() backEvent: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild("chipAuthor") chipAuthor: CustomChipComponent;
   @ViewChildren(VolumeFormComponent) volumeFormComponents: QueryList<VolumeFormComponent>;
@@ -85,7 +84,8 @@ export class CustomFormComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  submit() {
+    this.form.markAllAsTouched();
     this.chipAuthor.requireValidator();
 
     this.volumeFormComponents.forEach(component => {
@@ -95,10 +95,6 @@ export class CustomFormComponent implements OnInit {
     if(this.form.valid) {
       this.formValue.emit(this.form.value);
     }
-  }
-
-  onBackBtn() {
-    this.backEvent.emit();
   }
 
   croppedImage(ev: any) {
