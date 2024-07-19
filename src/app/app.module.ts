@@ -16,6 +16,7 @@ import { AuthModule } from './features/auth/auth.module';
 import { registerLocaleData } from '@angular/common';
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 import { TokenService } from './core/services/token.service';
+import { AuthorEffects } from './features/authors/store/effects/author.effects';
 
 registerLocaleData(localePt)
 
@@ -44,7 +45,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     }),
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthorEffects]),
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,

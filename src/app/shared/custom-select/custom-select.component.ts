@@ -6,6 +6,17 @@ export interface Option {
   viewValue: string;
 }
 
+export function ascendingOrder (a: Option, b: Option) {
+  if (a.viewValue > b.viewValue) {
+    return 1;
+  }
+  if (a.viewValue < b.viewValue) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
 @Component({
   selector: 'app-custom-select',
   templateUrl: './custom-select.component.html',

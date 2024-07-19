@@ -5,6 +5,7 @@ import { HqsModule } from '../hqs.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { StoreModule } from '@ngrx/store';
 
 describe(HqsFormComponent.name, () => {
   let component: HqsFormComponent;
@@ -16,6 +17,7 @@ describe(HqsFormComponent.name, () => {
         HqsModule,
         AppRoutingModule,
         MatNativeDateModule,
+        StoreModule.forRoot({}),
         BrowserAnimationsModule
       ]
     })

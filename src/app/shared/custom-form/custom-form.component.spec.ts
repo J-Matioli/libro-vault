@@ -17,6 +17,7 @@ import { CustomSelectComponent } from '../custom-select/custom-select.component'
 import { ImgCropperComponent } from '../img-cropper/img-cropper.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ImageCropperComponent } from 'ngx-image-cropper';
+import { StoreModule } from '@ngrx/store';
 
 describe(CustomFormComponent.name, () => {
   let component: CustomFormComponent;
@@ -43,6 +44,7 @@ describe(CustomFormComponent.name, () => {
         MatSelectModule,
         BrowserAnimationsModule,
         MatAutocompleteModule,
+        StoreModule.forRoot({}), 
         MatCheckboxModule
       ]
     })

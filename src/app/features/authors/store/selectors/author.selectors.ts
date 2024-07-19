@@ -19,3 +19,8 @@ export const selectAuthorsLoader = createSelector(
     selectAuthorsState,
     state => state.requestLoader
 )
+
+export const selectAuthorsAsOption = createSelector(
+    selectAuthors,
+    author => author.map(v => ({value: v.id, viewValue: v.nome}))
+)

@@ -3,7 +3,7 @@
         <mat-label>{{ label }}</mat-label>
         <mat-chip-list #chipList [attr.aria-label]="'seleção de ' + label">
             <mat-chip *ngFor="let selectedOption of selectedOptions" (removed)="remove(selectedOption)">
-                {{ selectedOption }}
+                {{ selectedOption.viewValue }}
                 <button matChipRemove>
                     <mat-icon>cancel</mat-icon>
                 </button>

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomChipComponent } from './custom-chip.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -56,4 +56,35 @@ describe(CustomChipComponent.name, () => {
     component.requireValidator();
     expect(component.chipList.errorState).toBeFalse();
   })
+
+  it(`#${CustomChipComponent.prototype.selected.name}
+    should add option to selectedOptions array`, () => {
+      const event: MatAutocompleteSelectedEvent = {
+        option: {
+          value: '1',
+          viewValue: 'Test'
+        }
+      } as MatAutocompleteSelectedEvent
+
+      component.selected(event);
+      expect(component.selectedOptions.length).toBe(1);      
+    })
+
+  it(`#${CustomChipComponent.prototype.selected.name}
+    should clear chipInput and chipControl`, () => {
+      const chipInput = component.chipInput;
+      const chipControl = component.chipControl
+
+      const event: MatAutocompleteSelectedEvent = {
+        option: {
+          value: '1',
+          viewValue: 'Test'
+        }
+      } as MatAutocompleteSelectedEvent
+
+      component.selected(event);
+      expect(chipInput.nativeElement.value).withContext('Chip input empty').toBe('');
+      expect(chipControl.value).withContext('Chip co9ntrol null').toBeNull();
+    })
+  
 });

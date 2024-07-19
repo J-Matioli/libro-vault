@@ -3,11 +3,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthorFormDialogComponent } from '../author-form-dialog/author-form-dialog.component';
 import { PublisherFormDialogComponent } from '../publisher-form-dialog/publisher-form-dialog.component';
 import { GenreFormDialogComponent } from '../genre-form-dialog/genre-form-dialog.component';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { genresOptions, languageOptions, authorOptions, publisherOptions } from '../custom-filter/filter-helper';
 import { CustomChipComponent } from '../custom-chip/custom-chip.component';
 import { CustomForm, CustomVolumeForm } from 'src/app/core/utils/form-utils';
 import { VolumeFormComponent } from './components/volume-form/volume-form.component';
+import { Store } from '@ngrx/store';
+import { filter, Observable } from 'rxjs';
+import { selectAuthorsAsOption } from 'src/app/features/authors/store/selectors/author.selectors';
+import { Option } from '../custom-select/custom-select.component';
+import { RequestAuthors } from 'src/app/features/authors/store/actions/author.actions';
 
 @Component({
   selector: 'app-custom-form',
@@ -29,17 +34,24 @@ export class CustomFormComponent implements OnInit {
   @ViewChild("chipAuthor") chipAuthor: CustomChipComponent;
   @ViewChildren(VolumeFormComponent) volumeFormComponents: QueryList<VolumeFormComponent>;
 
+  public authors$: Observable<Option[]> = this.store.select(selectAuthorsAsOption);
+
   constructor(
     private dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(new RequestAuthors({data: {
+      Ordenar: 'Crescente'
+    }}));
+
     this.createForm();
 
-    this.volumeUnico.valueChanges.subscribe(data => {
+    this.form.controls.volumeUnico.valueChanges.subscribe(data => {
       if(data) {
-        this.volumes.clear();
+        this.form.controls.volumes?.clear();
       }else {
         this.addVol();
       }
@@ -98,17 +110,17 @@ export class CustomFormComponent implements OnInit {
   }
 
   croppedImage(ev: any) {
-    this.imagem.setValue(ev)
+    this.form.controls.imagem.setValue(ev)
   }
 
   addVol() {
-    const volumeLength = this.volumes.controls.length + 1;
+    const volumeLength = this.form.controls.volumes!.controls.length + 1;
     const volumeControl = this.createVolumeForm(volumeLength.toString());
-    this.volumes.push(volumeControl);
+    this.form.controls.volumes?.push(volumeControl);
   }
 
   removeVol(i: number) {
-    this.volumes.removeAt(i);
+    this.form.controls.volumes?.removeAt(i);
   }
   
   addAuthor() {
@@ -136,47 +148,16 @@ export class CustomFormComponent implements OnInit {
     });
   }
 
+  authorsOptions(ev: string) {    
+    if(ev != null) {
+      this.store.dispatch(new RequestAuthors({data: {
+        Ordenar: 'Crescente',
+        PalavraChave: ev
+      }}));
+    }
+  }
+
   displayAutoComplete(option: any): string {       
     return option && option.viewValue ? option.viewValue : '';
-  }
-  
-  get obra(): FormControl {
-    return this.form.get('obra') as FormControl
-  }
-  
-  get autor(): FormControl {
-    return this.form.get('autor') as FormControl
-  }
-  
-  get editora(): FormControl {
-    return this.form.get('editora') as FormControl
-  }
-
-  get idioma(): FormControl {
-    return this.form.get('idioma') as FormControl
-  }
-
-  get imagem(): FormControl {
-    return this.form.get('imagem') as FormControl
-  }
-
-  get anotacoes(): FormControl {
-    return this.form.get('anotacoes') as FormControl
-  }
-
-  get generos(): FormControl {
-    return this.form.get('generos') as FormControl
-  }
-
-  get volumeUnico(): FormControl {
-    return this.form.get('volumeUnico') as FormControl
-  }
-
-  get maisInfo(): FormGroup {
-    return this.form.get('maisInfo') as FormGroup
-  }
-
-  get volumes(): FormArray<FormGroup<CustomVolumeForm>> {
-    return this.form.get('volumes') as FormArray
   }
 }

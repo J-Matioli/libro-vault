@@ -5,6 +5,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { MangasModule } from '../mangas.module';
+import { StoreModule } from '@ngrx/store';
 
 describe(MangasFormComponent.name, () => {
   let component: MangasFormComponent;
@@ -16,7 +17,8 @@ describe(MangasFormComponent.name, () => {
         MangasModule,
         AppRoutingModule,
         MatNativeDateModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        StoreModule.forRoot({}),
       ]
     })
     .compileComponents();

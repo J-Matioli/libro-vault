@@ -2,13 +2,14 @@
     <mat-form-field class="form__work" appearance="fill">
         <mat-label>Obra</mat-label>
         <input matInput type="text" formControlName="obra">
-        <mat-error *ngIf="obra!.errors?.['required']">Insira o título da obra.</mat-error>
+        <mat-error *ngIf="form.controls.obra!.errors?.['required']">Insira o título da obra.</mat-error>
     </mat-form-field>
 
     <app-custom-chip 
             #chipAuthor
-            [options]="authorOptions"
-            [control]="autor"
+            [options]="(authors$ | async)"
+            (chipsValue)="authorsOptions($event)"
+            [control]="form.controls.autor"
             [required]="true"
             [placeholder]="'Procurar autor'"
             requiredMessage="Insira pelo menos um autor"
@@ -31,7 +32,7 @@
             {{ option.viewValue }}
           </mat-option>
         </mat-autocomplete>
-        <mat-error *ngIf="editora!.errors?.['required']">Insira uma editora.</mat-error>
+        <mat-error *ngIf="form.controls.editora!.errors?.['required']">Insira uma editora.</mat-error>
     </mat-form-field>
 
     <app-custom-button [padding]="false" (clickButton)="addPublisher()" class="form__publisher-button" color="accent">Cadastrar editora</app-custom-button>
@@ -40,7 +41,7 @@
         [reset]="false"
         [multiple]="true"
         [label]="'Idioma'"
-        [control]="idioma"
+        [control]="form.controls.idioma"
         requiredMessage="Insira pelo menos um idioma"
         [options]="languageOptions"
         class="form__language">
@@ -57,7 +58,7 @@
         [options]="genresOptions"
         [placeholder]="'Procurar gêneros'"
         [label]="'Gêneros'"
-        [control]="generos"
+        [control]="form.controls.generos"
         class="form__genre">
     </app-custom-chip>
 
@@ -65,7 +66,7 @@
 
     <mat-checkbox class="form__unique" *ngIf="workType != 'livro'" formControlName="volumeUnico">Volume único?</mat-checkbox>
     
-    <ng-container [ngTemplateOutlet]="workType != 'livro' && !volumeUnico.value ? workVolums : workMoreInfo"></ng-container>
+    <ng-container [ngTemplateOutlet]="workType != 'livro' && !form.controls.volumeUnico.value ? workVolums : workMoreInfo"></ng-container>
     
     <ng-template #workMoreInfo>
         <app-more-info-form formGroupName="maisInfo" class="form__more-info"></app-more-info-form>
@@ -78,7 +79,7 @@
             </app-custom-title>
     
             <ng-container formArrayName="volumes">
-                <ng-container *ngFor="let volume of volumes.controls; let i = index">  
+                <ng-container *ngFor="let volume of form.controls.volumes?.controls; let i = index">  
                     <div class="form__divider" *ngIf="i > 0"></div>
                     <app-volume-form (remove)="removeVol(i)"  [formGroupName]="i" class="form__volume-form"></app-volume-form>
                 </ng-container>

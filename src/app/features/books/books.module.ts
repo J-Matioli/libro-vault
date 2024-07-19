@@ -15,7 +15,7 @@ import { BooksDetailsComponent } from './books-details/books-details.component';
     BooksListComponent,
     BooksComponent,
     BooksFormComponent,
-    BooksDetailsComponent
+    BooksDetailsComponent,
   ],
   imports: [
     CommonModule,
