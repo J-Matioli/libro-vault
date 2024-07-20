@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { GenreService } from './genre.service';
-import { GenreReducer } from 'src/app/features/genres/store/reducer/genre';
+import { genreReducer } from 'src/app/features/genres/store/reducer/genre';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +21,7 @@ describe('GenreService', () => {
         HttpClientTestingModule,
         StoreModule.forRoot({}), 
         MatSnackBarModule,
-        StoreModule.forFeature('genre', GenreReducer),
+        StoreModule.forFeature('genre', genreReducer),
       ]
     });
     service = TestBed.inject(GenreService);

@@ -27,8 +27,8 @@
                aria-label="Number"
                matInput
                [matAutocomplete]="publisherAuto">
-        <mat-autocomplete autoActiveFirstOption #publisherAuto="matAutocomplete" [displayWith]="displayAutoComplete">
-          <mat-option *ngFor="let option of publisherOptions" [value]="option">
+        <mat-autocomplete autoActiveFirstOption #publisherAuto="matAutocomplete" [displayWith]="displayPublisherAutoComplete">
+          <mat-option *ngFor="let option of publisherOptions" [value]="option.value">
             {{ option.viewValue }}
           </mat-option>
         </mat-autocomplete>
@@ -55,7 +55,7 @@
     </mat-form-field>
 
     <app-custom-chip 
-        [options]="genresOptions"
+        [options]="(genres$ | async)"
         [placeholder]="'Procurar gêneros'"
         [label]="'Gêneros'"
         [control]="form.controls.generos"

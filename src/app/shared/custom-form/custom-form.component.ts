@@ -13,6 +13,8 @@ import { filter, Observable } from 'rxjs';
 import { selectAuthorsAsOption } from 'src/app/features/authors/store/selectors/author.selectors';
 import { Option } from '../custom-select/custom-select.component';
 import { RequestAuthors } from 'src/app/features/authors/store/actions/author.actions';
+import { selectGenresAsOption } from 'src/app/features/genres/store/selectors/genre.selectors';
+import { RequestGenres } from 'src/app/features/genres/store/actions/genre.actions';
 
 @Component({
   selector: 'app-custom-form',
@@ -35,6 +37,7 @@ export class CustomFormComponent implements OnInit {
   @ViewChildren(VolumeFormComponent) volumeFormComponents: QueryList<VolumeFormComponent>;
 
   public authors$: Observable<Option[]> = this.store.select(selectAuthorsAsOption);
+  public genres$: Observable<Option[]> = this.store.select(selectGenresAsOption);
 
   constructor(
     private dialog: MatDialog,
@@ -44,6 +47,10 @@ export class CustomFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new RequestAuthors({data: {
+      Ordenar: 'Crescente'
+    }}));
+
+    this.store.dispatch(new RequestGenres({data: {
       Ordenar: 'Crescente'
     }}));
 
@@ -157,7 +164,7 @@ export class CustomFormComponent implements OnInit {
     }
   }
 
-  displayAutoComplete(option: any): string {       
-    return option && option.viewValue ? option.viewValue : '';
+  displayPublisherAutoComplete(option: string): string {
+    return publisherOptions.find(el => el.value == option)?.viewValue || '';
   }
 }

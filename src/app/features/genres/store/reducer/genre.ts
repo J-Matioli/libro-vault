@@ -16,7 +16,7 @@ export const initialGenreState = adapter.getInitialState({
     requestLoader: false
 })
 
-export function GenreReducer(
+export function genreReducer(
     state = initialGenreState,
     action: GenreActions | GenreLoaderActions
 ): GenreState {

@@ -19,3 +19,8 @@ export const selectGenresLoader = createSelector(
     selectGenresState,
     state => state.requestLoader
 )
+
+export const selectGenresAsOption = createSelector(
+    selectGenres,
+    genre => genre.map(v => ({value: v.id, viewValue: v.nome}))
+)

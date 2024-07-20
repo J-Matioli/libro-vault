@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EffectsModule } from '@ngrx/effects';
-import { GenreReducer } from './store/reducer/genre';
+import { genreReducer } from './store/reducer/genre';
 import { GenreEffects } from './store/effects/genre.effects';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -22,7 +22,7 @@ describe(GenresComponent.name, () => {
         HttpClientTestingModule,
         StoreModule.forRoot({}), 
         MatSnackBarModule,
-        StoreModule.forFeature('genre', GenreReducer),
+        StoreModule.forFeature('genre', genreReducer),
         EffectsModule.forRoot([]),
         EffectsModule.forFeature([GenreEffects]),
       ]

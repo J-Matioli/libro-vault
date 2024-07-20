@@ -12,7 +12,7 @@ import { Store, StoreModule } from '@ngrx/store';
 import { Genre } from 'src/app/core/models/genre';
 import { DeleteGenre, UpdateGenre } from 'src/app/features/genres/store/actions/genre.actions';
 import { genreMock } from 'src/app/core/test/genre-test';
-import { GenreReducer } from 'src/app/features/genres/store/reducer/genre';
+import { genreReducer } from 'src/app/features/genres/store/reducer/genre';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe(GenreFormDialogComponent.name, () => {
@@ -33,7 +33,7 @@ describe(GenreFormDialogComponent.name, () => {
         MatDialogModule,
         MatButtonModule,
         StoreModule.forRoot({}), 
-        StoreModule.forFeature('genre', GenreReducer),
+        StoreModule.forFeature('genre', genreReducer),
         MatFormFieldModule,
         HttpClientTestingModule,
         MatInputModule,
