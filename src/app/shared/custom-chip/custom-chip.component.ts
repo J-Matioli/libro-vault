@@ -71,8 +71,10 @@ export class CustomChipComponent implements OnInit, OnChanges {
     }
     
     this.control.setValue(this.selectedOptions.map(el => el.value));
-    this.options?.push(option);
-    this.options?.sort((a, b) => ascendingOrder(a, b));
+    if(!this.repeatOptions) {
+      this.options?.push(option);
+      this.options?.sort((a, b) => ascendingOrder(a, b));
+    }
     this.requireValidator();
   }
 

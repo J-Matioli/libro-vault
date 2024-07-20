@@ -84,7 +84,14 @@ describe(CustomChipComponent.name, () => {
 
       component.selected(event);
       expect(chipInput.nativeElement.value).withContext('Chip input empty').toBe('');
-      expect(chipControl.value).withContext('Chip co9ntrol null').toBeNull();
+      expect(chipControl.value).withContext('Chip control null').toBeNull();
     })
-  
+
+    it(`#${CustomChipComponent.prototype.remove.name}
+      should remove option of selectedOptions`, () => {
+        const option = {value: '1', viewValue: 'Test'};
+        component.selectedOptions = [option];
+        component.remove(option);
+        expect(component.selectedOptions.length).toBe(0);
+    })
 });
