@@ -91,7 +91,7 @@ export class CustomFormComponent implements OnInit {
         pagina: new FormControl(),
         dataCompra: new FormControl(),
         lido: new FormControl(),
-        dataLeitura: new FormControl(),
+        dataLeitura: new FormControl({value: '', disabled: true}),
       }),
       volumes:  this.fb.array([
         this.createVolumeForm('1')
@@ -109,7 +109,7 @@ export class CustomFormComponent implements OnInit {
         pagina: new FormControl(),
         dataCompra: new FormControl(),
         lido: new FormControl(),
-        dataLeitura: new FormControl(),
+        dataLeitura: new FormControl({value: '', disabled: true}),
       }),
     })
   }
