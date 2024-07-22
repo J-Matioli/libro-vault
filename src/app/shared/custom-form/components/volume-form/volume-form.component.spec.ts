@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VolumeFormComponent } from './volume-form.component';
-import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ControlContainer, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomVolumeForm } from 'src/app/core/utils/form-utils';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -15,15 +15,15 @@ describe(VolumeFormComponent.name, () => {
   let fixture: ComponentFixture<VolumeFormComponent>;
 
   const fg: FormGroup<CustomVolumeForm> = new FormGroup<CustomVolumeForm>({
-    volume: new FormControl(''),
-    anotacoes: new FormControl(''),
-    imagem: new FormControl(''),
+    volume: new FormControl('1', {validators: [Validators.required], nonNullable: true}),
+    imagem: new FormControl('', {nonNullable: true}),
+    anotacao: new FormControl('', {nonNullable: true}),
     maisInfo: new FormGroup({
-      dataCompra: new FormControl(''),
-      dataLeitura: new FormControl(''),
-      lido: new FormControl(''),
-      pagina: new FormControl(''),
-      preco: new FormControl('')
+      preco: new FormControl('', {nonNullable: true}),
+      pagina: new FormControl(),
+      dataCompra: new FormControl('', {nonNullable: true}),
+      lido: new FormControl(false, {nonNullable: true}),
+      dataLeitura: new FormControl({value: '', disabled: true}, {nonNullable: true}),
     })
   });
 

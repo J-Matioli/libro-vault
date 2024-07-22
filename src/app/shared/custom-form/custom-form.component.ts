@@ -28,8 +28,6 @@ export class CustomFormComponent implements OnInit {
 
   public form: FormGroup<CustomForm>;
 
-
-
   @Input() workType: 'livro' | 'manga' | 'hq';
   @Output() formValue: EventEmitter<any> = new EventEmitter<any>();
 
@@ -78,38 +76,36 @@ export class CustomFormComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group<CustomForm>({
-      obra: new FormControl(null, { validators: [Validators.required]}),
-      autor: new FormControl(null, { validators: [Validators.required]}),
-      editora: new FormControl(null, { validators: [Validators.required]}),
-      idioma: new FormControl(null, { validators: [Validators.required]}),
-      imagem: new FormControl(),
-      anotacoes: new FormControl(),
-      generos: new FormControl(),
-      volumeUnico: new FormControl(),
+      nome: new FormControl('', { validators: [Validators.required], nonNullable: true}),
+      autorId: new FormControl([], { validators: [Validators.required], nonNullable: true}),
+      editoraId: new FormControl('', { validators: [Validators.required], nonNullable: true}),
+      idioma: new FormControl([], { validators: [Validators.required], nonNullable: true}),
+      imagem: new FormControl('', {nonNullable: true}),
+      anotacao: new FormControl('', {nonNullable: true}),
+      generoId: new FormControl([], { nonNullable: true}),
+      volumeUnico: new FormControl(false, {validators: [Validators.required], nonNullable: true}),
       maisInfo: new FormGroup({
-        preco: new FormControl(),
+        preco: new FormControl('', {nonNullable: true}),        
         pagina: new FormControl(),
-        dataCompra: new FormControl(),
-        lido: new FormControl(),
-        dataLeitura: new FormControl({value: '', disabled: true}),
+        dataCompra: new FormControl('', {nonNullable: true}),
+        lido: new FormControl(false, {nonNullable: true}),
+        dataLeitura: new FormControl({value: '', disabled: true}, {nonNullable: true}),
       }),
-      volumes:  this.fb.array([
-        this.createVolumeForm('1')
-      ])
+      volumes:  this.fb.array([])
     })
   }
 
-  createVolumeForm(volume: string | null = null): FormGroup<CustomVolumeForm> {
+  createVolumeForm(volume: string = ''): FormGroup<CustomVolumeForm> {
     return this.fb.group<CustomVolumeForm>({
-      volume: new FormControl(volume, [Validators.required]),
-      imagem: new FormControl(),
-      anotacoes: new FormControl(),
+      volume: new FormControl(volume, {validators: [Validators.required], nonNullable: true}),
+      imagem: new FormControl('', {nonNullable: true}),
+      anotacao: new FormControl('', {nonNullable: true}),
       maisInfo: new FormGroup({
-        preco: new FormControl(),
+        preco: new FormControl('', {nonNullable: true}),
         pagina: new FormControl(),
-        dataCompra: new FormControl(),
-        lido: new FormControl(),
-        dataLeitura: new FormControl({value: '', disabled: true}),
+        dataCompra: new FormControl('', {nonNullable: true}),
+        lido: new FormControl(false, {nonNullable: true}),
+        dataLeitura: new FormControl({value: '', disabled: true}, {nonNullable: true}),
       }),
     })
   }
@@ -122,9 +118,29 @@ export class CustomFormComponent implements OnInit {
       component.requireValidator()
     })
     
-    if(this.form.valid) {
-      this.formValue.emit(this.form.value);
+    if(this.form.valid) {      
+      const submitValue = this.parseForm(this.form.value);
+      this.formValue.emit(submitValue);
     }
+  }
+
+  parseForm(formValue: any) {
+    const { maisInfo, editoraId, ...rest } = formValue;
+    const formData = Object.assign({}, rest, {
+      ...maisInfo,
+      editoraId: editoraId.value,
+      volumeUnico: this.workType == 'livro'? true : rest.volumeUnico
+    })
+
+    formData.volumes = formData.volumes.map((val: any) => {
+      const { maisInfo, ...rest } = val
+      return {
+        ...maisInfo,
+        ...rest
+      }
+    })
+
+    return formData;
   }
 
   croppedImage(ev: any) {

@@ -24,30 +24,30 @@ export class FormUtils {
 
 
 export interface CustomForm {
-    obra: FormControl<string | null>
-    autor: FormControl<string[] | null>
-    editora: FormControl<string | null>  
-    idioma: FormControl<string[] | null>
-    imagem: FormControl<string | null>
-    anotacoes: FormControl<string | null>
-    generos: FormControl<string[] | null>
-    volumeUnico: FormControl<string | null>
+    nome: FormControl<string>
+    autorId: FormControl<string[]>
+    editoraId: FormControl<any>  
+    idioma: FormControl<string[]>
+    imagem: FormControl<string>
+    anotacao: FormControl<string>
+    generoId: FormControl<string[]>
+    volumeUnico: FormControl<boolean>
     maisInfo: FormGroup<CustomMaisInfoForm>
-    volumes?: FormArray<FormGroup<CustomVolumeForm>>
+    volumes?: FormArray<FormGroup<CustomVolumeForm>> | FormArray
   }
   
   export interface CustomMaisInfoForm {
-    preco: FormControl<string | null>
-    pagina: FormControl<string | null>
-    dataCompra: FormControl<string | null>
-    lido: FormControl<string | null>
-    dataLeitura: FormControl<string | null>
+    preco: FormControl<string>
+    pagina: FormControl<number  | null>
+    dataCompra: FormControl<string>
+    lido: FormControl<boolean>
+    dataLeitura: FormControl<string>
   }
   
   export interface CustomVolumeForm {
-    volume: FormControl<string | null>,
-    imagem: FormControl<string | null>,
-    anotacoes: FormControl<string | null>,
+    volume: FormControl<string>,
+    imagem: FormControl<string>,
+    anotacao: FormControl<string>,
     maisInfo: FormGroup<CustomMaisInfoForm>
   }
   

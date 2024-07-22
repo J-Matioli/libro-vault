@@ -1,15 +1,15 @@
 <form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <mat-form-field class="form__work" appearance="fill">
         <mat-label>Obra</mat-label>
-        <input matInput type="text" formControlName="obra">
-        <mat-error *ngIf="form.controls.obra!.errors?.['required']">Insira o título da obra.</mat-error>
+        <input matInput type="text" formControlName="nome">
+        <mat-error *ngIf="form.controls.nome!.errors?.['required']">Insira o título da obra.</mat-error>
     </mat-form-field>
 
     <app-custom-chip 
             #chipAuthor
             [options]="(authors$ | async)"
             (chipsValue)="authorsOptions($event)"
-            [control]="form.controls.autor"
+            [control]="form.controls.autorId"
             [required]="true"
             [placeholder]="'Procurar autor'"
             requiredMessage="Insira pelo menos um autor"
@@ -23,7 +23,7 @@
         <mat-label>Editora</mat-label>
         <input type="text"
                placeholder="Selecione uma editora"
-               formControlName="editora"
+               formControlName="editoraId"
                aria-label="Number"
                matInput
                [matAutocomplete]="publisherAuto">
@@ -32,7 +32,7 @@
             {{ option.viewValue }}
           </mat-option>
         </mat-autocomplete>
-        <mat-error *ngIf="form.controls.editora!.errors?.['required']">Insira uma editora.</mat-error>
+        <mat-error *ngIf="form.controls.editoraId!.errors?.['required']">Insira uma editora.</mat-error>
     </mat-form-field>
 
     <app-custom-button [padding]="false" (clickButton)="addPublisher()" class="form__publisher-button" color="accent">Cadastrar editora</app-custom-button>
@@ -51,14 +51,14 @@
 
     <mat-form-field appearance="fill" class="form__notations">
         <mat-label>Anotações</mat-label>
-        <textarea matInput style="height: 133px;" formControlName="anotacoes"></textarea>
+        <textarea matInput style="height: 133px;" formControlName="anotacao"></textarea>
     </mat-form-field>
 
     <app-custom-chip 
         [options]="(genres$ | async)"
         [placeholder]="'Procurar gêneros'"
         [label]="'Gêneros'"
-        [control]="form.controls.generos"
+        [control]="form.controls.generoId"
         class="form__genre">
     </app-custom-chip>
 

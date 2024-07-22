@@ -6,6 +6,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe(BooksListComponent.name, () => {
   let component: BooksListComponent;
@@ -19,6 +23,10 @@ describe(BooksListComponent.name, () => {
         BooksModule,
         RouterTestingModule,
         MatNativeDateModule,
+        MatSnackBarModule,
+        HttpClientTestingModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot(),
         BrowserAnimationsModule
       ]
     })

@@ -6,6 +6,9 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe(BooksFormComponent.name, () => {
   let component: BooksFormComponent;
@@ -16,9 +19,12 @@ describe(BooksFormComponent.name, () => {
       imports: [ 
         BooksModule,
         AppRoutingModule,
+        HttpClientTestingModule,
+        MatSnackBarModule,
         MatNativeDateModule,
         BrowserAnimationsModule,
-        StoreModule.forRoot({})
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot()
       ]
     })
     .compileComponents();

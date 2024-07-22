@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { CustomFormComponent } from 'src/app/shared/custom-form/custom-form.component';
+import { AddBook } from '../store/actions/book.actions';
 
 @Component({
   selector: 'app-books-form',
@@ -16,6 +18,7 @@ export class BooksFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private store: Store,
     private router: Router
     ) {
     this.formType = this.route.snapshot.data['type']
@@ -24,7 +27,11 @@ export class BooksFormComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit(ev: any) {
-    console.log('Form value: ', ev)
+    const payload = {
+      ...ev,
+      tipo: 'Livro'
+    }
+    this.store.dispatch(new AddBook({data: payload}))
   }
 
   backEvent() {
