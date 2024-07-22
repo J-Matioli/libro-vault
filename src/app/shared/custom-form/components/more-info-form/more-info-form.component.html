@@ -1,7 +1,16 @@
 <div class="more-info-form" [formGroup]="moreInfoForm">
     <mat-form-field class="more-info-form__price" appearance="fill">
         <mat-label>Preço</mat-label>
-        <input matInput type="text" formControlName="preco">
+        <span matPrefix>R$ &nbsp;</span>
+        <input 
+            matInput
+            type="text"
+            formControlName="preco"
+            mask="separator.2"
+            thousandSeparator="."
+            [leadZero]="true"
+            [dropSpecialCharacters]="true"
+        >
     </mat-form-field>
     
     <mat-form-field class="more-info-form__pages" appearance="fill">

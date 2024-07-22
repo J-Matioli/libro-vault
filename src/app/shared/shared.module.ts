@@ -52,6 +52,7 @@ import { AddWorkShelfDialogComponent } from './add-work-shelf-dialog/add-work-sh
 import { SkeletonComponent } from './skeleton/skeleton.component';
 import { SkeletonDirective } from '../core/directives/skeleton.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatCardModule,
     MatRippleModule,
     ImageCropperModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgxMaskModule.forRoot()
   ],
   exports: [
     CustomButtonComponent,
