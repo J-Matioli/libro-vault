@@ -28,7 +28,7 @@
                matInput
                [matAutocomplete]="publisherAuto">
         <mat-autocomplete autoActiveFirstOption #publisherAuto="matAutocomplete" [displayWith]="displayPublisherAutoComplete">
-          <mat-option *ngFor="let option of publisherOptions" [value]="option.value">
+          <mat-option *ngFor="let option of (publishers$ | async)" [value]="option">
             {{ option.viewValue }}
           </mat-option>
         </mat-autocomplete>
@@ -43,7 +43,7 @@
         [label]="'Idioma'"
         [control]="form.controls.idioma"
         requiredMessage="Insira pelo menos um idioma"
-        [options]="languageOptions"
+        [options]="(languages$ | async)"
         class="form__language">
     </app-custom-select>
 

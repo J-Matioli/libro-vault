@@ -19,3 +19,8 @@ export const selectPublishersLoader = createSelector(
     selectPublishersState,
     state => state.requestLoader
 )
+
+export const selectPublishersAsOption = createSelector(
+    selectPublishers,
+    publisher => publisher.map(v => ({value: v.id, viewValue: v.nome}))
+)

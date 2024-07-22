@@ -29,7 +29,7 @@ export class CustomSelectComponent implements OnInit {
   @Input() requiredMessage: string = 'Este campo é obrigatório';
   @Input() reset: boolean = true;
   @Input() multiple: boolean = false;
-  @Input() options: Option[] = [];
+  @Input() options: Option[] | null = [];
   
   constructor() { }
 

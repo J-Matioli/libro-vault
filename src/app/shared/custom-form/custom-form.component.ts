@@ -4,17 +4,20 @@ import { AuthorFormDialogComponent } from '../author-form-dialog/author-form-dia
 import { PublisherFormDialogComponent } from '../publisher-form-dialog/publisher-form-dialog.component';
 import { GenreFormDialogComponent } from '../genre-form-dialog/genre-form-dialog.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { genresOptions, languageOptions, authorOptions, publisherOptions } from '../custom-filter/filter-helper';
 import { CustomChipComponent } from '../custom-chip/custom-chip.component';
 import { CustomForm, CustomVolumeForm } from 'src/app/core/utils/form-utils';
 import { VolumeFormComponent } from './components/volume-form/volume-form.component';
 import { Store } from '@ngrx/store';
-import { filter, Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { selectAuthorsAsOption } from 'src/app/features/authors/store/selectors/author.selectors';
 import { Option } from '../custom-select/custom-select.component';
 import { RequestAuthors } from 'src/app/features/authors/store/actions/author.actions';
 import { selectGenresAsOption } from 'src/app/features/genres/store/selectors/genre.selectors';
 import { RequestGenres } from 'src/app/features/genres/store/actions/genre.actions';
+import { selectLanguagesAsOption } from 'src/app/core/store/selectors/language.selectors';
+import { RequestLanguages } from 'src/app/core/store/actions/language.actions';
+import { RequestPublishers } from 'src/app/features/publishers/store/actions/publisher.actions';
+import { selectPublishersAsOption } from 'src/app/features/publishers/store/selectors/publisher.selectors';
 
 @Component({
   selector: 'app-custom-form',
@@ -25,10 +28,7 @@ export class CustomFormComponent implements OnInit {
 
   public form: FormGroup<CustomForm>;
 
-  public genresOptions = genresOptions;
-  public languageOptions = languageOptions;
-  public authorOptions = authorOptions;
-  public publisherOptions = publisherOptions;
+
 
   @Input() workType: 'livro' | 'manga' | 'hq';
   @Output() formValue: EventEmitter<any> = new EventEmitter<any>();
@@ -38,6 +38,8 @@ export class CustomFormComponent implements OnInit {
 
   public authors$: Observable<Option[]> = this.store.select(selectAuthorsAsOption);
   public genres$: Observable<Option[]> = this.store.select(selectGenresAsOption);
+  public languages$: Observable<Option[]> = this.store.select(selectLanguagesAsOption);
+  public publishers$: Observable<Option[]> = this.store.select(selectPublishersAsOption)
 
   constructor(
     private dialog: MatDialog,
@@ -50,8 +52,17 @@ export class CustomFormComponent implements OnInit {
       Ordenar: 'Crescente'
     }}));
 
+    this.store.dispatch(new RequestPublishers({data: {
+      Ordenar: 'Crescente'
+    }}));
+
     this.store.dispatch(new RequestGenres({data: {
       Ordenar: 'Crescente'
+    }}));
+
+    this.store.dispatch(new RequestLanguages({data: {
+      Ordenar: 'Crescente',
+      ResultadosExibidos: 100
     }}));
 
     this.createForm();
@@ -164,7 +175,7 @@ export class CustomFormComponent implements OnInit {
     }
   }
 
-  displayPublisherAutoComplete(option: string): string {
-    return publisherOptions.find(el => el.value == option)?.viewValue || '';
+  displayPublisherAutoComplete(option: Option): string {
+    return option?.viewValue;
   }
 }
