@@ -19,9 +19,14 @@ export class ImgCropperComponent {
     private sanitizer: DomSanitizer
   ) { }
 
-  fileChangeEvent(event: any): void {    
-      this.imageChangedEvent = event;
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+    
+    if(!this.imageChangedEvent.target.value) {
+      this.newImage.emit('');
+    }
   }
+
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64
     this.newImage.emit(this.croppedImage);
